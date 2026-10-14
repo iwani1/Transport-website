@@ -29,6 +29,25 @@
       "Carrier selection, booking and route planning",
       "Shipping documentation and regulatory compliance",
       "Door-to-door delivery with tracking updates"
+    ],
+    "whatsapp": "Hello Blahar & Benyah, I need a freight forwarding quote.\nFrom: \nTo: \nCargo (what, weight/volume or container size): \nReady date: ",
+    "faqs": [
+      {
+        "q": "Sea freight or air freight — which should I use?",
+        "a": "Sea freight is the economical choice for large or heavy consignments and takes weeks; air freight suits urgent, small or high-value cargo and takes days. Tell us what you are shipping and when you need it, and we will quote the option that fits — sometimes both."
+      },
+      {
+        "q": "My cargo does not fill a container. Can you still ship it?",
+        "a": "Yes. Give us the volume (cubic metres) and weight and we will advise between a full container (FCL) and shared-container (LCL) space, with the costs of each."
+      },
+      {
+        "q": "What do you need from me to quote?",
+        "a": "Origin and destination, a description of the goods, weight and volume or container size, who is paying the freight (the Incoterm, if you know it), and the date the cargo is ready. A photo of the supplier's packing list is usually enough to start."
+      },
+      {
+        "q": "Can I follow my shipment?",
+        "a": "Yes. You get updates at each stage — booked, departed, arrived, cleared, out for delivery — by WhatsApp or e-mail, and one person to call throughout."
+      }
     ]
   },
   {
@@ -60,6 +79,25 @@
       "Container, flatbed and general cargo haulage",
       "Cross-border road transport to neighbouring countries",
       "Driver contact and status updates for every trip"
+    ],
+    "whatsapp": "Hello Blahar & Benyah, I need a truck.\nPickup: \nDelivery to: \nCargo (container size or description): \nDate: ",
+    "faqs": [
+      {
+        "q": "Where do you deliver?",
+        "a": "Daily within Tema and Accra, to every region of Ghana, and across the border to neighbouring countries. Quote requests outside Greater Accra get a fixed round-trip price."
+      },
+      {
+        "q": "What kind of cargo do you move?",
+        "a": "Containers (20ft and 40ft), palletised and loose general cargo, and project cargo by arrangement. Tell us the weight, dimensions and any handling requirements and we will send the right truck."
+      },
+      {
+        "q": "How do I book a truck?",
+        "a": "Send the pickup location, delivery address, cargo details and the date — by WhatsApp, e-mail or the form on this page. We confirm the truck, the driver's name and number, and the price before dispatch."
+      },
+      {
+        "q": "Will I know where the truck is?",
+        "a": "Yes. You get the driver's direct number and status updates from collection to delivery, and a signed delivery note at the end."
+      }
     ]
   },
   {
@@ -92,7 +130,30 @@
       "Duty and tax assessment guidance",
       "Release and onward delivery of cleared cargo"
     ],
-    "heroMobile": "img/hero/container-yard-960.webp"
+    "heroMobile": "img/hero/container-yard-960.webp",
+    "whatsapp": "Hello Blahar & Benyah, I need customs clearing.\nCargo: \nArriving at (Tema Port / Kotoka / border): \nETA: \nDeliver to: ",
+    "faqs": [
+      {
+        "q": "What documents do I need to clear goods at Tema Port?",
+        "a": "The bill of lading (or airway bill for air cargo), the commercial invoice, the packing list, your TIN / Ghana Card details, and any permit the goods require (for example FDA or Ghana Standards Authority for regulated items). Send us scans first — we check the set before anything is lodged, which is where most delays are avoided."
+      },
+      {
+        "q": "How long does customs clearing take?",
+        "a": "With complete documents and duties paid promptly, most consignments are released within 2–5 working days of arrival. Examinations, missing paperwork or late payment add time. We tell you where the shipment is at each step, so there are no surprises."
+      },
+      {
+        "q": "How is import duty calculated?",
+        "a": "On the customs value of the goods (cost, insurance and freight) and their tariff classification. Import duty, VAT and the statutory levies are then applied, plus port and handling charges. We give you an itemised estimate before you commit, and the final figures come straight from the customs assessment."
+      },
+      {
+        "q": "Can you clear a vehicle or personal effects?",
+        "a": "Yes. Vehicle duty depends on the year, engine size and value, and older vehicles attract additional penalties, so send us the details before you ship. For personal effects we need the packing list and your travel/ID documents."
+      },
+      {
+        "q": "Do I need to come to Tema myself?",
+        "a": "No. With a signed authorisation and copies of your documents we handle the port, the declaration and the release; you only pay the duties and fees. We can then truck the goods to your door or hold them in our warehouse."
+      }
+    ]
   },
   {
     "slug": "warehousing",
@@ -124,7 +185,26 @@
       "Receiving, checking and dispatch of goods",
       "Combined storage-and-delivery arrangements"
     ],
-    "heroMobile": "img/hero/warehouse-960.webp"
+    "heroMobile": "img/hero/warehouse-960.webp",
+    "whatsapp": "Hello Blahar & Benyah, I need storage in Tema.\nGoods: \nQuantity (pallets / containers): \nFrom when, and for how long: ",
+    "faqs": [
+      {
+        "q": "Where is the warehouse?",
+        "a": "In Community 4, Tema, near Valco Roundabout — minutes from Tema Port, so cleared cargo can go straight into storage instead of running up port charges."
+      },
+      {
+        "q": "Is there a minimum storage period?",
+        "a": "No. Some clients store goods for a few days after clearing, others for a whole season. Storage is priced on the space you take and the time you keep it — tell us the quantity and duration and we will quote."
+      },
+      {
+        "q": "How are my goods looked after?",
+        "a": "Everything is checked and recorded on arrival, stored in an organised location and dispatched only on your instruction, with stock records you can request at any time."
+      },
+      {
+        "q": "Can you deliver from storage?",
+        "a": "Yes. Combined storage-and-delivery is one of our most common arrangements: goods go out in the quantities you need, when you need them, on our own trucks."
+      }
+    ]
   },
   {
     "slug": "building-construction",
@@ -156,7 +236,22 @@
       "Renovation and structural expansion",
       "Scheduling and budget control"
     ],
-    "heroMobile": "img/hero/construction-960.webp"
+    "heroMobile": "img/hero/construction-960.webp",
+    "whatsapp": "Hello Blahar & Benyah, I would like to discuss a building project.\nLocation: \nType of project: \nTimeline: ",
+    "faqs": [
+      {
+        "q": "What projects do you take on?",
+        "a": "Residential and commercial buildings, renovations and structural extensions — from planning through to handover."
+      },
+      {
+        "q": "How is a project priced?",
+        "a": "After a site visit and a review of your drawings or brief, you receive an itemised quote covering materials, labour and scheduling, with a clear timeline."
+      },
+      {
+        "q": "Do you manage materials and labour?",
+        "a": "Yes. We coordinate materials, labour and scheduling, manage the budget and site safety, and keep you updated as the work progresses."
+      }
+    ]
   },
   {
     "slug": "printing-photocopying",
@@ -187,6 +282,21 @@
       "Black-and-white and colour printing",
       "High-volume photocopying",
       "Fast turnaround for urgent jobs"
+    ],
+    "whatsapp": "Hello Blahar & Benyah, I have a print job.\nWhat: \nQuantity: \nNeeded by: ",
+    "faqs": [
+      {
+        "q": "What do you print?",
+        "a": "Business documents, reports, forms, shipping and customs paperwork, in black-and-white or colour, plus high-volume photocopying."
+      },
+      {
+        "q": "How quickly can you turn a job around?",
+        "a": "Most jobs are ready the same day; urgent jobs can usually be done while you wait. Tell us the quantity and deadline when you send the file."
+      },
+      {
+        "q": "How do I send my files?",
+        "a": "By WhatsApp or e-mail, ideally as PDF. Let us know the paper size, colour or black-and-white, single or double-sided, and the number of copies."
+      }
     ]
   }
 ]

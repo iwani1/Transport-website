@@ -39,7 +39,11 @@
                 .then(function (res) { return res.json().catch(function () { return { success: res.ok }; }); })
                 .then(function (json) {
                     if (json && json.success) {
+                        var typeField = form.querySelector('input[name="form"]');
+                        var serviceField = form.querySelector('[name="service"]');
+                        var detail = { form: typeField ? typeField.value : 'contact', service: serviceField ? serviceField.value : '' };
                         form.reset();
+                        try { form.dispatchEvent(new CustomEvent('form:sent', { bubbles: true, detail: detail })); } catch (err) { /* very old browsers */ }
                         if (ts) { ts.value = String(Math.floor(Date.now() / 1000)); }
                         setStatus(form, 'ok', json.message || 'Thank you — your message has been sent. We will get back to you shortly.');
                     } else {

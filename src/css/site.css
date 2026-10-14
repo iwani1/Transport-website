@@ -580,3 +580,24 @@ blockquote.pull::before { content: "“"; display: block; font-family: var(--dis
 .simple .lead a { color: var(--orange-2); text-decoration: underline; text-underline-offset: 3px; }
 .prose .eyebrow { margin-bottom: 18px; }
 .prose .actions { margin-top: 10px; }
+
+/* FAQ accordion (service pages) */
+.faq { margin-top: 56px; }
+.faq h2 { margin-top: 0; }
+.faq__item { border-top: 1px solid rgba(255, 255, 255, .1); }
+.faq__item:last-of-type { border-bottom: 1px solid rgba(255, 255, 255, .1); }
+.faq__item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 0; font: 600 clamp(16px, 1.3vw, 19px)/1.35 var(--sans); color: #fff; }
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary i { flex: none; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .2); position: relative; transition: transform .4s var(--ease), background .3s, border-color .3s; }
+.faq__item summary i::before, .faq__item summary i::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px; background: var(--orange-2); transform: translate(-50%, -50%); }
+.faq__item summary i::after { transform: translate(-50%, -50%) rotate(90deg); }
+.faq__item[open] summary i { transform: rotate(45deg); background: var(--orange); border-color: var(--orange); }
+.faq__item[open] summary i::before, .faq__item[open] summary i::after { background: var(--ink); }
+.faq__item summary:hover span { color: var(--teal-2); }
+.faq__item summary:focus-visible { outline: 2px solid var(--teal-2); outline-offset: 4px; border-radius: 6px; }
+.faq__a { padding: 0 54px 22px 0; color: rgba(233, 238, 240, .85); font-size: clamp(15px, 1.15vw, 17px); }
+.faq__a p { margin: 0; }
+@keyframes faqIn { from { opacity: 0; transform: translateY(-6px); } }
+@media (prefers-reduced-motion: no-preference) { .faq__item[open] .faq__a { animation: faqIn .45s var(--ease) both; } }
+.faq__more { margin: 22px 0 0; color: var(--muted); font-size: 15px; }
+.faq__more a { color: var(--orange-2); text-decoration: underline; text-underline-offset: 3px; }

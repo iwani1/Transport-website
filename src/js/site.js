@@ -238,6 +238,42 @@
     (function loop() { cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18; cursor.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)'; raf(loop); })();
   }
 
+  /* ---------- Conversion tracking ----------
+   * Sends the same events to Plausible ("Form sent", "WhatsApp click", ...) and to GA4
+   * (snake_case: form_sent, whatsapp_click, phone_click, email_click). Does nothing
+   * until an analytics ID is set in site.json. */
+  function track(name, props) {
+    props = props || {};
+    props.page = location.pathname;
+    try {
+      if (typeof window.plausible === 'function') window.plausible(name, { props: props });
+      if (typeof window.gtag === 'function') window.gtag('event', name.toLowerCase().replace(/\s+/g, '_'), props);
+    } catch (e) { /* analytics must never break the page */ }
+  }
+  function placementOf(el) {
+    if (el.classList.contains('fab')) return 'fab';
+    if (el.closest('.menu')) return 'menu';
+    if (el.closest('header')) return 'header';
+    if (el.closest('footer')) return 'footer';
+    if (el.closest('.cta')) return 'cta';
+    if (el.closest('.hero, .phero')) return 'hero';
+    if (el.closest('form, .aside, .panel')) return 'aside';
+    return 'content';
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (/^tel:/i.test(href)) track('Phone click', { placement: placementOf(a), number: href.slice(4) });
+    else if (/^mailto:/i.test(href)) track('Email click', { placement: placementOf(a) });
+    else if (/wa\.me|whatsapp\.com/i.test(href)) track('WhatsApp click', { placement: placementOf(a) });
+  });
+  document.addEventListener('form:sent', function (e) {
+    var d = e.detail || {};
+    track('Form sent', { form: d.form || 'contact', service: d.service || '' });
+  });
+  if (/\/thank-you\.html$/.test(location.pathname)) track('Form sent', { form: 'redirect', service: '' });
+
   /* ---------- Hero video: only download/play when allowed ---------- */
   var vid = $('.hero__video');
   if (vid) {

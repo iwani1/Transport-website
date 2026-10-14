@@ -12,4 +12,11 @@
         "areaServed": { "@type": "Country", "name": "Ghana" },
         "provider": { "@type": "LocalBusiness", "name": site.name, "url": site.url }
     } | jsonld | safe }}</script>
+{%- if service.faqs and service.faqs.length %}
+    {%- set faqEntities = [] %}
+    {%- for f in service.faqs %}
+        {%- set faqEntities = (faqEntities.push({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }), faqEntities) %}
+    {%- endfor %}
+    <script type="application/ld+json">{{ { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faqEntities } | jsonld | safe }}</script>
+{%- endif %}
 {%- endif %}

@@ -9,7 +9,7 @@
             <div class="cta__actions" data-reveal style="--delay:.15s">
                 <a class="btn btn--dark magnetic" href="{{ '/#contact' if isHome else '/contact.html#quote' }}">Request a quote</a>
                 {%- if site.whatsapp and site.whatsapp.number %}
-                <a class="btn btn--wa magnetic" href="https://wa.me/{{ site.whatsapp.number }}?text={{ site.whatsapp.message | urlencode }}" rel="noopener" target="_blank">WhatsApp us now</a>
+                <a class="btn btn--wa magnetic" href="https://wa.me/{{ site.whatsapp.number }}?text={{ (waMessage or site.whatsapp.message) | urlencode }}" rel="noopener" target="_blank">WhatsApp us now</a>
                 {%- else %}
                 <a class="btn btn--wa magnetic" href="tel:{{ site.phones[0].e164 }}">Call&nbsp;{{ site.phones[0].display | nbsp }}</a>
                 {%- endif %}

@@ -9,6 +9,7 @@ eleventyComputed:
   title: "{{ service.title }}"
   description: "{{ service.metaDescription }}"
   ogImage: "/{{ service.image }}"
+  waMessage: "{{ service.whatsapp | safe }}"
   crumbs:
     - label: "Services"
       url: "/services.html"
@@ -43,6 +44,19 @@ priority: "0.8"
                         <a class="btn btn--orange magnetic" href="#quote">{{ service.ctaLabel }}</a>
                         <a class="btn btn--ghost magnetic" href="/services.html">All services</a>
                     </div>
+
+                    {%- if service.faqs and service.faqs.length %}
+                    <section class="faq" aria-labelledby="faq-title">
+                        <h2 id="faq-title">Questions we get asked</h2>
+                        {%- for f in service.faqs %}
+                        <details class="faq__item"{% if loop.first %} open{% endif %}>
+                            <summary><span>{{ f.q }}</span><i aria-hidden="true"></i></summary>
+                            <div class="faq__a"><p>{{ f.a }}</p></div>
+                        </details>
+                        {%- endfor %}
+                        <p class="faq__more">Something else? <a href="https://wa.me/{{ site.whatsapp.number }}?text={{ (waMessage or site.whatsapp.message) | urlencode }}" rel="noopener" target="_blank">Ask on WhatsApp</a> or <a href="#quote">use the form</a>.</p>
+                    </section>
+                    {%- endif %}
                 </article>
 
                 <aside class="aside">
@@ -72,7 +86,7 @@ priority: "0.8"
                             <a href="mailto:{{ site.email }}">{{ site.email }}</a>
                             {%- if site.whatsapp and site.whatsapp.number %}
                             <small>WhatsApp</small>
-                            <a href="https://wa.me/{{ site.whatsapp.number }}?text={{ site.whatsapp.message | urlencode }}" rel="noopener" target="_blank">Chat on WhatsApp</a>
+                            <a href="https://wa.me/{{ site.whatsapp.number }}?text={{ (waMessage or site.whatsapp.message) | urlencode }}" rel="noopener" target="_blank">Chat on WhatsApp</a>
                             {%- endif %}
                             <small>Hours</small>
                             <span>{{ site.hours.summary }}</span>

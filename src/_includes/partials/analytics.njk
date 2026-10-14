@@ -1,6 +1,7 @@
-{#- Analytics is off until an ID is added to src/_data/site.json -#}
+{#- Analytics is off until an ID is added to src/_data/site.json. Conversion events (form sent, WhatsApp/phone/e-mail clicks) are sent by site.js -> track(). -#}
 {%- if site.analytics.plausibleDomain %}
     <script defer data-domain="{{ site.analytics.plausibleDomain }}" src="https://plausible.io/js/script.js"></script>
+    <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
 {%- endif %}
 {%- if site.analytics.ga4MeasurementId %}
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.ga4MeasurementId }}"></script>

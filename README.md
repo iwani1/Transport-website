@@ -50,7 +50,10 @@ src/
 | Add a looping video behind the home hero     | `site.json` → `"hero": { "video": "/img/hero/tema.mp4" }` (see below) |
 | Change colours or fonts                      | the `:root` variables at the top of `src/css/site.css` |
 | Add a photo                                  | optimise it first (see below), save in `src/img/…`, reference it as `/img/…` |
-| Turn on analytics                            | `site.json` → `analytics` (Plausible domain or GA4 ID) |
+| Turn on analytics + conversion tracking      | `site.json` → `analytics` (Plausible domain or GA4 ID) — see "Measuring enquiries" |
+| Change the pre-filled WhatsApp message        | default in `site.json` → `whatsapp.message`; per service in `services.json` → `whatsapp`; per page in the page's front matter (`waMessage`) |
+| Edit the FAQ on a service page                | `services.json` → `faqs` (also emitted as FAQPage structured data) |
+| Redo the social-share image                   | `python3 scripts/make-og-image.py` (after changing the logo or headline in the script) |
 
 After editing, rebuild (below) and upload the contents of `_site/`.
 
@@ -132,6 +135,33 @@ and for visitors with reduced motion, so the photo remains the fallback. No
 footage is bundled — the previous stock imagery had none and nothing has
 been generated.
 
+### Measuring enquiries
+
+Set either value in `site.json` → `analytics` and the site starts sending
+page views **and** the four events that matter for a marketing site:
+
+| Event (Plausible name / GA4 name) | Fired when                                   | Properties                     |
+|-----------------------------------|----------------------------------------------|--------------------------------|
+| `Form sent` / `form_sent`         | a quote or contact form is sent successfully (or the no-JS fallback lands on thank-you.html) | `form` (quote/contact/redirect), `service`, `page` |
+| `WhatsApp click` / `whatsapp_click` | any WhatsApp link or the floating button is tapped | `placement` (fab/header/menu/cta/hero/aside/footer/content), `page` |
+| `Phone click` / `phone_click`     | a phone number is tapped                     | `placement`, `number`, `page`  |
+| `Email click` / `email_click`     | an e-mail address is tapped                  | `placement`, `page`            |
+
+* **Plausible:** add the four names under *Site settings → Goals → Custom event*.
+* **GA4:** mark `form_sent` and `whatsapp_click` as *key events* in Admin → Events.
+
+Everything is in `track()` in `src/js/site.js`; `forms.js` raises a `form:sent`
+DOM event on success.
+
+### WhatsApp messages
+
+Every WhatsApp link opens the chat with a message already typed, so the lead
+arrives half-qualified. The home page uses the default greeting from
+`site.json`; each service page uses its own short template (e.g. for clearing:
+*"I need customs clearing. Cargo: … Arriving at: … ETA: … Deliver to: …"*),
+stored next to the service in `services.json` → `whatsapp`. Line breaks are
+allowed (`\n`).
+
 ### Design history
 
 Three earlier concept mock-ups (Clear & Trusted / Night Port / Route) and the
@@ -158,6 +188,9 @@ python3 scripts/optimize-images.py photo.jpg src/img/content/photo.webp --width 
   confirm they are genuine before launch. The "How it works" timings
   (within the hour / same day / 2–5 days) and the journey captions describe a
   typical Tema → Kumasi job — adjust if they over-promise.
+* **FAQ answers** — drafted from the service descriptions and general
+  practice at Tema Port; please read them once (`services.json` → `faqs`)
+  and correct anything that does not match how you actually work.
 * **Photos** — most are stock. The construction and warehousing heroes
   (`img/hero/construction.webp`, `img/hero/warehouse.webp`) are AI-generated
   illustrations standing in for real photos of your own site and warehouse —

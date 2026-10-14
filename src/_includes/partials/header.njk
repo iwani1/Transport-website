@@ -37,7 +37,7 @@
         <div class="menu__foot">
             <a class="btn btn--orange btn--sm" href="tel:{{ site.phones[0].e164 }}">Call&nbsp;{{ site.phones[0].display | nbsp }}</a>
             {%- if site.whatsapp and site.whatsapp.number %}
-            <a class="btn btn--wa btn--sm" href="https://wa.me/{{ site.whatsapp.number }}?text={{ site.whatsapp.message | urlencode }}" rel="noopener" target="_blank">WhatsApp</a>
+            <a class="btn btn--wa btn--sm" href="https://wa.me/{{ site.whatsapp.number }}?text={{ (waMessage or site.whatsapp.message) | urlencode }}" rel="noopener" target="_blank">WhatsApp</a>
             {%- endif %}
         </div>
     </div>
