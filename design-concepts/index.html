@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>UI concepts · Blahar &amp; Benyah</title>
+<link rel="stylesheet" href="/css/fonts.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 400 17px/1.6 'Lato', system-ui, sans-serif; color: #14202e; background: #f4f6f9; }
+  .wrap { width: min(1100px, 92vw); margin: 0 auto; padding: 60px 0 80px; }
+  h1, h2 { font-family: 'Montserrat', system-ui, sans-serif; letter-spacing: -0.02em; margin: 0; }
+  h1 { font-size: clamp(30px, 4vw, 44px); }
+  .lead { color: #5f6f82; max-width: 62ch; margin: 12px 0 40px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 12px; min-height: 380px; text-decoration: none; color: inherit; border: 1px solid #e4e9f0; transition: transform .25s, box-shadow .25s; position: relative; overflow: hidden; }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(20,32,46,.45); }
+  .card .no { font: 700 12px 'Montserrat', sans-serif; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
+  .card h2 { font-size: 24px; }
+  .card p { margin: 0; font-size: 15px; opacity: .85; }
+  .card ul { margin: 6px 0 0; padding-left: 18px; font-size: 14px; opacity: .85; }
+  .card .go { margin-top: auto; font: 700 14px 'Montserrat', sans-serif; }
+  .c1 { background: linear-gradient(160deg, #ffffff, #e8f1fa); }
+  .c1 .go { color: #0B60A9; }
+  .c2 { background: radial-gradient(90% 70% at 100% 0%, rgba(67,166,255,.35), transparent 60%), #06101c; color: #eef3f9; }
+  .c2 .go { color: #8ec5ff; }
+  .c3 { background: linear-gradient(160deg, #ffffff, #f6f3ec); }
+  .c3 .go { color: #e8792b; }
+  .meta { margin-top: 40px; padding: 20px 24px; border-radius: 16px; background: #fff; border: 1px solid #e4e9f0; font-size: 14px; color: #5f6f82; }
+  .meta a { color: #0B60A9; }
+  @media (max-width: 860px) { .cards { grid-template-columns: 1fr; } .card { min-height: 0; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Three UI directions for blaharbenyah.com</h1>
+  <p class="lead">Each concept is a working home-page mock-up built with your real logo, photos, colours and services. Open them on a phone too — they are all responsive.</p>
+
+  <div class="cards">
+    <a class="card c1" href="/concepts/concept-1-clear.html">
+      <span class="no">Concept 1</span>
+      <h2>Clear &amp; Trusted</h2>
+      <p>Light, friendly and conversion-focused. Big headline on the left, photo with a floating quick-quote card on the right.</p>
+      <ul><li>Trust row (stars, client initials)</li><li>Clean service cards with icons</li><li>Stats strip + blue call-to-action box</li></ul>
+      <span class="go">Open concept 1 →</span>
+    </a>
+    <a class="card c2" href="/concepts/concept-2-night-port.html">
+      <span class="no">Concept 2</span>
+      <h2>Night Port</h2>
+      <p>Dark, cinematic and premium. Full-screen port photo, glowing gradient headline and animated "shipment status" cards.</p>
+      <ul><li>Route ticker (Tema → Kumasi …)</li><li>Bento grid of services</li><li>Glass panels, glowing numbers</li></ul>
+      <span class="go">Open concept 2 →</span>
+    </a>
+    <a class="card c3" href="/concepts/concept-3-route.html">
+      <span class="no">Concept 3</span>
+      <h2>Route</h2>
+      <p>Explains the process first. An animated truck travels the route from "You request" to "You receive"; tabs switch between services.</p>
+      <ul><li>Service switcher (no JavaScript)</li><li>Numbered "How it works" steps</li><li>Sticky Call / WhatsApp / Quote bar on mobile</li></ul>
+      <span class="go">Open concept 3 →</span>
+    </a>
+  </div>
+
+  <div class="meta">
+    These mock-ups live in <code>design-concepts/</code> and are <strong>not</strong> part of the production build. The current live design is at <a href="/">/</a>. Inspiration: the hero-section styles collected on <a href="https://sceneai.art/" rel="noopener">sceneai.art</a> (light SaaS split heroes, dark glow heroes, travel/airline step flows), adapted to a logistics business in Tema.
+  </div>
+</div>
+</body>
+</html>

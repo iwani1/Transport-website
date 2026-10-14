@@ -87,6 +87,11 @@ Alternative without PHP: sign up at [web3forms.com](https://web3forms.com)
 "forms": { "provider": "web3forms", "web3formsKey": "YOUR-ACCESS-KEY" }
 ```
 
+## Design concepts
+
+`design-concepts/` holds three alternative home-page mock-ups (not part of the
+production build). View them with `npm run preview` at `/concepts/`.
+
 ## Images
 
 Keep photos small — many visitors are on mobile data. The helper script

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Concept 3 — Route · Blahar &amp; Benyah</title>
+<link rel="stylesheet" href="/css/fonts.css">
+<style>
+  :root {
+    --brand: #0B60A9; --brand-dark: #08487e; --ink: #14202e; --muted: #5f6f82; --line: #e6e9ee; --sand: #f6f3ec; --sand-2: #efe9dc; --accent: #e8792b; --wa: #25d366;
+    --font-head: 'Montserrat', system-ui, sans-serif; --font-body: 'Lato', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #fff; color: var(--ink); font: 400 17px/1.6 var(--font-body); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .wrap { width: min(1140px, 92vw); margin-inline: auto; }
+  h1, h2, h3 { font-family: var(--font-head); margin: 0; line-height: 1.1; letter-spacing: -0.02em; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; border-radius: 10px; font: 700 15px var(--font-head); transition: transform .2s, background .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--brand); color: #fff; } .btn-primary:hover { background: var(--brand-dark); }
+  .btn-dark { background: var(--ink); color: #fff; }
+  .btn-light { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .btn svg { width: 18px; height: 18px; }
+
+  header { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
+  .nav { display: flex; align-items: center; gap: 28px; height: 74px; }
+  .nav img { height: 42px; width: auto; }
+  .nav ul { list-style: none; display: flex; gap: 26px; margin: 0 0 0 auto; padding: 0; font: 700 14px var(--font-head); }
+  .nav ul a:hover, .nav ul a[aria-current] { color: var(--brand); }
+  .nav .call { font: 700 14px var(--font-head); color: var(--brand); }
+  @media (max-width: 900px) { .nav ul, .nav .call { display: none; } .nav .btn { margin-left: auto; padding: 11px 16px; } }
+
+  /* Hero */
+  .hero { background: linear-gradient(180deg, var(--sand) 0%, #fff 100%); padding: clamp(50px, 7vw, 90px) 0 0; overflow: hidden; }
+  .hero .top { text-align: center; max-width: 820px; margin: 0 auto; }
+  .kicker { font: 700 12px var(--font-head); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+  .hero h1 { font-size: clamp(36px, 5.4vw, 64px); margin: 14px 0 16px; }
+  .hero h1 u { text-decoration: none; background: linear-gradient(transparent 60%, rgba(232,121,43,.3) 60%); }
+  .hero p { color: var(--muted); font-size: clamp(17px, 1.4vw, 20px); margin: 0 auto 28px; max-width: 56ch; }
+  .hero .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* Route line */
+  .route { position: relative; margin: 54px auto 0; max-width: 980px; padding: 0 20px 30px; }
+  .route .path { position: relative; height: 6px; border-radius: 6px; background: repeating-linear-gradient(90deg, #cfd6df 0 14px, transparent 14px 24px); margin: 40px 0 16px; }
+  .route .path .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 6px; background: linear-gradient(90deg, var(--brand), #2d8ee8); animation: travel 6s cubic-bezier(.45,.05,.3,1) infinite; }
+  .route .truck { position: absolute; top: -34px; left: 0; width: 56px; height: 36px; color: var(--brand); transform: translateX(-50%); animation: truck 6s cubic-bezier(.45,.05,.3,1) infinite; }
+  .route .truck svg { width: 100%; height: 100%; filter: drop-shadow(0 6px 10px rgba(11,96,169,.35)); }
+  @keyframes travel { 0%, 8% { width: 0; } 85%, 100% { width: 100%; } }
+  @keyframes truck  { 0%, 8% { left: 0; } 85%, 100% { left: 100%; } }
+  .stops { display: flex; justify-content: space-between; }
+  .stop { position: relative; width: 22%; padding-top: 10px; text-align: center; }
+  .stop:first-child { text-align: left; } .stop:last-child { text-align: right; }
+  .stop::before { content: ""; position: absolute; top: -28px; left: 50%; transform: translateX(-50%); width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 4px solid var(--brand); box-shadow: 0 0 0 4px #fff; }
+  .stop:first-child::before { left: 0; transform: none; }
+  .stop:last-child::before { left: auto; right: 0; transform: none; background: var(--brand); }
+  .stop b { display: block; font: 700 14px var(--font-head); }
+  .stop span { font-size: 13px; color: var(--muted); }
+  @media (max-width: 640px) { .stops { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 12px; margin-top: 10px; } .stop { width: auto; text-align: left; padding-top: 0; } .stop::before { display: none; } }
+
+  /* Service switcher (no JS: radio + :checked) */
+  .switcher { padding: clamp(60px, 8vw, 100px) 0; }
+  .switcher h2 { font-size: clamp(28px, 3.6vw, 44px); text-align: center; }
+  .switcher .sub { text-align: center; color: var(--muted); margin: 10px auto 34px; max-width: 50ch; }
+  .tabs { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; background: var(--sand); padding: 6px; border-radius: 14px; width: max-content; max-width: 100%; margin: 0 auto 30px; }
+  .tabs label { padding: 12px 20px; border-radius: 10px; font: 700 14px var(--font-head); color: var(--muted); cursor: pointer; transition: background .2s, color .2s; }
+  .tabs label:hover { color: var(--ink); }
+  .switcher input { position: absolute; opacity: 0; pointer-events: none; }
+  .panel { display: none; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 28px; box-shadow: 0 30px 60px -40px rgba(20,32,46,.4); }
+  .panel .pic { border-radius: 16px; overflow: hidden; aspect-ratio: 5/4; }
+  .panel .pic img { width: 100%; height: 100%; object-fit: cover; }
+  .panel h3 { font-size: 26px; margin-bottom: 10px; }
+  .panel p { color: var(--muted); margin: 0 0 18px; }
+  .panel ul { margin: 0 0 24px; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .panel li { display: flex; gap: 10px; align-items: start; font-size: 15px; }
+  .panel li::before { content: "✓"; flex: none; width: 22px; height: 22px; border-radius: 50%; background: #e7f8ee; color: #15803d; font-weight: 900; display: grid; place-items: center; font-size: 12px; }
+  #t1:checked ~ .tabs label[for=t1], #t2:checked ~ .tabs label[for=t2], #t3:checked ~ .tabs label[for=t3], #t4:checked ~ .tabs label[for=t4] { background: #fff; color: var(--brand); box-shadow: 0 6px 16px -8px rgba(0,0,0,.25); }
+  #t1:checked ~ .panels .p1, #t2:checked ~ .panels .p2, #t3:checked ~ .panels .p3, #t4:checked ~ .panels .p4 { display: grid; animation: fade .35s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
+  @media (max-width: 860px) { .panel { grid-template-columns: 1fr; } }
+
+  /* How it works */
+  .how { background: var(--sand); padding: clamp(60px, 8vw, 100px) 0; }
+  .how h2 { font-size: clamp(28px, 3.6vw, 44px); margin-bottom: 44px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; counter-reset: step; }
+  .steps::before { content: ""; position: absolute; left: 6%; right: 6%; top: 28px; height: 2px; background: var(--sand-2); }
+  .step { position: relative; background: #fff; border-radius: 18px; padding: 70px 22px 24px; border: 1px solid var(--line); }
+  .step::before { counter-increment: step; content: counter(step, decimal-leading-zero); position: absolute; top: -2px; left: 22px; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); color: #fff; font: 700 16px var(--font-head); box-shadow: 0 0 0 6px var(--sand); }
+  .step h3 { font-size: 18px; margin-bottom: 8px; }
+  .step p { margin: 0; color: var(--muted); font-size: 15px; }
+  .step small { display: block; margin-top: 14px; font: 700 12px var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  @media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } .steps::before { display: none; } }
+  @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+  /* Testimonials */
+  .quotes { padding: clamp(60px, 8vw, 100px) 0 120px; }
+  .quotes .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .q { border: 1px solid var(--line); border-radius: 18px; padding: 26px; background: #fff; }
+  .q p { margin: 0 0 18px; font-size: 16px; }
+  .q .who { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
+  .q .who i { width: 40px; height: 40px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font: 700 13px var(--font-head); font-style: normal; }
+  .q .who b { display: block; color: var(--ink); }
+  @media (max-width: 860px) { .quotes .row { grid-template-columns: 1fr; } }
+
+  /* Sticky mobile action bar */
+  .actionbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: none; grid-template-columns: 1fr 1fr 1.3fr; gap: 1px; background: var(--line); border-top: 1px solid var(--line); }
+  .actionbar a { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 6px calc(10px + env(safe-area-inset-bottom)); background: #fff; font: 700 12px var(--font-head); color: var(--ink); }
+  .actionbar a svg { width: 20px; height: 20px; }
+  .actionbar .wa { color: #128c4b; }
+  .actionbar .quote { background: var(--brand); color: #fff; }
+  @media (max-width: 760px) { .actionbar { display: grid; } .notes { padding-bottom: 90px; } }
+
+  .notes { background: #14202e; color: #c8d3e0; font-size: 14px; padding: 22px 0; }
+  .notes .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; }
+  .notes b { color: #fff; font-family: var(--font-head); }
+  .notes a { color: #8ec5ff; text-decoration: underline; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .route .path .fill { width: 100%; } .route .truck { left: 100%; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#"><img src="/img/logo.png" alt="Blahar & Benyah Int'l Ltd"></a>
+    <ul>
+      <li><a href="#" aria-current="page">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a class="call" href="tel:+233246835764">(+233)&nbsp;24&nbsp;683&nbsp;5764</a>
+    <a class="btn btn-primary" href="#">Get a quote</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="top">
+      <span class="kicker">Tema · Accra · Nationwide</span>
+      <h1>From the port to your door, <u>one call does it all.</u></h1>
+      <p>Tell us what is arriving and where it has to go. We clear it, store it if you need, and deliver it — and you get a single phone number for the whole trip.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#">Request a quote</a>
+        <a class="btn btn-light" href="#how">See how it works</a>
+      </div>
+    </div>
+
+    <div class="route" aria-hidden="true">
+      <div class="path">
+        <div class="fill"></div>
+        <div class="truck"><svg viewBox="0 0 64 40" fill="none"><rect x="2" y="8" width="36" height="22" rx="3" fill="currentColor"/><path d="M38 14h12l8 8v8H38z" fill="currentColor" opacity=".85"/><rect x="41" y="16" width="8" height="6" rx="1" fill="#fff" opacity=".9"/><circle cx="14" cy="32" r="5" fill="#14202e"/><circle cx="48" cy="32" r="5" fill="#14202e"/><circle cx="14" cy="32" r="2" fill="#fff"/><circle cx="48" cy="32" r="2" fill="#fff"/></svg></div>
+      </div>
+      <div class="stops">
+        <div class="stop"><b>You request</b><span>Call, WhatsApp or form</span></div>
+        <div class="stop"><b>We clear</b><span>Tema Port / Kotoka</span></div>
+        <div class="stop"><b>We move or store</b><span>Our trucks &amp; warehouse</span></div>
+        <div class="stop"><b>You receive</b><span>Anywhere in Ghana</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="switcher" id="services">
+  <div class="wrap">
+    <h2>What do you need today?</h2>
+    <p class="sub">Pick a service to see what is included. Most clients combine two or three.</p>
+
+    <input type="radio" name="svc" id="t1" checked>
+    <input type="radio" name="svc" id="t2">
+    <input type="radio" name="svc" id="t3">
+    <input type="radio" name="svc" id="t4">
+    <div class="tabs">
+      <label for="t1">Freight Forwarding</label>
+      <label for="t2">Transportation</label>
+      <label for="t3">Clearing</label>
+      <label for="t4">Warehousing</label>
+    </div>
+    <div class="panels">
+      <div class="panel p1">
+        <div class="pic"><img src="/img/content/service-ship.webp" alt="Container ship at sea"></div>
+        <div><h3>Freight Forwarding</h3><p>Sea and air freight from any origin into Tema or Kotoka, with every document prepared in advance.</p>
+          <ul><li>Booking with shipping lines and airlines</li><li>Bill of lading, packing list and invoice checks</li><li>Real-time updates until arrival</li></ul>
+          <a class="btn btn-dark" href="#">Quote freight →</a></div>
+      </div>
+      <div class="panel p2">
+        <div class="pic"><img src="/img/slider/slide-1.webp" alt="Truck leaving the port"></div>
+        <div><h3>Transportation</h3><p>Our own trucks and experienced drivers for container haulage and door-to-door deliveries across Ghana.</p>
+          <ul><li>Container and flatbed haulage from Tema</li><li>Regional deliveries: Kumasi, Takoradi, Tamale</li><li>Driver contact shared for every trip</li></ul>
+          <a class="btn btn-dark" href="#">Quote transport →</a></div>
+      </div>
+      <div class="panel p3">
+        <div class="pic"><img src="/img/slider/company-slide-1.webp" alt="Containers at Tema Port"></div>
+        <div><h3>Clearing</h3><p>Customs clearing at Tema Port, Kotoka Airport and land borders — fast, compliant and transparent.</p>
+          <ul><li>Duty and tax calculation before you commit</li><li>ICUMS declarations and permits</li><li>No hidden charges — itemised invoice</li></ul>
+          <a class="btn btn-dark" href="#">Quote clearing →</a></div>
+      </div>
+      <div class="panel p4">
+        <div class="pic"><img src="/img/content/services-thumb-6.webp" alt="Pallets in a warehouse"></div>
+        <div><h3>Warehousing</h3><p>Secure storage in Community 4, Tema, with organised inventory for short or long stays.</p>
+          <ul><li>Short-term storage after clearing</li><li>Pallet counts and inventory reports</li><li>Pick-up and onward delivery on request</li></ul>
+          <a class="btn btn-dark" href="#">Quote storage →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><h3>Send the details</h3><p>Share your bill of lading or airway bill and the delivery address.</p><small>Within the hour</small></div>
+      <div class="step"><h3>Get a fixed quote</h3><p>Duties, fees and transport in one itemised quote. No surprises.</p><small>Same day</small></div>
+      <div class="step"><h3>We clear &amp; move it</h3><p>Our team handles customs and our trucks collect your goods.</p><small>2 – 5 days</small></div>
+      <div class="step"><h3>Delivered</h3><p>Signed delivery, photos on request, invoice by email.</p><small>Done</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="quotes">
+  <div class="wrap">
+    <div class="row">
+      <div class="q"><p>"They cleared my container in two days and delivered to Kumasi the same week. Excellent communication throughout."</p><div class="who"><i>KM</i><div><b>Kofi Mensah</b>Importer, Kumasi</div></div></div>
+      <div class="q"><p>"One number to call for everything — clearing, storage and delivery. That alone saves me days every month."</p><div class="who"><i>AB</i><div><b>Ama Boateng</b>Retail business owner</div></div></div>
+      <div class="q"><p>"Professional drivers, careful handling and honest invoices. We moved our whole warehouse with them."</p><div class="who"><i>EA</i><div><b>E. Addo</b>Operations manager</div></div></div>
+    </div>
+  </div>
+</section>
+
+<nav class="actionbar" aria-label="Quick actions">
+  <a href="tel:+233246835764"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call</a>
+  <a class="wa" href="https://wa.me/233246835764"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3.9A11 11 0 0 0 2.6 17.1L1 23l6-1.6A11 11 0 0 0 20 3.9zM12 20.9a9 9 0 0 1-4.6-1.3l-.3-.2-3.6 1 1-3.5-.2-.3A9 9 0 1 1 12 20.9zm5-6.7c-.3-.1-1.6-.8-1.9-.9s-.4-.1-.6.1-.7.9-.9 1.1-.3.2-.6.1a7.4 7.4 0 0 1-3.7-3.2c-.3-.5.3-.4.8-1.5.1-.2 0-.3 0-.5l-.9-2c-.2-.5-.4-.5-.6-.5h-.5a1 1 0 0 0-.8.4 3.2 3.2 0 0 0-1 2.3 5.6 5.6 0 0 0 1.2 3 12.8 12.8 0 0 0 4.9 4.3c1.8.8 2.5.9 3.4.7a3 3 0 0 0 1.9-1.3 2.4 2.4 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3z"/></svg>WhatsApp</a>
+  <a class="quote" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Get a quote</a>
+</nav>
+
+<div class="notes">
+  <div class="wrap">
+    <b>Concept 3 · Route</b>
+    <span>Process-first hero with animated route · service switcher tabs (no JS) · numbered steps · sticky Call / WhatsApp / Quote bar on mobile</span>
+    <a href="/concepts/">← All concepts</a>
+    <a href="/concepts/concept-1-clear.html">Back to: Clear &amp; Trusted →</a>
+  </div>
+</div>
+
+</body>
+</html>

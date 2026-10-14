@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Concept 2 — Night Port · Blahar &amp; Benyah</title>
+<link rel="stylesheet" href="/css/fonts.css">
+<style>
+  :root {
+    --bg: #06101c; --bg-2: #0a1727; --panel: rgba(255,255,255,.05); --line: rgba(255,255,255,.1);
+    --ink: #eef3f9; --muted: #9fb0c4; --brand: #2d8ee8; --brand-2: #0B60A9; --glow: #43a6ff; --amber: #f6b73c; --wa: #25d366;
+    --font-head: 'Montserrat', system-ui, sans-serif; --font-body: 'Lato', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--font-body); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .wrap { width: min(1200px, 92vw); margin-inline: auto; }
+  h1, h2, h3 { font-family: var(--font-head); margin: 0; line-height: 1.08; letter-spacing: -0.025em; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 26px; border-radius: 12px; font: 700 15px var(--font-head); transition: transform .2s, box-shadow .2s, background .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-glow { background: linear-gradient(135deg, var(--glow), var(--brand-2)); color: #fff; box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset, 0 16px 40px -14px rgba(67,166,255,.8); }
+  .btn-outline { border: 1px solid rgba(255,255,255,.22); color: #fff; background: rgba(255,255,255,.04); backdrop-filter: blur(8px); }
+  .btn-outline:hover { background: rgba(255,255,255,.1); }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* Header */
+  header { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
+  header.scrolled { background: rgba(6,16,28,.72); backdrop-filter: blur(14px); border-color: var(--line); }
+  .nav { display: flex; align-items: center; gap: 28px; height: 78px; }
+  .logo-pill { background: #fff; border-radius: 10px; padding: 6px 10px; }
+  .logo-pill img { height: 34px; width: auto; }
+  .nav ul { list-style: none; display: flex; gap: 28px; margin: 0 0 0 auto; padding: 0; font: 700 14px var(--font-head); color: var(--muted); }
+  .nav ul a:hover, .nav ul a[aria-current] { color: #fff; }
+  @media (max-width: 900px) { .nav ul { display: none; } .nav .btn { margin-left: auto; padding: 11px 16px; } }
+
+  /* Hero */
+  .hero { position: relative; min-height: 100svh; display: grid; align-items: center; padding: 130px 0 90px; overflow: hidden; isolation: isolate; }
+  .hero .bg { position: absolute; inset: 0; z-index: -2; background: url('/img/slider/company-slide-1.webp') center 40%/cover no-repeat; animation: slowzoom 30s ease-in-out infinite alternate; }
+  @keyframes slowzoom { to { transform: scale(1.08); } }
+  .hero .shade { position: absolute; inset: 0; z-index: -1; background:
+      linear-gradient(90deg, rgba(6,16,28,.96) 0%, rgba(6,16,28,.82) 45%, rgba(6,16,28,.35) 100%),
+      linear-gradient(0deg, var(--bg) 0%, transparent 35%); }
+  .blob { position: absolute; z-index: -1; width: 520px; height: 520px; border-radius: 50%; filter: blur(90px); opacity: .45; pointer-events: none; }
+  .blob.a { background: #0B60A9; left: -160px; top: -120px; animation: drift 14s ease-in-out infinite alternate; }
+  .blob.b { background: #f6b73c; right: -200px; bottom: -220px; opacity: .22; animation: drift 18s ease-in-out infinite alternate-reverse; }
+  @keyframes drift { to { transform: translate(60px, 40px) scale(1.1); } }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+  .tag { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); font: 700 12px/1 var(--font-head); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--wa); box-shadow: 0 0 12px var(--wa); }
+  .hero h1 { font-size: clamp(42px, 6.4vw, 84px); margin: 26px 0 20px; }
+  .hero h1 .line { display: block; }
+  .hero h1 .grad { background: linear-gradient(90deg, #8ccbff, #fff 60%, #ffd98a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { font-size: clamp(17px, 1.4vw, 20px); color: var(--muted); max-width: 52ch; margin: 0 0 32px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Live status stack */
+  .stack { display: grid; gap: 14px; position: relative; }
+  .status { display: grid; grid-template-columns: 46px 1fr auto; gap: 14px; align-items: center; padding: 16px 18px; border-radius: 16px; background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); border: 1px solid var(--line); backdrop-filter: blur(14px); box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); opacity: 0; transform: translateY(16px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+  .status:nth-child(1) { animation-delay: .2s; } .status:nth-child(2) { animation-delay: .45s; margin-left: 28px; } .status:nth-child(3) { animation-delay: .7s; margin-left: 56px; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .status .ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: rgba(67,166,255,.15); color: var(--glow); }
+  .status .ic.ok { background: rgba(37,211,102,.14); color: var(--wa); } .status .ic.amb { background: rgba(246,183,60,.15); color: var(--amber); }
+  .status .ic svg { width: 22px; height: 22px; }
+  .status b { display: block; font: 700 15px var(--font-head); }
+  .status small { color: var(--muted); font-size: 13px; }
+  .status .time { font: 700 12px var(--font-head); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  .status .bar { grid-column: 1 / -1; height: 4px; border-radius: 4px; background: rgba(255,255,255,.08); overflow: hidden; }
+  .status .bar i { display: block; height: 100%; width: 65%; background: linear-gradient(90deg, var(--brand), var(--glow)); animation: fill 2.4s ease-out .9s both; }
+  @keyframes fill { from { width: 0; } }
+  @media (max-width: 980px) { .hero-grid { grid-template-columns: 1fr; } .status:nth-child(n) { margin-left: 0; } }
+
+  /* Ticker */
+  .ticker { border-block: 1px solid var(--line); background: var(--bg-2); overflow: hidden; white-space: nowrap; }
+  .ticker .track { display: inline-flex; gap: 48px; padding: 14px 0; animation: scroll 36s linear infinite; font: 700 13px var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .ticker .track span::before { content: "✦"; color: var(--amber); margin-right: 14px; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* Bento */
+  .bento { padding: clamp(70px, 9vw, 120px) 0; }
+  .bento h2 { font-size: clamp(30px, 4vw, 52px); max-width: 16ch; }
+  .bento .intro { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 40px; }
+  .bento .intro p { color: var(--muted); max-width: 44ch; margin: 0; }
+  .b-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 16px; }
+  .tile { position: relative; overflow: hidden; border-radius: 22px; padding: 24px; background: var(--bg-2); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: end; gap: 6px; transition: transform .3s, border-color .3s; }
+  .tile::before { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 80% at 100% 0%, rgba(67,166,255,.18), transparent 60%); opacity: 0; transition: opacity .3s; }
+  .tile:hover { transform: translateY(-4px); border-color: rgba(67,166,255,.45); } .tile:hover::before { opacity: 1; }
+  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; transition: transform .6s, opacity .3s; }
+  .tile:hover img { transform: scale(1.05); opacity: .7; }
+  .tile .fade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(6,16,28,.95) 15%, rgba(6,16,28,.2) 70%); }
+  .tile > * { position: relative; }
+  .tile h3 { font-size: 20px; }
+  .tile p { margin: 0; color: var(--muted); font-size: 14px; }
+  .tile .num { position: absolute; top: 20px; left: 24px; font: 700 12px var(--font-head); letter-spacing: .14em; color: var(--muted); }
+  .tile .arrow { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; background: rgba(6,16,28,.5); }
+  .tile .arrow svg { width: 16px; height: 16px; }
+  .tile.big { grid-column: span 2; grid-row: span 2; } .tile.big h3 { font-size: 28px; }
+  .tile.tall { grid-row: span 2; }
+  .tile.dim { background: #091422; } .tile.dim h3 { font-size: 17px; } .tile.dim .num { color: var(--amber); }
+  @media (max-width: 980px) { .b-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; } .tile.big { grid-column: span 2; } .bento .intro { flex-direction: column; align-items: start; } }
+  @media (max-width: 560px) { .b-grid { grid-template-columns: 1fr; } .tile.big, .tile.tall { grid-row: span 1; grid-column: span 1; min-height: 240px; } }
+
+  /* Numbers */
+  .numbers { padding: 0 0 clamp(70px, 9vw, 120px); }
+  .numbers .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .n { padding: 28px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); }
+  .n b { display: block; font: 700 clamp(34px, 3.6vw, 48px)/1 var(--font-head); background: linear-gradient(90deg, #fff, #8ccbff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .n span { color: var(--muted); font-size: 14px; }
+  @media (max-width: 760px) { .numbers .row { grid-template-columns: 1fr 1fr; } }
+
+  /* Contact strip */
+  .contact { padding: 0 0 100px; }
+  .contact .box { border-radius: 26px; padding: clamp(28px, 4vw, 48px); border: 1px solid var(--line); background: radial-gradient(80% 120% at 0% 0%, rgba(11,96,169,.35), transparent 60%), var(--bg-2); display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+  .contact h2 { font-size: clamp(24px, 3vw, 36px); margin-bottom: 8px; }
+  .contact p { color: var(--muted); margin: 0; }
+  .contact .acts { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-wa { background: var(--wa); color: #06281a; }
+  @media (max-width: 760px) { .contact .box { grid-template-columns: 1fr; } }
+
+  .notes { background: #000; color: #a9b7c6; font-size: 14px; padding: 22px 0; border-top: 1px solid var(--line); }
+  .notes .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; }
+  .notes b { color: #fff; font-family: var(--font-head); }
+  .notes a { color: #8ec5ff; text-decoration: underline; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .status { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="logo-pill" href="#"><img src="/img/logo.png" alt="Blahar & Benyah Int'l Ltd"></a>
+    <ul>
+      <li><a href="#" aria-current="page">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a class="btn btn-glow" href="#contact">Request a quote</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="bg" role="img" aria-label="Container cranes at Tema Port at night"></div>
+  <div class="shade"></div>
+  <div class="blob a"></div><div class="blob b"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag"><i></i> Open Mon – Sat · 08:00 – 17:00</span>
+      <h1><span class="line">Your cargo.</span><span class="line grad">Cleared, moved, delivered.</span></h1>
+      <p>Freight forwarding, customs clearing, trucking and warehousing from Tema — run by people who pick up the phone and tell you exactly where your goods are.</p>
+      <div class="cta-row">
+        <a class="btn btn-glow" href="#contact">Get a quote
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-outline" href="#services">See our services</a>
+      </div>
+    </div>
+
+    <div class="stack" role="list" aria-label="Example shipment updates">
+      <div class="status" role="listitem">
+        <span class="ic ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <div><b>Customs cleared — Tema Port</b><small>40ft container · 2 working days</small></div>
+        <span class="time">Today</span>
+      </div>
+      <div class="status" role="listitem">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 7h13v10H1zM14 10h4l4 4v3h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
+        <div><b>In transit — Tema → Kumasi</b><small>Driver: Kwame · ETA 16:40</small></div>
+        <span class="time">Live</span>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="status" role="listitem">
+        <span class="ic amb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-8h10v8"/></svg></span>
+        <div><b>Stored — Community 4 warehouse</b><small>36 pallets · inventory emailed</small></div>
+        <span class="time">Yesterday</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>Tema Port → Accra</span><span>Tema → Kumasi</span><span>Kotoka Airport → Tema</span><span>Takoradi → Tamale</span><span>Aflao border clearing</span><span>Door-to-door nationwide</span>
+    <span>Tema Port → Accra</span><span>Tema → Kumasi</span><span>Kotoka Airport → Tema</span><span>Takoradi → Tamale</span><span>Aflao border clearing</span><span>Door-to-door nationwide</span>
+  </div>
+</div>
+
+<section class="bento" id="services">
+  <div class="wrap">
+    <div class="intro">
+      <h2>One partner for the whole journey</h2>
+      <p>Four logistics services that fit together, so you never have to chase three companies for one shipment.</p>
+    </div>
+    <div class="b-grid">
+      <a class="tile big" href="#"><img src="/img/content/service-ship.webp" alt=""><span class="fade"></span><span class="num">01</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Freight Forwarding</h3><p>Sea &amp; air freight booked, documented and tracked from origin to Tema.</p></a>
+      <a class="tile tall" href="#"><img src="/img/slider/slide-2.webp" alt=""><span class="fade"></span><span class="num">02</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Transportation</h3><p>Our trucks, our drivers, anywhere in Ghana.</p></a>
+      <a class="tile" href="#"><span class="num">03</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Clearing</h3><p>Duties, permits &amp; paperwork handled right the first time.</p></a>
+      <a class="tile" href="#"><img src="/img/content/services-thumb-6.webp" alt=""><span class="fade"></span><span class="num">04</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Warehousing</h3><p>Secure storage with inventory reports.</p></a>
+      <a class="tile dim" href="#"><span class="num">ALSO</span><h3>Building &amp; Construction</h3><p>Quality builds, on schedule.</p></a>
+      <a class="tile dim" href="#"><span class="num">ALSO</span><h3>Printing &amp; Photocopying</h3><p>Fast business printing in Tema.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="numbers">
+  <div class="wrap row">
+    <div class="n"><b>1,273</b><span>Packages delivered</span></div>
+    <div class="n"><b>473k</b><span>Kilometres per year</span></div>
+    <div class="n"><b>719</b><span>Happy clients</span></div>
+    <div class="n"><b>4,234</b><span>Tons of goods moved</span></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="box">
+      <div><h2>Tell us what is arriving. We will handle the rest.</h2><p>Reply within one working hour · Mon – Sat 08:00 – 17:00</p></div>
+      <div class="acts">
+        <a class="btn btn-wa" href="https://wa.me/233246835764">WhatsApp us</a>
+        <a class="btn btn-outline" href="tel:+233246835764">(+233)&nbsp;24&nbsp;683&nbsp;5764</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="notes">
+  <div class="wrap">
+    <b>Concept 2 · Night Port</b>
+    <span>Dark cinematic hero · glowing gradient text · live-status cards · route ticker · bento services grid</span>
+    <a href="/concepts/">← All concepts</a>
+    <a href="/concepts/concept-3-route.html">Next: Route →</a>
+  </div>
+</div>
+
+<script>
+  const hdr = document.getElementById('hdr');
+  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 40), { passive: true });
+</script>
+</body>
+</html>

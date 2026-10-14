@@ -3,7 +3,7 @@
  *
  *   node scripts/preview-server.mjs [port]
  *
- * Serves the static files and mocks the PHP form handler (POST /contact.php)
+ * Serves the static files (plus ./design-concepts at /concepts/) and mocks the PHP form handler (POST /contact.php)
  * so the contact/quote forms can be tried locally without PHP. On the real
  * host, contact.php runs as PHP and sends the e-mail.
  */
@@ -12,6 +12,7 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { join, resolve, extname } from "node:path";
 
 const ROOT = resolve("_site");
+const CONCEPTS = resolve("design-concepts");
 const PORT = Number(process.argv[2] || process.env.PORT || 8080);
 const MIME = {
   ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".json": "application/json",
@@ -40,8 +41,11 @@ createServer((req, res) => {
     return;
   }
 
-  let file = join(ROOT, urlPath);
-  if (!file.startsWith(ROOT)) { res.writeHead(403); return res.end(); }
+  // Design mock-ups (not part of the production build) are served from ./design-concepts at /concepts/
+  let base = ROOT, rel = urlPath;
+  if (urlPath === "/concepts" || urlPath.startsWith("/concepts/")) { base = CONCEPTS; rel = urlPath.replace(/^\/concepts\/?/, "/"); }
+  let file = join(base, rel);
+  if (!file.startsWith(base)) { res.writeHead(403); return res.end(); }
   if (existsSync(file) && statSync(file).isDirectory()) file = join(file, "index.html");
   if (!existsSync(file)) {
     const nf = join(ROOT, "404.html");
