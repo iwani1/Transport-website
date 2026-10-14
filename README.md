@@ -59,7 +59,7 @@ After editing, rebuild (below) and upload the contents of `_site/`.
 
 ## Building
 
-Requires Node.js 18 or newer.
+Requires Node.js 22 or newer (the HTML validator used by `npm run check` needs it).
 
 ```bash
 npm install          # first time only
