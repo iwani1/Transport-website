@@ -1,0 +1,126 @@
+{#- Shared site header: top bar with contact details, main navigation, and the mobile slide-in menu. -#}
+{%- set isHome = page.url == '/index.html' or page.url == '/' %}
+{%- set onServices = page.url == '/services.html' or ('/services/' in page.url) %}
+{%- macro menuItems(listClass) %}
+    <li{% if isHome %} class="current-menu-item"{% endif %}><a href="/">Home</a></li>
+    <li{% if page.url == '/about-us.html' %} class="current-menu-item"{% endif %}><a href="/about-us.html">About Us</a></li>
+    <li class="has-sub{% if onServices %} current-menu-item{% endif %}"><a href="/services.html">Services</a>
+        {%- if listClass == 'mobile' %}
+        <button type="button" class="submenu-toggle" aria-expanded="false" aria-label="Show services"></button>
+        {%- endif %}
+        <ul>
+            {%- for s in services | where('category', 'logistics') %}
+            <li{% if page.url == '/services/' ~ s.slug ~ '.html' %} class="current-menu-item"{% endif %}><a href="/services/{{ s.slug }}.html">{{ s.title }}</a></li>
+            {%- endfor %}
+            <li class="menu-group-label" role="presentation"><span>Other services</span></li>
+            {%- for s in services | where('category', 'other') %}
+            <li{% if page.url == '/services/' ~ s.slug ~ '.html' %} class="current-menu-item"{% endif %}><a href="/services/{{ s.slug }}.html">{{ s.title }}</a></li>
+            {%- endfor %}
+        </ul>
+    </li>
+    <li{% if page.url == '/contact.html' %} class="current-menu-item"{% endif %}><a href="/contact.html">Contact</a></li>
+{%- endmacro %}
+
+        <!-- HEADER
+        ============================================= -->
+        <header id="header" class="clearfix">
+            <div class="site-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="top-header clearfix">
+                            <div class="logo col-md-4">
+                                <a href="/" aria-label="{{ site.name }} — home">
+                                    <img src="/img/logo.png" alt="{{ site.name }}" width="720" height="188">
+                                </a>
+                            </div>
+
+                            <div class="info col-md-8">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <p>
+                                            <span class="heading">Opening Hours</span>
+                                            <span>{{ site.hours.summary }}</span>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                        <p>
+                                            <span class="heading">Call Us</span>
+                                            {%- for ph in site.phones %}
+                                            <span><a href="tel:{{ ph.e164 }}">{{ ph.display | nbsp }}</a></span>
+                                            {%- endfor %}
+                                        </p>
+                                    </li>
+                                    <li class="last">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        <p>
+                                            <span class="heading">Email Us</span>
+                                            <span><a href="mailto:{{ site.email }}">{{ site.email }}</a></span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="slide-buttons">
+                                <button id="slide-buttons" class="slide-button icon icon-navicon" type="button" aria-label="Open menu" aria-controls="c-menu--slide-right" aria-expanded="false"></button>
+                            </div>
+                        </div>
+
+                        <div class="navigation">
+                            <nav class="main-menu" aria-label="Main navigation">
+                                <ul class="menu">
+                                    {{ menuItems('desktop') }}
+                                </ul>
+
+                                <div class="right-section">
+                                    <div class="quote-link">
+                                        <a href="/contact.html#quote">Request A Quote</a>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Mobile
+            ============================================= -->
+            <nav id="c-menu--slide-right" class="c-menu c-menu--slide-right" aria-label="Mobile navigation" inert>
+                <button class="c-menu__close icon icon-close" type="button" aria-label="Close menu"></button>
+
+                <ul class="slide-menu-items">
+                    {{ menuItems('mobile') }}
+                    <li><a href="/contact.html#quote">Request A Quote</a></li>
+                </ul>
+
+                <div class="info">
+                    <ul>
+                        <li>
+                            <p>
+                                <span class="heading">Opening Hours</span>
+                                <span>{{ site.hours.summary }}</span>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <span class="heading">Call Us</span>
+                                {%- for ph in site.phones %}
+                                <span><a href="tel:{{ ph.e164 }}">{{ ph.display | nbsp }}</a></span>
+                                {%- endfor %}
+                            </p>
+                        </li>
+                        <li class="last">
+                            <p>
+                                <span class="heading">Email Us</span>
+                                <span><a href="mailto:{{ site.email }}">{{ site.email }}</a></span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="slide-overlay" class="slide-overlay"></div>
+            <!-- Menu Mobile End -->
+        </header>
+        <!-- HEADER END -->

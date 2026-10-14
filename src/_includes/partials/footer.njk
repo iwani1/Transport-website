@@ -1,0 +1,84 @@
+{#- Shared site footer -#}
+        <!-- FOOTER START
+        ============================================= -->
+        <footer id="footer" class="wrapper clearfix">
+
+            <div class="container">
+                <div class="row">
+                    <div class="footer-wrap row">
+                        <div class="widget-footer col-md-3">
+                            <div class="short-desc">
+                                <div class="logo-footer">
+                                    <img src="/img/logo.png" alt="{{ site.name }}" width="720" height="188" loading="lazy">
+                                </div>
+                                <p>Freight forwarding, transportation, customs clearing and warehousing from {{ site.address.city }}, {{ site.address.country }} — moving your goods safely, on time and with clear communication.</p>
+                            </div>
+                        </div>
+
+                        <div class="widget-footer col-md-3">
+                            <div class="footer-nav">
+                                <h4 class="title">Our Services</h4>
+                                <div class="footer-content">
+                                    <ul>
+                                        {%- for s in services %}
+                                        <li><a href="/services/{{ s.slug }}.html">{{ s.title }}</a></li>
+                                        {%- endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget-footer col-md-3">
+                            <div class="contact-footer">
+                                <h4 class="title">Contact Us</h4>
+                                <div class="footer-content">
+                                    <div class="contact-section">
+                                        <h4>Our Office Address</h4>
+                                        <p>{{ site.address.line1 }}</p>
+                                        <p>{{ site.address.line2 }}</p>
+                                        <p>{{ site.address.city }}, {{ site.address.country }}</p>
+                                        <p>Telephone : {% for ph in site.phones %}<a href="tel:{{ ph.e164 }}">{{ ph.display | nbsp }}</a>{% if not loop.last %} / {% endif %}{% endfor %}</p>
+                                        <p>Email : <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+                                        <p>{{ site.hours.summary }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget-footer col-md-3">
+                            <div class="buy-now">
+                                <h4 class="title">Request A Quote !</h4>
+                                <div class="footer-content">
+                                    <p>Contact {{ site.name }} for a personalized shipping or logistics quote. Our team provides clear, cost-effective estimates tailored to your cargo needs. Get started today and move your goods with confidence and efficiency.</p>
+
+                                    <a href="/contact.html#quote" class="button-normal white">Request A Quote</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COPYRIGHT START
+            ============================================= -->
+            <div class="copyright text-center">
+                <div class="container">
+                    {%- set hasSocial = site.social.facebook or site.social.twitter or site.social.linkedin or site.social.instagram %}
+                    {%- if hasSocial %}
+                    <div class="social-icon">
+                        <ul>
+                            {%- if site.social.facebook %}<li><a href="{{ site.social.facebook }}" rel="noopener" target="_blank" aria-label="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>{% endif %}
+                            {%- if site.social.twitter %}<li><a href="{{ site.social.twitter }}" rel="noopener" target="_blank" aria-label="X (Twitter)"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>{% endif %}
+                            {%- if site.social.linkedin %}<li><a href="{{ site.social.linkedin }}" rel="noopener" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>{% endif %}
+                            {%- if site.social.instagram %}<li><a href="{{ site.social.instagram }}" rel="noopener" target="_blank" aria-label="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>{% endif %}
+                        </ul>
+                    </div>
+                    {%- endif %}
+                    <p>Copyright {{ site.copyrightStart }} - <span data-year>{{ buildYear }}</span> {{ site.name }}. All Rights Reserved.
+                        {%- if site.credit.label %} <span class="credit">{% if site.credit.url %}<a href="{{ site.credit.url }}" rel="noopener">{{ site.credit.label }}</a>{% else %}{{ site.credit.label }}{% endif %}</span>{% endif %}</p>
+                </div>
+            </div>
+            <!-- COPYRIGHT END -->
+
+        </footer>
+        <!-- FOOTER END -->

@@ -1,0 +1,83 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: services
+  size: 1
+  alias: service
+permalink: "services/{{ service.slug }}.html"
+eleventyComputed:
+  title: "{{ service.title }}"
+  description: "{{ service.metaDescription }}"
+  ogImage: "/{{ service.image }}"
+  crumbs:
+    - label: "Services"
+      url: "/services.html"
+bodyClass: page-service
+priority: "0.8"
+---
+{% include "partials/page-title.njk" %}
+
+        <!-- CONTENT START
+        ============================================= -->
+        <main id="content" class="clearfix">
+            <!-- SINGLE SERVICE START
+            ============================================= -->
+            <div class="single-services wrapper bg-color">
+                <div class="container">
+                    <div class="row">
+                        <div class="single-services-wrap row">
+                            <article class="single-content col-md-9">
+                                <img class="service-hero" src="/{{ service.hero }}" alt="{{ service.imageAlt }}" width="800" height="400">
+                                <h2 class="title">{{ service.title }}</h2>
+                                <div class="content-text">
+                                    {%- for para in service.paragraphs %}
+                                    <p{% if loop.first %} class="lead"{% endif %}>{{ para }}</p>
+                                    {%- endfor %}
+
+                                    <h3 class="h4">What we handle</h3>
+                                    <ul class="service-points">
+                                        {%- for b in service.bullets %}
+                                        <li>{{ b }}</li>
+                                        {%- endfor %}
+                                    </ul>
+
+                                    <div class="service-cta">
+                                        <h3>Need {{ service.title | lower }} support?</h3>
+                                        <p>Tell us what you need and we will come back to you with a clear, cost-effective quote.</p>
+                                        <a href="/contact.html#quote" class="button-normal">Request A Quote</a>
+                                        <a href="tel:{{ site.phones[0].e164 }}" class="button-normal white"><i class="fa fa-phone" aria-hidden="true"></i> {{ site.phones[0].display | nbsp }}</a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <aside class="sidebar col-md-3">
+                                <div class="widget other-services">
+                                    <h3 class="title h4">Our Services</h3>
+                                    <ul>
+                                        {%- for s in services %}
+                                        <li{% if s.slug == service.slug %} class="active"{% endif %}><a href="/services/{{ s.slug }}.html"{% if s.slug == service.slug %} aria-current="page"{% endif %}>{{ s.title }}</a></li>
+                                        {%- endfor %}
+                                    </ul>
+                                </div>
+                                <div class="widget contact-widget">
+                                    <h3 class="title h4">Talk to us</h3>
+                                    {%- for ph in site.phones %}
+                                    <p><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{ ph.e164 }}">{{ ph.display | nbsp }}</a></p>
+                                    {%- endfor %}
+                                    <p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+                                    {%- if site.whatsapp.number %}
+                                    <p><i class="fa fa-whatsapp" aria-hidden="true"></i> <a href="https://wa.me/{{ site.whatsapp.number }}" rel="noopener" target="_blank">Chat on WhatsApp</a></p>
+                                    {%- endif %}
+                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{ site.hours.summary }}</p>
+                                </div>
+                            </aside>
+                        </div>
+
+                        {% include "partials/cta-band.njk" %}
+
+                    </div>
+                </div>
+            </div>
+            <!-- SINGLE SERVICE END -->
+        </main>
+        <!-- CONTENT END -->

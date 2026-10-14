@@ -1,0 +1,47 @@
+{%- set formType = 'quote' %}
+                                <form class="quote-form" method="post" action="{% include 'partials/form-action.njk' %}" data-ajax-form>
+                                    {%- include "partials/form-hidden.njk" %}
+                                    <h3>Request A Quote</h3>
+                                    <p class="intro">Fill in the details below and we will get back to you with a tailored estimate.</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="field">
+                                                <label for="quote-name">Your Name <span aria-hidden="true">*</span></label>
+                                                <input type="text" id="quote-name" name="name" required autocomplete="name">
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="field">
+                                                <label for="quote-telephone">Telephone / WhatsApp</label>
+                                                <input type="tel" id="quote-telephone" name="telephone" autocomplete="tel" inputmode="tel">
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="field">
+                                                <label for="quote-email">Email <span aria-hidden="true">*</span></label>
+                                                <input type="email" id="quote-email" name="email" required autocomplete="email" inputmode="email">
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="field">
+                                                <label for="quote-service">Service</label>
+                                                <select id="quote-service" name="service">
+                                                    <option value="">Select a service</option>
+                                                    {%- for s in services %}
+                                                    <option>{{ s.title }}</option>
+                                                    {%- endfor %}
+                                                </select>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p class="field">
+                                                <label for="quote-message">Tell us about your cargo</label>
+                                                <textarea id="quote-message" name="message" placeholder="What are you shipping, from where to where, and when?"></textarea>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="submit" class="button-submit">Send Request</button>
+                                            <p class="form-status" aria-live="polite"></p>
+                                        </div>
+                                    </div>
+                                </form>

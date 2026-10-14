@@ -1,0 +1,8 @@
+[
+  { "icon": "icon icon-delivery", "title": "Ground Shipping", "text": "Efficient and reliable ground shipping services, delivering your goods safely and on time." },
+  { "icon": "icon icon-airplane", "title": "Air Delivery", "text": "Fast and secure air delivery services connecting destinations worldwide efficiently." },
+  { "icon": "icon icon-cargo", "title": "Sea Delivery", "text": "Reliable and cost-effective sea delivery services for global cargo transportation." },
+  { "icon": "icon icon-container", "title": "Forwarding Services", "text": "Efficient and professional forwarding services ensuring timely, secure cargo movement." },
+  { "icon": "icon icon-box-delivery", "title": "Packaged Goods", "text": "Safe and reliable handling of packaged goods, delivered efficiently everywhere." },
+  { "icon": "icon icon-storage", "title": "Warehousing", "text": "Secure and organized warehousing solutions for efficient storage and inventory management." }
+]

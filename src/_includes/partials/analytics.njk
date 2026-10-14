@@ -1,0 +1,8 @@
+{#- Analytics is off until an ID is added to src/_data/site.json -#}
+{%- if site.analytics.plausibleDomain %}
+    <script defer data-domain="{{ site.analytics.plausibleDomain }}" src="https://plausible.io/js/script.js"></script>
+{%- endif %}
+{%- if site.analytics.ga4MeasurementId %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.ga4MeasurementId }}"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','{{ site.analytics.ga4MeasurementId }}',{anonymize_ip:true});</script>
+{%- endif %}

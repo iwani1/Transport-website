@@ -1,0 +1,28 @@
+{
+  "name": "blaharbenyah-website",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Website for Blahar & Benyah Int'l Ltd \u2014 logistics, transportation and clearing services in Tema, Ghana. Static site built with Eleventy.",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve --port 8080",
+    "clean": "rm -rf _site",
+    "check": "node scripts/check-site.mjs && html-validate \"_site/**/*.html\"",
+    "images": "python3 scripts/optimize-images.py",
+    "preview": "node scripts/preview-server.mjs 8080"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@fontsource/lato": "^5.2.5",
+    "@fontsource/montserrat": "^5.2.5",
+    "flexslider": "^2.7.2",
+    "html-validate": "^11.16.2",
+    "jquery": "^3.7.1",
+    "jsdom": "^26.1.0",
+    "owl.carousel": "^2.3.4",
+    "wow.js": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

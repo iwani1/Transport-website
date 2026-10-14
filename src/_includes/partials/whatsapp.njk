@@ -1,0 +1,5 @@
+{%- if site.whatsapp and site.whatsapp.number %}
+    <a class="whatsapp-float" href="https://wa.me/{{ site.whatsapp.number }}?text={{ site.whatsapp.message | urlencode }}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+        <i class="fa fa-whatsapp" aria-hidden="true"></i><span>WhatsApp us</span>
+    </a>
+{%- endif %}

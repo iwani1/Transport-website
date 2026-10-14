@@ -1,0 +1,77 @@
+---
+layout: layouts/base.njk
+title: "Services"
+description: "Our services: freight forwarding, transportation, customs clearing and warehousing in Tema, Ghana — plus building & construction and printing & photocopying."
+bodyClass: page-services
+priority: "0.9"
+---
+{% include "partials/page-title.njk" %}
+
+        <!-- CONTENT START
+        ============================================= -->
+        <main id="content" class="clearfix">
+            <!-- SERVICES START
+            ============================================= -->
+            <div class="services-page wrapper bg-color">
+                <div class="container">
+                    <div class="row">
+                        <div class="services-wrap row">
+                            <div class="group-title wow fadeIn">
+                                <h2>Logistics Services</h2>
+                                <p>End-to-end cargo handling from {{ site.address.city }} — forwarding, transport, clearing and storage under one roof.</p>
+                            </div>
+                            {%- for s in services | where('category', 'logistics') %}
+                            <div class="item col-md-4 wow fadeInUp" data-wow-delay="{{ (0.3 * loop.index) | round(1) }}s">
+                                <div class="services-content">
+                                    <div class="services-thumb">
+                                        <a href="/services/{{ s.slug }}.html" aria-hidden="true" tabindex="-1">
+                                            <img src="/{{ s.thumb }}" alt="" width="370" height="280" loading="lazy">
+                                            <div class="overlay"></div>
+                                        </a>
+                                    </div>
+                                    <div class="services-text">
+                                        <h3 class="title">{{ s.title }}</h3>
+                                        <p>{{ s.short }}</p>
+                                        <a href="/services/{{ s.slug }}.html" class="button-normal with-icon">
+                                            Read More<span class="visually-hidden"> about {{ s.title }}</span>
+                                            <i class="icon icon-arrow-right" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {%- endfor %}
+
+                            <div class="group-title wow fadeIn">
+                                <h2>Other Services</h2>
+                                <p>Additional services we offer to businesses and individuals.</p>
+                            </div>
+                            {%- for s in services | where('category', 'other') %}
+                            <div class="item col-md-4 wow fadeInUp" data-wow-delay="{{ (0.3 * loop.index) | round(1) }}s">
+                                <div class="services-content">
+                                    <div class="services-thumb">
+                                        <a href="/services/{{ s.slug }}.html" aria-hidden="true" tabindex="-1">
+                                            <img src="/{{ s.thumb }}" alt="" width="370" height="280" loading="lazy">
+                                            <div class="overlay"></div>
+                                        </a>
+                                    </div>
+                                    <div class="services-text">
+                                        <h3 class="title">{{ s.title }}</h3>
+                                        <p>{{ s.short }}</p>
+                                        <a href="/services/{{ s.slug }}.html" class="button-normal with-icon">
+                                            Read More<span class="visually-hidden"> about {{ s.title }}</span>
+                                            <i class="icon icon-arrow-right" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {%- endfor %}
+                        </div>
+
+                        {% include "partials/cta-band.njk" %}
+
+                    </div>
+                </div>
+            </div>
+            <!-- SERVICES END -->
+        </main>
+        <!-- CONTENT END -->

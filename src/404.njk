@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+title: "Page Not Found"
+description: "The page you were looking for could not be found."
+bodyClass: page-simple
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{% include "partials/page-title.njk" %}
+
+        <main id="content" class="clearfix">
+            <div class="simple-page wrapper bg-color">
+                <div class="container">
+                    <h2>Sorry, we can’t find that page.</h2>
+                    <p>The link may be out of date or the page may have moved. Try one of these instead:</p>
+                    <p class="actions">
+                        <a href="/" class="button-normal">Home</a>
+                        <a href="/services.html" class="button-normal">Services</a>
+                        <a href="/contact.html" class="button-normal">Contact</a>
+                    </p>
+                </div>
+            </div>
+        </main>

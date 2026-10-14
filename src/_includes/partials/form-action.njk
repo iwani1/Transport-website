@@ -1,0 +1,6 @@
+{#- Resolves the form endpoint from site.json: PHP handler on the host (default) or Web3Forms -#}
+{%- if site.forms.provider == 'web3forms' and site.forms.web3formsKey -%}
+https://api.web3forms.com/submit
+{%- else -%}
+/contact.php
+{%- endif -%}

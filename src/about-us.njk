@@ -1,0 +1,99 @@
+---
+layout: layouts/base.njk
+title: "About Us"
+description: "Learn about Blahar & Benyah Int'l Ltd — a Tema-based logistics company offering freight forwarding, transportation, clearing and warehousing, built on reliability and clear communication."
+bodyClass: page-about
+priority: "0.8"
+---
+{% include "partials/page-title.njk" %}
+
+        <!-- CONTENT START
+        ============================================= -->
+        <main id="content" class="clearfix">
+
+            <!-- COMPANY PROFILE START
+            ============================================= -->
+            <div class="company-info wrapper clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="company-wrap row">
+                            <div class="company-desc col-md-6 wow fadeIn">
+                                <h2 class="title">Company Profile</h2>
+
+                                <p>Blahar &amp; Benyah Int’l Ltd is a forward-driven company delivering integrated logistics and business support services. We specialize in freight forwarding, transportation, clearing, and supply chain coordination. Our operations are structured to support smooth cargo movement across local and international routes. We focus on efficiency, cost control, and timely execution in every project we handle.</p>
+
+                                <p>Our team combines industry knowledge with practical problem-solving to deliver dependable results. We manage documentation, compliance, and coordination with precision and accountability. Client satisfaction guides our service approach and operational standards.</p>
+
+                                <p>We maintain clear communication to keep clients informed at every stage. Our systems are designed to reduce delays and improve operational flow. At Blahar &amp; Benyah Int’l Ltd, we build long-term partnerships through reliability, professionalism, and consistent performance.</p>
+
+                                <a href="/services.html" class="button-normal with-icon">Our Services <i class="icon icon-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+
+                            <div class="company-slider col-md-6 wow fadeIn" role="region" aria-label="Photos of our operations">
+                                <ul class="slides">
+                                    <li class="slide-item clearfix">
+                                        <img src="/img/slider/company-slide-1.webp" alt="Container ship being loaded by gantry cranes at a port" width="790" height="526">
+                                    </li>
+                                    <li class="slide-item clearfix">
+                                        <img src="/img/slider/company-slide-2.webp" alt="Logistics manager briefing a colleague inside a warehouse" width="1200" height="673" loading="lazy">
+                                    </li>
+                                    <li class="slide-item clearfix">
+                                        <img src="/img/slider/company-slide-3.webp" alt="Warehouse staff checking a parcel against a delivery list" width="777" height="468" loading="lazy">
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="company-vision">
+                                <div class="item col-md-4 wow fadeInUp" data-wow-delay="0.3s">
+                                    <img src="/img/content/company-thumb-1.webp" alt="Stacked shipping containers" width="370" height="280" loading="lazy">
+                                    <h3 class="h4">Our Mission</h3>
+                                    <p>To provide practical, efficient, and dependable solutions that support business growth and trade operations while maintaining the highest professional standards.</p>
+                                </div>
+                                <div class="item col-md-4 wow fadeInUp" data-wow-delay="0.6s">
+                                    <img src="/img/content/company-thumb-2.webp" alt="Trucks lined up at a container terminal" width="370" height="280" loading="lazy">
+                                    <h3 class="h4">Our Vision</h3>
+                                    <p>To become a trusted regional leader in logistics and integrated service delivery, recognized for reliability, integrity, and operational excellence.</p>
+                                </div>
+                                <div class="item col-md-4 wow fadeInUp" data-wow-delay="0.9s">
+                                    <img src="/img/content/company-thumb-3.webp" alt="Port worker in protective clothing overseeing container handling" width="370" height="280" loading="lazy">
+                                    <h3 class="h4">Expanding Goal</h3>
+                                    <p>Blahar &amp; Benyah Int’l Ltd aims to expand its operations across key regional and international trade routes. We plan to strengthen our logistics network to support growing client demand.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- COMPANY PROFILE END -->
+
+            <!-- TEAM MEMBER START
+            ============================================= -->
+            <div class="team wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center wow fadeIn">
+                            <h2>Our Leaders</h2>
+                        </div>
+
+                        <div class="team-wrap{% if team.length == 1 %} single-member{% endif %} wow fadeIn" data-wow-delay="0.3s">
+                            {%- for m in team %}
+                            <div class="team-item">
+                                <div class="team-photo">
+                                    <img src="/{{ m.photo }}" alt="{{ m.alt }}" width="600" height="900" loading="lazy">
+                                    <div class="team-details">
+                                        <h3 class="h4">{{ m.name }}</h3>
+                                        <p>{{ m.role }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {%- endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- TEAM MEMBER END -->
+
+            {% include "partials/counters.njk" %}
+
+        </main>
+        <!-- CONTENT END -->

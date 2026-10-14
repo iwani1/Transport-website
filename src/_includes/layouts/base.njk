@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {%- set isHome = page.url == '/index.html' or page.url == '/' %}
+    {%- set pageTitle = (title ~ " | " ~ site.name) if title else (site.name ~ " | " ~ site.tagline) %}
+    {%- set pageDescription = description or site.description %}
+    {%- set canonical = ('/' if isHome else page.url) | absoluteUrl(site.url) %}
+    <title>{{ pageTitle }}</title>
+    <meta name="description" content="{{ pageDescription }}">
+    <link rel="canonical" href="{{ canonical }}">
+    {%- if noindex %}
+    <meta name="robots" content="noindex, nofollow">
+    {%- endif %}
+    <meta name="theme-color" content="#0B60A9">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:locale" content="{{ site.locale }}">
+    <meta property="og:title" content="{{ pageTitle }}">
+    <meta property="og:description" content="{{ pageDescription }}">
+    <meta property="og:url" content="{{ canonical }}">
+    <meta property="og:image" content="{{ (ogImage or '/img/og-image.jpg') | absoluteUrl(site.url) }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ pageTitle }}">
+    <meta name="twitter:description" content="{{ pageDescription }}">
+    <meta name="twitter:image" content="{{ (ogImage or '/img/og-image.jpg') | absoluteUrl(site.url) }}">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="preload" href="/fonts/lato-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/montserrat-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/plugin.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <script defer src="/js/vendor/jquery.min.js"></script>
+    <script defer src="/js/vendor/owl.carousel.min.js"></script>
+    <script defer src="/js/vendor/jquery.flexslider.min.js"></script>
+    <script defer src="/js/vendor/wow.min.js"></script>
+    <script defer src="/js/main.js"></script>
+    <script defer src="/js/forms.js"></script>
+
+    {% include "partials/jsonld.njk" %}
+    {% include "partials/analytics.njk" %}
+</head>
+
+<body class="{{ bodyClass }}">
+    <a class="skip-link" href="#content">Skip to main content</a>
+
+    <!-- MAIN WRAPPER
+    ============================================= -->
+    <div id="main-wrapper" class="clearfix">
+
+        {% include "partials/header.njk" %}
+
+        {{ content | safe }}
+
+        {% include "partials/footer.njk" %}
+
+    </div>
+    <!-- MAIN WRAPPER END -->
+
+    {% include "partials/whatsapp.njk" %}
+</body>
+</html>

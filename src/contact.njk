@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+title: "Contact"
+description: "Contact Blahar & Benyah Int'l Ltd in Tema, Ghana — call (+233) 24 683 5764, email us, or send a message to request a logistics quote. Office beside GTP, Community 4, Valco Roundabout."
+bodyClass: page-contact
+priority: "0.9"
+---
+{% include "partials/page-title.njk" %}
+
+        <!-- CONTENT START
+        ============================================= -->
+        <main id="content" class="clearfix">
+            <!-- CONTACT START
+            ============================================= -->
+            <div class="contact-page wrapper bg-color">
+                <div class="container">
+                    <div class="row">
+                        <div class="contact-wrap row">
+                            <div class="contact-details col-md-4">
+                                <div class="address wow fadeInLeft" data-wow-delay="0.3s">
+                                    <h2 class="title h4">Our Office Address</h2>
+                                    <p>{{ site.address.line1 }}</p>
+                                    <p>{{ site.address.line2 }}</p>
+                                    <p>{{ site.address.city }}, {{ site.address.country }}</p>
+                                    <p>Telephone : {% for ph in site.phones %}<a href="tel:{{ ph.e164 }}">{{ ph.display | nbsp }}</a>{% if not loop.last %} / {% endif %}{% endfor %}</p>
+                                    <p>Email : <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+                                    <p><a href="{{ site.mapLink }}" target="_blank" rel="noopener"><i class="fa fa-map-marker" aria-hidden="true"></i> Get directions</a></p>
+                                </div>
+                                <div class="hours wow fadeInLeft" data-wow-delay="0.6s">
+                                    <h2 class="title h4">Our Office Hours</h2>
+                                    {%- for d in site.hours.days %}
+                                    <p>{{ d }} : <span>{{ site.hours.opens }} - {{ site.hours.closes }}</span></p>
+                                    {%- endfor %}
+                                    {%- for d in site.hours.closed %}
+                                    <p class="closed">{{ d }} : <span>Closed</span></p>
+                                    {%- endfor %}
+                                </div>
+                                {%- if site.whatsapp.number %}
+                                <div class="other-ways wow fadeInLeft" data-wow-delay="0.9s">
+                                    <h2 class="title h4">Prefer to chat?</h2>
+                                    <a href="https://wa.me/{{ site.whatsapp.number }}?text={{ site.whatsapp.message | urlencode }}" target="_blank" rel="noopener"><i class="fa fa-whatsapp" aria-hidden="true"></i>WhatsApp us</a>
+                                </div>
+                                {%- endif %}
+                            </div>
+
+                            <div class="contact-form col-md-8" id="quote">
+                                <h2 class="title h4">Send Us A Message</h2>
+                                <p>Request a quote or ask a question — we reply during office hours, usually the same day.</p>
+                                {% include "partials/form-contact.njk" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map">
+                <iframe src="{{ site.mapEmbedUrl }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing the location of {{ site.name }} in {{ site.address.city }}"></iframe>
+            </div>
+            <!-- CONTACT END -->
+        </main>
+        <!-- CONTENT END -->

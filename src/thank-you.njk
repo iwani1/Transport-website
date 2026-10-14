@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+title: "Thank You"
+heading: "Message Sent"
+description: "Thank you for contacting Blahar & Benyah Int'l Ltd."
+bodyClass: page-simple
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{% include "partials/page-title.njk" %}
+
+        <main id="content" class="clearfix">
+            <div class="simple-page wrapper bg-color">
+                <div class="container">
+                    <h2>Thank you — we have received your message.</h2>
+                    <p>A member of our team will get back to you during office hours ({{ site.hours.summary }}).</p>
+                    <p>Need an answer sooner? Call <a href="tel:{{ site.phones[0].e164 }}">{{ site.phones[0].display | nbsp }}</a>{% if site.whatsapp.number %} or <a href="https://wa.me/{{ site.whatsapp.number }}" rel="noopener" target="_blank">chat with us on WhatsApp</a>{% endif %}.</p>
+                    <p class="actions">
+                        <a href="/" class="button-normal">Back to Home</a>
+                        <a href="/services.html" class="button-normal white">Our Services</a>
+                    </p>
+                </div>
+            </div>
+        </main>

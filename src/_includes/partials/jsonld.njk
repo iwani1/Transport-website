@@ -1,0 +1,15 @@
+{#- Structured data: LocalBusiness on every page, plus a Service entity on service pages -#}
+    <script type="application/ld+json">{{ schema.business | jsonld | safe }}</script>
+{%- if service %}
+    <script type="application/ld+json">{{ {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": service.title,
+        "serviceType": service.title,
+        "description": service.metaDescription,
+        "url": ('/services/' ~ service.slug ~ '.html') | absoluteUrl(site.url),
+        "image": ('/' ~ service.image) | absoluteUrl(site.url),
+        "areaServed": { "@type": "Country", "name": "Ghana" },
+        "provider": { "@type": "LocalBusiness", "name": site.name, "url": site.url }
+    } | jsonld | safe }}</script>
+{%- endif %}

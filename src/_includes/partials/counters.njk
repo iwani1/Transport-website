@@ -1,0 +1,19 @@
+            <!-- COUNTER NUMBER START
+            ============================================= -->
+            <div class="counter-section wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="counter-wrap row">
+                            {%- for s in stats %}
+                            <div class="counter-item col-md-15 wow fadeInUp" data-wow-delay="{{ (loop.index * 0.2) | round(1) }}s">
+                                <div class="counter" data-count="{{ s.value }}">{{ s.value | thousands }}</div>
+                                <div class="counter-details">
+                                    <p class="heading">{{ s.label }}</p>
+                                </div>
+                            </div>
+                            {%- endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- COUNTER NUMBER END -->
