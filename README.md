@@ -158,10 +158,11 @@ python3 scripts/optimize-images.py photo.jpg src/img/content/photo.webp --width 
   confirm they are genuine before launch. The "How it works" timings
   (within the hour / same day / 2–5 days) and the journey captions describe a
   typical Tema → Kumasi job — adjust if they over-promise.
-* **Photos** — most are stock. The construction-page hero
-  (`img/hero/construction.webp`) is an AI-generated illustration standing in
-  for a real site photo; `img/hero/warehouse.webp` is the old template's dark
-  warehouse photo, brightened. Replace both with your own photos when you can.
+* **Photos** — most are stock. The construction and warehousing heroes
+  (`img/hero/construction.webp`, `img/hero/warehouse.webp`) are AI-generated
+  illustrations standing in for real photos of your own site and warehouse —
+  replace them with your own photos when you can (same file names, 16:9,
+  about 1600 px wide, plus a `-960` version for phones).
 * **Google Business Profile** — the map pin exists; claiming the listing helps
   local search rankings.
 
