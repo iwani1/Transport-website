@@ -44,10 +44,15 @@
 
   /* ---------- Full-screen menu ---------- */
   var burger = $('.burger'), menu = $('#menu');
+  /* Everything except the header's burger button and the menu itself is made inert while the
+   * overlay is open, so keyboard and screen-reader users cannot wander behind it. */
+  var behind = $$('#content, main, .foot, .fab, .totop, .hdr .brand, .hdr .nav, .hdr__phone, .hdr .btn');
+  function setInert(el, on) { if (on) { el.setAttribute('inert', ''); el.inert = true; } else { el.removeAttribute('inert'); el.inert = false; } }
   function setMenu(open) {
     menuOpen = open;
     menu.classList.toggle('is-open', open);
-    if (open) { menu.removeAttribute('inert'); menu.inert = false; } else { menu.setAttribute('inert', ''); menu.inert = true; }
+    setInert(menu, !open);
+    behind.forEach(function (el) { setInert(el, open); });
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     document.body.style.overflow = open ? 'hidden' : '';
@@ -145,12 +150,38 @@
       slides.forEach(function (s, i) { s.classList.toggle('is-active', i === cur); });
       dots.forEach(function (d, i) { d.classList.toggle('is-active', i === cur); d.setAttribute('aria-selected', i === cur ? 'true' : 'false'); });
     };
-    var play = function () { clearInterval(timer); if (!reduce && slides.length > 1) timer = setInterval(function () { go(cur + 1); }, 6000); };
-    dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); play(); }); });
-    slider.parentNode.addEventListener('mouseenter', function () { clearInterval(timer); });
-    slider.parentNode.addEventListener('mouseleave', play);
+    var wrap = slider.parentNode, stopped = false;
+    wrap.classList.add('slider-wrap');
+    var pause = function () { clearInterval(timer); timer = null; };
+    var play = function () { pause(); if (!reduce && !stopped && !document.hidden && slides.length > 1) timer = setInterval(function () { go(cur + 1); }, 6000); };
+    /* Choosing a slide hands control to the visitor: auto-rotation stops for good. */
+    dots.forEach(function (d, i) { d.addEventListener('click', function () { stopped = true; wrap.classList.add('is-paused'); pause(); go(i); }); });
+    wrap.addEventListener('mouseenter', pause);
+    wrap.addEventListener('mouseleave', play);
+    wrap.addEventListener('focusin', pause);
+    wrap.addEventListener('focusout', function (e) { if (!wrap.contains(e.relatedTarget)) play(); });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) pause(); else play(); });
     play();
   }
+
+  /* ---------- Google map: inserted only when asked for ---------- */
+  $$('[data-map]').forEach(function (box) {
+    var btn = $('[data-map-load]', box);
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = box.getAttribute('data-map');
+      f.title = box.getAttribute('data-map-title') || 'Map';
+      f.setAttribute('loading', 'eager');
+      f.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+      f.setAttribute('allowfullscreen', '');
+      f.tabIndex = 0;
+      box.textContent = '';
+      box.appendChild(f);
+      box.classList.add('is-loaded');
+      f.focus();
+    });
+  });
 
   /* ---------- The Journey: scroll-driven truck scene ----------
    * The section is ~4 screens tall with a sticky stage. Scroll progress p (0..1)

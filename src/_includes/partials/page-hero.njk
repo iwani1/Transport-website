@@ -2,11 +2,9 @@
     Variables: heroImage (path without leading slash), heroImageMobile (optional), heroAlt, eyebrow, heading (HTML allowed), lead, crumbs (array of {label,url}), heroShort (bool) -#}
     <section class="phero{% if heroShort %} phero--short{% endif %}">
         {%- if heroImage %}
+        {%- set hm = heroImage | imgMeta(heroImageMobile) %}
         <picture class="phero__bg" aria-hidden="true">
-            {%- if heroImageMobile %}
-            <source media="(max-width: 720px)" srcset="/{{ heroImageMobile }}">
-            {%- endif %}
-            <img src="/{{ heroImage }}" alt="" fetchpriority="high">
+            <img src="{{ hm.src }}"{% if hm.srcset %} srcset="{{ hm.srcset }}" sizes="100vw"{% endif %}{% if hm.width %} width="{{ hm.width }}" height="{{ hm.height }}"{% endif %} alt="" fetchpriority="high">
         </picture>
         {%- endif %}
         <div class="phero__shade"></div>

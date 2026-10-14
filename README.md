@@ -7,7 +7,7 @@ The site is a static website generated with [Eleventy](https://www.11ty.dev/).
 All pages share one header, footer and set of business details, so a phone
 number or opening time only ever needs to be changed in one place.
 
-The design ("Showcase", v2.1) is a dark, cinematic, motion-led site in the
+The design ("Showcase", v2.2) is a dark, cinematic, motion-led site in the
 company's teal/orange: a full-screen hero with an animated map of Ghana, a
 scroll-driven truck journey, sticky service cards, a diagonal orange
 call-to-action band and floating-label forms. No frameworks or jQuery —
@@ -63,13 +63,18 @@ Requires Node.js 18 or newer.
 
 ```bash
 npm install          # first time only
-npm run build        # generates the deployable site in ./_site
-npm run check        # verifies links, images, headings, metadata and JavaScript
+npm run build        # empties ./_site and generates the deployable site there
+npm run check        # verifies links, images, heading order, metadata, sitemap and JavaScript
 npm start            # local preview with live reload at http://localhost:8080
 ```
 
 `npm start` previews the pages; to also try the forms locally use
 `node scripts/preview-server.mjs` (it mocks `contact.php`).
+
+Stylesheet and script links carry a content hash (`/css/site.css?v=1a2b3c4d`,
+added by the `assetUrl` filter in `eleventy.config.js`), so the one-month
+browser cache set in `.htaccess` can never serve an old stylesheet with a new
+page — nothing to do by hand after a change.
 
 ## Deploying to the cPanel host
 
@@ -175,8 +180,18 @@ resizes and converts to WebP:
 
 ```bash
 pip install Pillow                                    # once
-python3 scripts/optimize-images.py photo.jpg src/img/content/photo.webp --width 1200
+python3 scripts/optimize-images.py photo.jpg src/img/content/photo.webp --width 1600
+python3 scripts/optimize-images.py photo.jpg src/img/content/photo-960.webp --width 960
 ```
+
+Save a `-960` copy next to any large photo (as above): the templates detect it
+(`imgMeta` filter) and offer it in `srcset`, so phones download the small file
+and desktops the large one. The `source-images/` folder holds originals that are
+not deployed (currently the AI render behind `img/hero/warehouse.webp`).
+
+The Google map on the home and contact pages is a lightweight placeholder
+until the visitor presses "Show map" — it saves about 1 MB of third-party
+script per visit and keeps Google's cookies off the page until asked for.
 
 ## Things that need the owner's input
 
@@ -201,6 +216,10 @@ python3 scripts/optimize-images.py photo.jpg src/img/content/photo.webp --width 
 
 ## History
 
+* **v2.2** — audit fixes: all pages in the sitemap, cache-busted CSS/JS,
+  responsive `srcset` images, contrast and tap-target fixes, menu overlay
+  makes the page behind it inert, click-to-load Google map, lighter logo,
+  `&amp;` double-escaping on service page titles fixed, stricter `npm run check`.
 * **v2.1** — the Showcase design: new CSS/JS, fonts (Bebas Neue + Inter),
   journey section; jQuery, Owl Carousel, FlexSlider, WOW.js and the template
   CSS removed.

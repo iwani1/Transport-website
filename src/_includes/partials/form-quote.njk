@@ -2,7 +2,7 @@
 {%- set formType = 'quote' %}
 {%- set fid = 'quote' %}
                 <form class="form {{ formClass }}" id="quote" method="post" action="{% include 'partials/form-action.njk' %}" data-ajax-form data-reveal>
-                    <h3>{{ formTitle | default('Request a quote') }}</h3>
+                    <{{ formHeading or 'h3' }}>{{ formTitle | default('Request a quote') }}</{{ formHeading or 'h3' }}>
                     {%- if formIntro %}
                     <p class="form__intro">{{ formIntro }}</p>
                     {%- endif %}

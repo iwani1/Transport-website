@@ -7,7 +7,6 @@ priority: "0.9"
 waMessage: "Hello Blahar & Benyah, I would like a quote. Service needed: "
 ---
 {%- set heroImage = 'img/hero/container-yard.webp' %}
-{%- set heroImageMobile = 'img/hero/container-yard-960.webp' %}
 {%- set eyebrow = 'Services' %}
 {%- set heading = 'Everything between<br><span class="outline">the ship and your shelf.</span>' %}
 {%- set lead = 'Four logistics services that work as one job, plus building &amp; construction and printing for businesses in Tema and beyond.' %}
@@ -17,10 +16,11 @@ waMessage: "Hello Blahar & Benyah, I would like a quote. Service needed: "
         <section class="sec sec--tight" aria-labelledby="logistics-title">
             <div class="wrap">
                 <div class="sgrid">
-                    <p class="sgrid__label" id="logistics-title">Logistics — one team, one invoice</p>
+                    <h2 class="sgrid__label" id="logistics-title">Logistics — one team, one invoice</h2>
                     {%- for s in services | where('category', 'logistics') %}
                     <a class="tile{% if loop.index == 1 or loop.index == 4 %} tile--wide{% endif %}" href="/services/{{ s.slug }}.html" data-reveal{% if not loop.first %} style="--delay:{{ (loop.index0 * 0.08) | round(2) }}s"{% endif %}>
-                        <img src="/{{ s.image }}" alt="" loading="lazy">
+                        {%- set im = s.image | imgMeta %}
+                        <img src="{{ im.src }}"{% if im.srcset %} srcset="{{ im.srcset }}" sizes="(max-width: 680px) 100vw, (max-width: 1024px) 50vw, 66vw"{% endif %}{% if im.width %} width="{{ im.width }}" height="{{ im.height }}"{% endif %} alt="" loading="lazy">
                         <span class="tile__num" aria-hidden="true">0{{ loop.index }}</span>
                         <span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
                         <h3>{{ s.title }}</h3>
@@ -28,10 +28,11 @@ waMessage: "Hello Blahar & Benyah, I would like a quote. Service needed: "
                     </a>
                     {%- endfor %}
 
-                    <p class="sgrid__label">Other services</p>
+                    <h2 class="sgrid__label">Other services</h2>
                     {%- for s in services | where('category', 'other') %}
                     <a class="tile tile--half" href="/services/{{ s.slug }}.html" data-reveal{% if not loop.first %} style="--delay:.1s"{% endif %}>
-                        <img src="/{{ s.image }}" alt="" loading="lazy">
+                        {%- set im = s.image | imgMeta %}
+                        <img src="{{ im.src }}"{% if im.srcset %} srcset="{{ im.srcset }}" sizes="(max-width: 680px) 100vw, (max-width: 1024px) 50vw, 66vw"{% endif %}{% if im.width %} width="{{ im.width }}" height="{{ im.height }}"{% endif %} alt="" loading="lazy">
                         <span class="tile__num" aria-hidden="true">0{{ loop.index + 4 }}</span>
                         <span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
                         <h3>{{ s.title }}</h3>

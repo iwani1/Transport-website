@@ -8,7 +8,7 @@
                     <p>Logistics &amp; transportation from {{ site.address.city }}, {{ site.address.country }}. Freight forwarding, customs clearing, trucking and warehousing — plus building &amp; construction and printing services.</p>
                 </div>
                 <div>
-                    <h4>Services</h4>
+                    <h2>Services</h2>
                     <ul>
                         {%- for s in services %}
                         <li><a href="/services/{{ s.slug }}.html">{{ s.title }}</a></li>
@@ -16,7 +16,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4>Company</h4>
+                    <h2>Company</h2>
                     <ul>
                         <li><a href="/about-us.html">About us</a></li>
                         <li><a href="/#process">How it works</a></li>
@@ -26,7 +26,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4>Visit us</h4>
+                    <h2>Visit us</h2>
                     <ul>
                         <li>{{ site.address.line1 }}, {{ site.address.line2 }},<br>{{ site.address.city }}, {{ site.address.country }}</li>
                         {%- for ph in site.phones %}

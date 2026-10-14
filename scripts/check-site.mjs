@@ -4,7 +4,8 @@
  *   node scripts/check-site.mjs
  *
  * 1. Every local href/src/url() in the HTML and CSS points at a file that exists.
- * 2. Every page has exactly one <h1>, a <title>, a meta description and a canonical URL.
+ * 2. Every page has exactly one <h1>, a <title>, a meta description (<= 160 chars) and a canonical URL,
+ *    heading levels never skip (h1 -> h3), and every indexable page is listed in sitemap.xml.
  * 3. Every <img> has an alt attribute.
  * 4. No leftover template placeholder text (Lorem ipsum, template brand names).
  * 5. Each page runs in jsdom with its scripts to catch JavaScript errors, and the menu + form contract are exercised.
@@ -48,6 +49,19 @@ function isExternal(ref) {
 
 const placeholderRe = /lorem ipsum|logitrans|themesawesome|mochreza|Boulevard des Capucines|OIA Global|html5shiv/i;
 
+// URLs listed in sitemap.xml, as site-relative paths ("/", "/about-us.html", ...)
+let sitemapUrls = null;
+const sitemapFile = join(ROOT, "sitemap.xml");
+if (existsSync(sitemapFile)) {
+  sitemapUrls = new Set();
+  for (const m of readFileSync(sitemapFile, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)) {
+    try { sitemapUrls.add(new URL(m[1].trim()).pathname); } catch { warn(`sitemap.xml: invalid URL "${m[1]}"`); }
+  }
+  if (sitemapUrls.has("/index.html")) sitemapUrls.add("/");
+} else {
+  warn("sitemap.xml is missing");
+}
+
 for (const file of htmlFiles) {
   const rel = posix.relative(ROOT, file);
   const html = readFileSync(file, "utf8");
@@ -61,6 +75,20 @@ for (const file of htmlFiles) {
   if (!doc.querySelector('meta[name="description"]')?.getAttribute("content")) warn(`${rel}: missing meta description`);
   if (!doc.querySelector('link[rel="canonical"]')) warn(`${rel}: missing canonical link`);
   if (!doc.documentElement.getAttribute("lang")) warn(`${rel}: missing <html lang>`);
+  const descLen = (doc.querySelector('meta[name="description"]')?.getAttribute("content") || "").length;
+  if (descLen > 160) warn(`${rel}: meta description is ${descLen} characters (keep it under 160)`);
+
+  // --- heading order (no skipped levels)
+  let prevLevel = 0;
+  for (const h of doc.querySelectorAll("h1, h2, h3, h4, h5, h6")) {
+    const level = Number(h.tagName[1]);
+    if (prevLevel && level > prevLevel + 1) warn(`${rel}: heading level skips from h${prevLevel} to h${level} ("${h.textContent.trim().slice(0, 40)}")`);
+    prevLevel = level;
+  }
+
+  // --- sitemap coverage
+  const noindex = /noindex/i.test(doc.querySelector('meta[name="robots"]')?.getAttribute("content") || "");
+  if (!noindex && sitemapUrls && !sitemapUrls.has("/" + rel) && !(rel === "index.html" && sitemapUrls.has("/"))) warn(`${rel}: indexable page missing from sitemap.xml`);
 
   // --- images
   for (const img of doc.querySelectorAll("img")) {
@@ -76,6 +104,10 @@ for (const file of htmlFiles) {
   const refs = [];
   doc.querySelectorAll("[href]").forEach((el) => refs.push(el.getAttribute("href")));
   doc.querySelectorAll("[src]").forEach((el) => refs.push(el.getAttribute("src")));
+  doc.querySelectorAll("[srcset]").forEach((el) => {
+    for (const cand of el.getAttribute("srcset").split(",")) refs.push(cand.trim().split(/\s+/)[0]);
+  });
+  doc.querySelectorAll("[data-map]").forEach((el) => refs.push(el.getAttribute("data-map")));
   doc.querySelectorAll("form[action]").forEach((el) => refs.push(el.getAttribute("action")));
   doc.querySelectorAll("[style]").forEach((el) => {
     for (const mm of el.getAttribute("style").matchAll(/url\(([^)]+)\)/g)) refs.push(mm[1].replace(/['"]/g, ""));

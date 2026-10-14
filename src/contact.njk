@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: "Contact"
-description: "Contact Blahar & Benyah Int'l Ltd in Tema, Ghana — call (+233) 24 683 5764, email us, or send a message to request a logistics quote. Office beside GTP, Community 4, Valco Roundabout."
+description: "Contact Blahar & Benyah Int'l Ltd, Tema: call (+233) 24 683 5764, WhatsApp or e-mail us for a logistics quote. Office beside GTP, Community 4, Valco Roundabout."
 bodyClass: page-contact
 priority: "0.9"
 waMessage: "Hello Blahar & Benyah, I would like to get in touch about: "
@@ -29,7 +29,7 @@ waMessage: "Hello Blahar & Benyah, I would like to get in touch about: "
                     </div>
 
                     <div class="hours">
-                        <h3>Office hours</h3>
+                        <h2>Office hours</h2>
                         {%- for d in site.hours.days %}
                         <div><span>{{ d }}</span><b>{{ site.hours.opens }} – {{ site.hours.closes }}</b></div>
                         {%- endfor %}
@@ -41,13 +41,13 @@ waMessage: "Hello Blahar & Benyah, I would like to get in touch about: "
 
                 <div>
                     {%- set formClass = 'form--dark' %}
+                    {%- set formHeading = 'h2' %}
                     {% include "partials/form-contact.njk" %}
                 </div>
             </div>
 
             <div class="wrap">
-                <div class="map-embed dark" data-reveal>
-                    <iframe title="Map showing the location of {{ site.name }} in {{ site.address.city }}" src="{{ site.mapEmbedUrl }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-                </div>
+                {%- set mapDark = true %}
+                {% include "partials/map-embed.njk" %}
             </div>
         </section>

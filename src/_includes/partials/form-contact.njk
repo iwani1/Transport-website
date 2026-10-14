@@ -2,7 +2,7 @@
 {%- set formType = 'contact' %}
 {%- set fid = 'contact' %}
                 <form class="form {{ formClass }}" id="quote" method="post" action="{% include 'partials/form-action.njk' %}" data-ajax-form data-reveal>
-                    <h3>Send us a message</h3>
+                    <{{ formHeading or 'h3' }}>Send us a message</{{ formHeading or 'h3' }}>
                     <p class="form__intro">Request a quote or ask a question — we reply during office hours, usually the same day.</p>
                     {%- include "partials/form-hidden.njk" %}
                     <div class="form__row">

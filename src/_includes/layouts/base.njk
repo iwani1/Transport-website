@@ -37,10 +37,10 @@
 
     <link rel="preload" href="/fonts/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="{{ '/css/site.css' | assetUrl }}">
 
-    <script defer src="/js/site.js"></script>
-    <script defer src="/js/forms.js"></script>
+    <script defer src="{{ '/js/site.js' | assetUrl }}"></script>
+    <script defer src="{{ '/js/forms.js' | assetUrl }}"></script>
 
     {% include "partials/jsonld.njk" %}
     {% include "partials/analytics.njk" %}

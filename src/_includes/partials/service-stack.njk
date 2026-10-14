@@ -12,7 +12,8 @@
             <div class="wrap stack">
                 {%- for s in services | where('category', 'logistics') %}
                 <article class="s-card s-card--{{ loop.index }}">
-                    <div class="s-card__media"><img src="/{{ s.image }}" alt="{{ s.imageAlt }}" loading="lazy"></div>
+                    {%- set im = s.image | imgMeta %}
+                    <div class="s-card__media"><img src="{{ im.src }}"{% if im.srcset %} srcset="{{ im.srcset }}" sizes="(max-width: 900px) 100vw, 50vw"{% endif %}{% if im.width %} width="{{ im.width }}" height="{{ im.height }}"{% endif %} alt="{{ s.imageAlt }}" loading="lazy"></div>
                     <div class="s-card__body">
                         <span class="s-card__num" aria-hidden="true">0{{ loop.index }}</span>
                         <h3>{{ s.displayTitle | safe }}</h3>

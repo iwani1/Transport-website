@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: ""
-description: "Blahar & Benyah Int'l Ltd — freight forwarding, customs clearing, trucking and warehousing from Tema Port to anywhere in Ghana. One team, one phone call. Request a quote today."
+description: "Blahar & Benyah Int'l Ltd — freight forwarding, customs clearing, trucking and warehousing from Tema Port to anywhere in Ghana. One team, one phone call."
 bodyClass: home
 priority: "1.0"
 changefreq: weekly
@@ -11,7 +11,7 @@ changefreq: weekly
         <section class="hero" id="hero">
             <picture class="hero__bg" aria-hidden="true">
                 <source media="(max-width: 720px)" srcset="/img/hero/truck-dusk-960.webp">
-                <img src="/img/hero/truck-dusk.webp" alt="" width="1920" height="815" fetchpriority="high">
+                {%- set hm = 'img/hero/truck-dusk.webp' | imgMeta %}<img src="{{ hm.src }}" srcset="{{ hm.srcset }}" sizes="100vw" alt="" width="{{ hm.width }}" height="{{ hm.height }}" fetchpriority="high">
             </picture>
             {%- if site.hero and site.hero.video %}
             {#- Optional looping clip (site.json -> hero.video). Plays over the photo; site.js drops it on phones / reduced motion. -#}
@@ -80,7 +80,7 @@ changefreq: weekly
 
         <!-- WHY US -->
         <section class="why" id="why" aria-labelledby="why-title">
-            <div class="why__bg" data-parallax="0.18" aria-hidden="true"><img src="/img/hero/container-yard.webp" alt="" width="1600" height="873" loading="lazy"></div>
+            {%- set wm = 'img/hero/container-yard.webp' | imgMeta %}<div class="why__bg" data-parallax="0.18" aria-hidden="true"><img src="{{ wm.src }}" srcset="{{ wm.srcset }}" sizes="100vw" alt="" width="{{ wm.width }}" height="{{ wm.height }}" loading="lazy"></div>
             <div class="why__shade"></div>
             <div class="wrap why__grid">
                 <div class="why__sticky" data-reveal>
@@ -145,8 +145,6 @@ changefreq: weekly
                     {% include "partials/form-quote.njk" %}
                 </div>
 
-                <div class="map-embed" data-reveal>
-                    <iframe title="Map: {{ site.name }}, {{ site.address.line2 }}, {{ site.address.city }}" src="{{ site.mapEmbedUrl }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-                </div>
+                {% include "partials/map-embed.njk" %}
             </div>
         </section>
