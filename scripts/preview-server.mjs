@@ -2,6 +2,7 @@
  * Minimal preview server for the built site (./_site).
  *
  *   node scripts/preview-server.mjs [port]
+ *   node scripts/preview-server.mjs [port] --home=design-concepts/concept-1-clear.html   # serve a mock-up at /
  *
  * Serves the static files (plus ./design-concepts at /concepts/) and mocks the PHP form handler (POST /contact.php)
  * so the contact/quote forms can be tried locally without PHP. On the real
@@ -13,7 +14,9 @@ import { join, resolve, extname } from "node:path";
 
 const ROOT = resolve("_site");
 const CONCEPTS = resolve("design-concepts");
-const PORT = Number(process.argv[2] || process.env.PORT || 8080);
+const args = process.argv.slice(2);
+const PORT = Number(args.find((a) => /^\d+$/.test(a)) || process.env.PORT || 8080);
+const HOME = (args.find((a) => a.startsWith("--home=")) || "").slice(7); // optional file served at "/"
 const MIME = {
   ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".json": "application/json",
   ".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".gif": "image/gif", ".svg": "image/svg+xml",
@@ -42,6 +45,10 @@ createServer((req, res) => {
   }
 
   // Design mock-ups (not part of the production build) are served from ./design-concepts at /concepts/
+  if (HOME && (urlPath === "/" || urlPath === "/index.html")) {
+    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-cache" });
+    return res.end(readFileSync(resolve(HOME)));
+  }
   let base = ROOT, rel = urlPath;
   if (urlPath === "/concepts" || urlPath.startsWith("/concepts/")) { base = CONCEPTS; rel = urlPath.replace(/^\/concepts\/?/, "/"); }
   let file = join(base, rel);
@@ -54,4 +61,4 @@ createServer((req, res) => {
   }
   res.writeHead(200, { "Content-Type": MIME[extname(file)] || "application/octet-stream", "Cache-Control": "no-cache" });
   res.end(readFileSync(file));
-}).listen(PORT, "0.0.0.0", () => console.log(`Preview: http://0.0.0.0:${PORT}  (serving ${ROOT})`));
+}).listen(PORT, "0.0.0.0", () => console.log(`Preview: http://0.0.0.0:${PORT}  (serving ${ROOT}${HOME ? `, home page = ${HOME}` : ""})`));

@@ -9,7 +9,10 @@
     "clean": "rm -rf _site",
     "check": "node scripts/check-site.mjs && html-validate \"_site/**/*.html\"",
     "images": "python3 scripts/optimize-images.py",
-    "preview": "node scripts/preview-server.mjs 8080"
+    "preview": "node scripts/preview-server.mjs 8080",
+    "preview:concept1": "node scripts/preview-server.mjs 8001 --home=design-concepts/concept-1-clear.html",
+    "preview:concept2": "node scripts/preview-server.mjs 8002 --home=design-concepts/concept-2-night-port.html",
+    "preview:concept3": "node scripts/preview-server.mjs 8003 --home=design-concepts/concept-3-route.html"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",

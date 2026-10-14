@@ -89,8 +89,15 @@ Alternative without PHP: sign up at [web3forms.com](https://web3forms.com)
 
 ## Design concepts
 
-`design-concepts/` holds three alternative home-page mock-ups (not part of the
-production build). View them with `npm run preview` at `/concepts/`.
+`design-concepts/` holds three alternative home-page designs (not part of the
+production build). View the overview with `npm run preview` at `/concepts/`,
+or run each as its own demo site:
+
+```bash
+npm run preview:concept1   # Clear & Trusted  → http://localhost:8001
+npm run preview:concept2   # Night Port       → http://localhost:8002
+npm run preview:concept3   # Route            → http://localhost:8003
+```
 
 ## Images
 

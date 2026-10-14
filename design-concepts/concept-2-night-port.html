@@ -123,21 +123,68 @@
   .notes .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; }
   .notes b { color: #fff; font-family: var(--font-head); }
   .notes a { color: #8ec5ff; text-decoration: underline; }
+
+  /* Mobile menu */
+  .nav { position: relative; }
+  .burger { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 10px; background: transparent; cursor: pointer; place-items: center; color: inherit; flex: none; }
+  .burger span { display: block; width: 20px; height: 2px; background: currentColor; box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor; }
+  @media (max-width: 900px) {
+    .burger { display: grid; margin-left: 10px; }
+    .nav.open ul { display: flex; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; gap: 0; padding: 10px 4vw 16px; background: rgba(6,16,28,.97); border-bottom: 1px solid var(--line); box-shadow: 0 30px 40px -30px rgba(0,0,0,.4); }
+    .nav.open ul a { display: block; padding: 12px 0; border: 0; }
+  }
+  .form-status { margin: 12px 0 0; font-size: 14px; min-height: 1.4em; }
+  .form-status.ok { color: #15803d; } .form-status.err { color: #dc2626; }
+  .hp { position: absolute; left: -9999px; }
+
+  /* About */
+  .about { padding: 0 0 clamp(70px, 9vw, 120px); }
+  .about .grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .about h2 { font-size: clamp(30px, 4vw, 48px); margin-bottom: 18px; }
+  .about p { color: var(--muted); margin: 0 0 14px; }
+  .about .frame { position: relative; border-radius: 24px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 4/3; }
+  .about .frame img { width: 100%; height: 100%; object-fit: cover; }
+  .about .frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(6,16,28,.8), transparent 50%); }
+  .about .frame figcaption { position: absolute; left: 22px; bottom: 18px; right: 22px; font: 700 14px var(--font-head); }
+  .about .frame figcaption small { display: block; color: var(--muted); font: 400 13px var(--font-body); }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 44px; }
+  .pillars div { padding: 24px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); }
+  .pillars h3 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; }
+  .pillars p { margin: 0; color: var(--muted); font-size: 15px; }
+  @media (max-width: 860px) { .about .grid, .pillars { grid-template-columns: 1fr; } }
+  /* Contact form */
+  .contact .box { grid-template-columns: 1fr 1fr; align-items: start; }
+  .contact .meta { display: grid; gap: 10px; margin-top: 22px; font-size: 15px; }
+  .contact .meta a { color: #fff; }
+  .contact .meta span { color: var(--muted); display: block; font: 700 11px var(--font-head); letter-spacing: .1em; text-transform: uppercase; }
+  .dark-form .field { display: grid; gap: 6px; margin-bottom: 14px; font: 700 11px var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .dark-form input, .dark-form select, .dark-form textarea { width: 100%; height: 46px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.06); color: #fff; padding: 0 14px; font: 400 15px var(--font-body); }
+  .dark-form select option { color: #000; }
+  .dark-form textarea { height: auto; padding: 12px 14px; resize: vertical; }
+  .dark-form input:focus, .dark-form select:focus, .dark-form textarea:focus { outline: 2px solid var(--glow); outline-offset: 0; }
+  .dark-form .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .dark-form .btn { width: 100%; }
+  .form-status.ok { color: #4ade80; } .form-status.err { color: #f87171; }
+  @media (max-width: 760px) { .dark-form .two { grid-template-columns: 1fr; } }
+  .foot { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 13px; }
+  .foot .wrap { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .foot ul { list-style: none; display: flex; gap: 18px; margin: 0 0 0 auto; padding: 0; font: 700 13px var(--font-head); color: #fff; }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .status { opacity: 1; transform: none; } }
 </style>
 </head>
-<body>
+<body id="top">
 
 <header id="hdr">
   <div class="wrap nav">
-    <a class="logo-pill" href="#"><img src="/img/logo.png" alt="Blahar & Benyah Int'l Ltd"></a>
-    <ul>
-      <li><a href="#" aria-current="page">Home</a></li>
-      <li><a href="#">About</a></li>
+    <a class="logo-pill" href="#top"><img src="/img/logo.png" alt="Blahar & Benyah Int'l Ltd"></a>
+    <ul id="menu">
+      <li><a href="#top" aria-current="page">Home</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <a class="btn btn-glow" href="#contact">Request a quote</a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span></button>
   </div>
 </header>
 
@@ -192,12 +239,12 @@
       <p>Four logistics services that fit together, so you never have to chase three companies for one shipment.</p>
     </div>
     <div class="b-grid">
-      <a class="tile big" href="#"><img src="/img/content/service-ship.webp" alt=""><span class="fade"></span><span class="num">01</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Freight Forwarding</h3><p>Sea &amp; air freight booked, documented and tracked from origin to Tema.</p></a>
-      <a class="tile tall" href="#"><img src="/img/slider/slide-2.webp" alt=""><span class="fade"></span><span class="num">02</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Transportation</h3><p>Our trucks, our drivers, anywhere in Ghana.</p></a>
-      <a class="tile" href="#"><span class="num">03</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Clearing</h3><p>Duties, permits &amp; paperwork handled right the first time.</p></a>
-      <a class="tile" href="#"><img src="/img/content/services-thumb-6.webp" alt=""><span class="fade"></span><span class="num">04</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Warehousing</h3><p>Secure storage with inventory reports.</p></a>
-      <a class="tile dim" href="#"><span class="num">ALSO</span><h3>Building &amp; Construction</h3><p>Quality builds, on schedule.</p></a>
-      <a class="tile dim" href="#"><span class="num">ALSO</span><h3>Printing &amp; Photocopying</h3><p>Fast business printing in Tema.</p></a>
+      <a class="tile big" href="#contact"><img src="/img/content/service-ship.webp" alt=""><span class="fade"></span><span class="num">01</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Freight Forwarding</h3><p>Sea &amp; air freight booked, documented and tracked from origin to Tema.</p></a>
+      <a class="tile tall" href="#contact"><img src="/img/slider/slide-2.webp" alt=""><span class="fade"></span><span class="num">02</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Transportation</h3><p>Our trucks, our drivers, anywhere in Ghana.</p></a>
+      <a class="tile" href="#contact"><span class="num">03</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Clearing</h3><p>Duties, permits &amp; paperwork handled right the first time.</p></a>
+      <a class="tile" href="#contact"><img src="/img/content/services-thumb-6.webp" alt=""><span class="fade"></span><span class="num">04</span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span><h3>Warehousing</h3><p>Secure storage with inventory reports.</p></a>
+      <a class="tile dim" href="#contact"><span class="num">ALSO</span><h3>Building &amp; Construction</h3><p>Quality builds, on schedule.</p></a>
+      <a class="tile dim" href="#contact"><span class="num">ALSO</span><h3>Printing &amp; Photocopying</h3><p>Fast business printing in Tema.</p></a>
     </div>
   </div>
 </section>
@@ -211,17 +258,66 @@
   </div>
 </section>
 
-<section class="contact" id="contact">
+<section class="about" id="about">
   <div class="wrap">
-    <div class="box">
-      <div><h2>Tell us what is arriving. We will handle the rest.</h2><p>Reply within one working hour · Mon – Sat 08:00 – 17:00</p></div>
-      <div class="acts">
-        <a class="btn btn-wa" href="https://wa.me/233246835764">WhatsApp us</a>
-        <a class="btn btn-outline" href="tel:+233246835764">(+233)&nbsp;24&nbsp;683&nbsp;5764</a>
+    <div class="grid">
+      <div>
+        <h2>Built in Tema. Run by people who answer the phone.</h2>
+        <p>Blahar &amp; Benyah Int’l Ltd is a forward-driven company delivering integrated logistics and business support services — freight forwarding, transportation, clearing and supply chain coordination across local and international routes.</p>
+        <p>We manage documentation, compliance and coordination with precision and accountability, and we keep you informed at every stage so there are no surprises at the port or on the road.</p>
+        <a class="btn btn-outline" href="#contact">Meet the team →</a>
       </div>
+      <figure class="frame" style="margin:0">
+        <img src="/img/slider/company-slide-2.webp" alt="Our team working in the warehouse">
+        <figcaption>Community 4, Tema <small>Office beside GTP, Valco Roundabout</small></figcaption>
+      </figure>
+    </div>
+    <div class="pillars">
+      <div><h3>Mission</h3><p>Practical, efficient and dependable solutions that support business growth and trade, to the highest professional standards.</p></div>
+      <div><h3>Vision</h3><p>A trusted regional leader in logistics and integrated service delivery, recognised for reliability, integrity and operational excellence.</p></div>
+      <div><h3>Goal</h3><p>Expanding across key regional and international trade routes and strengthening our network for growing demand.</p></div>
     </div>
   </div>
 </section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="box">
+      <div>
+        <h2>Tell us what is arriving. We will handle the rest.</h2>
+        <p>Reply within one working hour · Mon – Sat 08:00 – 17:00</p>
+        <div class="meta">
+          <div><span>Call</span><a href="tel:+233246835764">(+233)&nbsp;24&nbsp;683&nbsp;5764</a> · <a href="tel:+233208902232">(+233)&nbsp;20&nbsp;890&nbsp;2232</a></div>
+          <div><span>Email</span><a href="mailto:TettehQuashieBlahar@gmail.com">TettehQuashieBlahar@gmail.com</a></div>
+          <div><span>Office</span>Beside GTP, Community 4, Valco Roundabout, Tema</div>
+        </div>
+        <div class="acts" style="margin-top:22px">
+          <a class="btn btn-wa" href="https://wa.me/233246835764">WhatsApp us</a>
+        </div>
+      </div>
+      <form class="dark-form" data-demo action="/contact.php" method="post">
+        <input type="hidden" name="form" value="quote">
+        <label class="hp" aria-hidden="true">Leave empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <div class="two">
+          <label class="field">Name <input type="text" name="name" required autocomplete="name"></label>
+          <label class="field">Phone / WhatsApp <input type="tel" name="telephone" autocomplete="tel"></label>
+        </div>
+        <label class="field">Email <input type="email" name="email" required autocomplete="email"></label>
+        <label class="field">Service <select name="service"><option value="">Select a service</option><option>Freight Forwarding</option><option>Transportation</option><option>Clearing</option><option>Warehousing</option><option>Building &amp; Construction</option><option>Printing &amp; Photocopying</option></select></label>
+        <label class="field">Details <textarea name="message" rows="3" placeholder="e.g. 1 × 40ft container arriving Tema 20 Oct, deliver to Kumasi"></textarea></label>
+        <button class="btn btn-glow" type="submit">Request a quote</button>
+        <p class="form-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2025 – 2026 Blahar &amp; Benyah Int'l Ltd · Tema, Ghana</span>
+    <ul><li><a href="#top">Home</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#contact">Contact</a></li></ul>
+  </div>
+</footer>
 
 <div class="notes">
   <div class="wrap">
@@ -235,6 +331,35 @@
 <script>
   const hdr = document.getElementById('hdr');
   addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 40), { passive: true });
+</script>
+<script>
+(function () {
+  // Mobile menu
+  var nav = document.querySelector('.nav'), burger = document.querySelector('.burger');
+  if (burger) {
+    burger.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('ul a').forEach(function (a) {
+      a.addEventListener('click', function () { nav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); });
+    });
+  }
+  // Demo forms: post to the (mocked) contact.php and show the reply inline
+  document.querySelectorAll('form[data-demo]').forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!f.reportValidity()) return;
+      var b = f.querySelector('[type=submit]'), st = f.querySelector('.form-status');
+      b.disabled = true; st.textContent = 'Sending\u2026'; st.className = 'form-status';
+      fetch('/contact.php', { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(f) })
+        .then(function (r) { return r.json(); })
+        .then(function (j) { st.textContent = j.message || 'Thank you \u2014 we will get back to you shortly.'; st.className = 'form-status ok'; f.reset(); })
+        .catch(function () { st.textContent = 'Could not send. Please call or WhatsApp us.'; st.className = 'form-status err'; })
+        .then(function () { b.disabled = false; });
+    });
+  });
+})();
 </script>
 </body>
 </html>
