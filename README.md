@@ -94,6 +94,7 @@ production build). View the overview with `npm run preview` at `/concepts/`,
 or run each as its own demo site:
 
 ```bash
+npm run preview:showcase   # Showcase design  → http://localhost:8001
 npm run preview:concept1   # Clear & Trusted  → http://localhost:8001
 npm run preview:concept2   # Night Port       → http://localhost:8002
 npm run preview:concept3   # Route            → http://localhost:8003
