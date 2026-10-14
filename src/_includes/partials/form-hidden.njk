@@ -1,0 +1,12 @@
+{#- Hidden fields shared by every form. `formType` must be set by the including template. -#}
+{%- if site.forms.provider == 'web3forms' and site.forms.web3formsKey %}
+                <input type="hidden" name="access_key" value="{{ site.forms.web3formsKey }}">
+                <input type="hidden" name="subject" value="[Website enquiry] {{ formType | replace('-', ' ') | title }}">
+                <input type="hidden" name="from_name" value="{{ site.name }} website">
+                <input type="hidden" name="redirect" value="{{ '/thank-you.html' | absoluteUrl(site.url) }}">
+                <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+{%- else %}
+                <input type="hidden" name="form" value="{{ formType }}">
+                <input type="hidden" name="_ts" value="">
+                <p class="hp-field" aria-hidden="true"><label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+{%- endif %}

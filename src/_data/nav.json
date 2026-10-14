@@ -1,0 +1,6 @@
+[
+  { "label": "Home", "url": "/index.html" },
+  { "label": "About Us", "url": "/about-us.html" },
+  { "label": "Services", "url": "/services.html", "children": "services" },
+  { "label": "Contact", "url": "/contact.html" }
+]

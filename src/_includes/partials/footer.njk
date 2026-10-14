@@ -1,0 +1,56 @@
+{#- Site footer with the outlined wordmark -#}
+    <footer class="foot">
+        <div class="wrap">
+            <p class="foot__mark" aria-hidden="true">{{ site.shortName }}</p>
+            <div class="foot__grid">
+                <div>
+                    <img class="foot__logo" src="/img/logo.png" alt="{{ site.name }}" width="720" height="188" loading="lazy">
+                    <p>Logistics &amp; transportation from {{ site.address.city }}, {{ site.address.country }}. Freight forwarding, customs clearing, trucking and warehousing — plus building &amp; construction and printing services.</p>
+                </div>
+                <div>
+                    <h2>Services</h2>
+                    <ul>
+                        {%- for s in services %}
+                        <li><a href="/services/{{ s.slug }}.html">{{ s.title }}</a></li>
+                        {%- endfor %}
+                    </ul>
+                </div>
+                <div>
+                    <h2>Company</h2>
+                    <ul>
+                        <li><a href="/about-us.html">About us</a></li>
+                        <li><a href="/#process">How it works</a></li>
+                        <li><a href="/#voices">Clients</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="/contact.html#quote">Request a quote</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Visit us</h2>
+                    <ul>
+                        <li>{{ site.address.line1 }}, {{ site.address.line2 }},<br>{{ site.address.city }}, {{ site.address.country }}</li>
+                        {%- for ph in site.phones %}
+                        <li><a href="tel:{{ ph.e164 }}">{{ ph.display | nbsp }}</a></li>
+                        {%- endfor %}
+                        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+                        <li>{{ site.hours.summary }}</li>
+                    </ul>
+                    {%- set hasSocial = site.social.facebook or site.social.twitter or site.social.linkedin or site.social.instagram %}
+                    {%- if hasSocial %}
+                    <ul class="foot__social" aria-label="Social media">
+                        {%- if site.social.facebook %}<li><a href="{{ site.social.facebook }}" rel="noopener" target="_blank">Facebook</a></li>{% endif %}
+                        {%- if site.social.instagram %}<li><a href="{{ site.social.instagram }}" rel="noopener" target="_blank">Instagram</a></li>{% endif %}
+                        {%- if site.social.linkedin %}<li><a href="{{ site.social.linkedin }}" rel="noopener" target="_blank">LinkedIn</a></li>{% endif %}
+                        {%- if site.social.twitter %}<li><a href="{{ site.social.twitter }}" rel="noopener" target="_blank">X (Twitter)</a></li>{% endif %}
+                    </ul>
+                    {%- endif %}
+                </div>
+            </div>
+            <div class="foot__bottom">
+                <span>© {{ site.copyrightStart }} – <span data-year>{{ buildYear }}</span> {{ site.name }}. All rights reserved.</span>
+                {%- if site.credit.label %}
+                <span>{% if site.credit.url %}<a href="{{ site.credit.url }}" rel="noopener">{{ site.credit.label }}</a>{% else %}{{ site.credit.label }}{% endif %}</span>
+                {%- endif %}
+            </div>
+        </div>
+    </footer>

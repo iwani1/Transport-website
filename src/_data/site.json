@@ -1,0 +1,74 @@
+{
+  "name": "Blahar & Benyah Int'l Ltd",
+  "shortName": "Blahar & Benyah",
+  "tagline": "Logistics & Transportation",
+  "description": "Blahar & Benyah Int'l Ltd provides freight forwarding, transportation, customs clearing and warehousing services from Tema, Ghana, plus building & construction and printing services.",
+  "url": "https://blaharbenyah.com",
+  "language": "en",
+  "locale": "en_GH",
+  "copyrightStart": 2025,
+  "credit": {
+    "label": "Powered by iwan",
+    "url": ""
+  },
+  "email": "TettehQuashieBlahar@gmail.com",
+  "phones": [
+    {
+      "display": "(+233) 24 683 5764",
+      "e164": "+233246835764"
+    },
+    {
+      "display": "(+233) 20 890 2232",
+      "e164": "+233208902232"
+    }
+  ],
+  "whatsapp": {
+    "number": "233246835764",
+    "message": "Hello Blahar & Benyah, I would like to request a quote."
+  },
+  "address": {
+    "line1": "Beside GTP",
+    "line2": "Community 4, Valco Roundabout",
+    "city": "Tema",
+    "region": "Greater Accra",
+    "country": "Ghana",
+    "countryCode": "GH"
+  },
+  "geo": {
+    "lat": 5.6628723,
+    "lng": -0.0066102
+  },
+  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3970.346890990559!2d-0.0066102!3d5.6628723!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10207fc333f2695f%3A0x691c1e40ea21393c!2sBlahar%20%26%20Benyah%20Int%E2%80%99l%20Ltd!5e0!3m2!1sen!2sgh!4v1776846002066!5m2!1sen!2sgh",
+  "mapLink": "https://maps.google.com/?cid=7573961937485117756",
+  "hours": {
+    "summary": "Mon - Sat: 08:00 - 17:00",
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "08:00",
+    "closes": "17:00",
+    "closed": [
+      "Sunday"
+    ]
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "linkedin": "",
+    "twitter": ""
+  },
+  "forms": {
+    "provider": "php",
+    "web3formsKey": ""
+  },
+  "analytics": {
+    "plausibleDomain": "",
+    "ga4MeasurementId": ""
+  },
+  "partners": []
+}

@@ -1,0 +1,21 @@
+---
+layout: layouts/base.njk
+title: "Page Not Found"
+description: "The page you were looking for could not be found."
+bodyClass: page-simple
+noindex: true
+eleventyExcludeFromCollections: true
+---
+        <section class="simple" aria-labelledby="nf-title">
+            <div class="simple__big" aria-hidden="true">404</div>
+            <div class="simple__in" data-reveal>
+                <p class="eyebrow">Error 404</p>
+                <h1 class="title" id="nf-title">Wrong turn.<br><span class="outline">Page not found.</span></h1>
+                <p class="lead">The link may be out of date or the page may have moved. Try one of these instead:</p>
+                <div class="acts">
+                    <a class="btn btn--orange magnetic" href="/">Home</a>
+                    <a class="btn btn--ghost magnetic" href="/services.html">Services</a>
+                    <a class="btn btn--ghost magnetic" href="/contact.html">Contact</a>
+                </div>
+            </div>
+        </section>

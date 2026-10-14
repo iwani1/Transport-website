@@ -1,0 +1,17 @@
+---
+permalink: sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in collections.all | reverse %}
+{%- if not p.data.noindex %}
+  <url>
+    <loc>{{ (p.url if p.url != '/index.html' else '/') | absoluteUrl(site.url) }}</loc>
+    <lastmod>{{ buildDate }}</lastmod>
+    <changefreq>{{ p.data.changefreq or 'monthly' }}</changefreq>
+    <priority>{{ p.data.priority or '0.6' }}</priority>
+  </url>
+{%- endif %}
+{%- endfor %}
+</urlset>

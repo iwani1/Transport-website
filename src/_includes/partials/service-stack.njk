@@ -1,0 +1,47 @@
+{#- Home page "what we do": four sticky stacking cards (logistics) + two compact cards (other services). Data: services.json -#}
+{%- set arrow %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>{% endset %}
+        <section class="services" id="services" aria-labelledby="services-title">
+            <div class="wrap services__head">
+                <div data-reveal>
+                    <p class="eyebrow">What we do</p>
+                    <h2 class="title" id="services-title">Four services.<br><span class="outline">One phone call.</span></h2>
+                </div>
+                <p class="lead" data-reveal style="--delay:.15s">Most shipments need more than one of these. We run them as one job, with one invoice and one person you can call.</p>
+            </div>
+
+            <div class="wrap stack">
+                {%- for s in services | where('category', 'logistics') %}
+                <article class="s-card s-card--{{ loop.index }}">
+                    {%- set im = s.image | imgMeta %}
+                    <div class="s-card__media"><img src="{{ im.src }}"{% if im.srcset %} srcset="{{ im.srcset }}" sizes="(max-width: 900px) 100vw, 50vw"{% endif %}{% if im.width %} width="{{ im.width }}" height="{{ im.height }}"{% endif %} alt="{{ s.imageAlt }}" loading="lazy"></div>
+                    <div class="s-card__body">
+                        <span class="s-card__num" aria-hidden="true">0{{ loop.index }}</span>
+                        <h3>{{ s.displayTitle | safe }}</h3>
+                        <p>{{ s.blurb }}</p>
+                        <ul>
+                            {%- for h in s.highlights %}
+                            <li>{{ h }}</li>
+                            {%- endfor %}
+                        </ul>
+                        <a class="link-arrow" href="/services/{{ s.slug }}.html">{{ s.ctaLabel }}<span class="visually-hidden"> — {{ s.title }}</span> {{ arrow | safe }}</a>
+                    </div>
+                </article>
+                {%- endfor %}
+            </div>
+
+            <div class="wrap also">
+                {%- for s in services | where('category', 'other') %}
+                <a class="also__card" href="/services/{{ s.slug }}.html" data-reveal{% if not loop.first %} style="--delay:.1s"{% endif %}>
+                    <span class="ic">
+                        {%- if s.slug == 'building-construction' %}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 20h20M6 20V8l6-4 6 4v12M10 20v-5h4v5"/></svg>
+                        {%- else %}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>
+                        {%- endif %}
+                    </span>
+                    <div><h4>{{ s.title }}</h4><p>{{ s.blurb }}</p></div>
+                    <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="22" height="22" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                </a>
+                {%- endfor %}
+            </div>
+        </section>

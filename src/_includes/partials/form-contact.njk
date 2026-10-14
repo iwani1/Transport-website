@@ -1,0 +1,28 @@
+{#- General contact form (contact page). Optional: formClass. -#}
+{%- set formType = 'contact' %}
+{%- set fid = 'contact' %}
+                <form class="form {{ formClass }}" id="quote" method="post" action="{% include 'partials/form-action.njk' %}" data-ajax-form data-reveal>
+                    <{{ formHeading or 'h3' }}>Send us a message</{{ formHeading or 'h3' }}>
+                    <p class="form__intro">Request a quote or ask a question — we reply during office hours, usually the same day.</p>
+                    {%- include "partials/form-hidden.njk" %}
+                    <div class="form__row">
+                        <div class="field"><input type="text" id="{{ fid }}-name" name="name" placeholder=" " required autocomplete="name"><label for="{{ fid }}-name">Your name *</label></div>
+                        <div class="field"><input type="email" id="{{ fid }}-email" name="email" placeholder=" " required autocomplete="email" inputmode="email"><label for="{{ fid }}-email">E-mail *</label></div>
+                    </div>
+                    <div class="form__row">
+                        <div class="field"><input type="tel" id="{{ fid }}-telephone" name="telephone" placeholder=" " autocomplete="tel" inputmode="tel"><label for="{{ fid }}-telephone">Phone / WhatsApp</label></div>
+                        <div class="field">
+                            <select id="{{ fid }}-service" name="service">
+                                <option value="">General enquiry</option>
+                                {%- for s in services %}
+                                <option>{{ s.title }}</option>
+                                {%- endfor %}
+                            </select>
+                            <label for="{{ fid }}-service">Service</label>
+                        </div>
+                    </div>
+                    <div class="field"><input type="text" id="{{ fid }}-subject" name="subject" placeholder=" "><label for="{{ fid }}-subject">Subject</label></div>
+                    <div class="field"><textarea id="{{ fid }}-message" name="message" placeholder=" " required></textarea><label for="{{ fid }}-message">Your message *</label></div>
+                    <button class="btn btn--orange button-submit" type="submit">Send message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+                    <p class="form-status" aria-live="polite"></p>
+                </form>

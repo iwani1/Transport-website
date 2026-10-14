@@ -1,0 +1,23 @@
+[
+  {
+    "value": 1273,
+    "label": "Packages delivered"
+  },
+  {
+    "value": 473754,
+    "label": "Kilometres a year"
+  },
+  {
+    "value": 5,
+    "label": "Years of experience"
+  },
+  {
+    "value": 719,
+    "label": "Happy clients"
+  },
+  {
+    "value": 4234,
+    "label": "Tonnes of goods moved",
+    "suffix": "t"
+  }
+]

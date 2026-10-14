@@ -1,0 +1,19 @@
+{#- Google Maps embed that loads on request.
+    The iframe (≈1 MB of third-party script) is only inserted when the visitor presses
+    "Show map" (site.js); until then a light placeholder card shows the address and a
+    direct link to Google Maps, which also works without JavaScript.
+    Variables: mapDark (bool) for the dark variant. -#}
+                <div class="map-embed{% if mapDark %} dark{% endif %}" data-reveal data-map="{{ site.mapEmbedUrl }}" data-map-title="Map: {{ site.name }}, {{ site.address.line2 }}, {{ site.address.city }}">
+                    <div class="map-ph">
+                        <div class="map-ph__card">
+                            <span class="map-ph__pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-7.1 7-12a7 7 0 1 0-14 0c0 4.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+                            <b>{{ site.name }}</b>
+                            <p>{{ site.address.line1 }}, {{ site.address.line2 }}, {{ site.address.city }}, {{ site.address.country }}</p>
+                            <div class="map-ph__actions">
+                                <button type="button" class="btn btn--orange btn--sm" data-map-load>Show map</button>
+                                <a class="btn {% if mapDark %}btn--ghost{% else %}btn--dark{% endif %} btn--sm" href="{{ site.mapLink }}" target="_blank" rel="noopener">Open in Google Maps</a>
+                            </div>
+                            <small class="map-ph__note">The map is loaded from Google when you ask for it.</small>
+                        </div>
+                    </div>
+                </div>

@@ -1,0 +1,302 @@
+[
+  {
+    "slug": "freight-forwarding",
+    "title": "Freight Forwarding",
+    "category": "logistics",
+    "image": "img/content/services-item-1.webp",
+    "hero": "img/content/services-item-1.webp",
+    "imageAlt": "Aerial view of a container ship at sea",
+    "metaDescription": "International freight forwarding by air, sea and road from Tema, Ghana — documentation, carrier selection, customs clearance and delivery by Blahar & Benyah.",
+    "short": "Blahar & Benyah Int’l Ltd delivers structured freight forwarding solutions designed to simplify global cargo movement.",
+    "card": "We deliver strategic freight forwarding solutions that simplify global cargo movement and reduce operational complexity. Our team manages every detail from documentation to final delivery with precision, speed, and full regulatory compliance.",
+    "paragraphs": [
+      "At Blahar & Benyah Int’l Ltd, we provide comprehensive freight forwarding services designed to make cargo movement seamless and stress-free. Our team manages shipments across air, sea, and land, coordinating every step from pickup to final delivery.",
+      "We handle all the critical aspects of international and domestic shipping, including documentation, customs clearance, carrier selection, and route planning. Our focus is on timely delivery, cost efficiency, and regulatory compliance, ensuring your goods reach their destination safely and on schedule.",
+      "By combining industry expertise with modern logistics solutions, we simplify complex shipping processes and reduce operational risks. Whether you’re moving large shipments or specialized cargo, our freight forwarding services are tailored to meet your unique business needs.",
+      "Partner with us to experience reliable, professional, and efficient freight management that supports your growth and strengthens your supply chain."
+    ],
+    "bullets": [
+      "Air, sea and road freight — import and export",
+      "Shipping documentation and regulatory compliance",
+      "Carrier selection, booking and route planning",
+      "Customs clearance coordination at ports and airports",
+      "Door-to-door delivery and shipment tracking updates"
+    ],
+    "displayTitle": "Freight<br>forwarding",
+    "blurb": "Air, sea and road freight, import and export — booked, documented and tracked from origin to Tema or Kotoka.",
+    "ctaLabel": "Quote a shipment",
+    "highlights": [
+      "Carrier selection, booking and route planning",
+      "Shipping documentation and regulatory compliance",
+      "Door-to-door delivery with tracking updates"
+    ],
+    "whatsapp": "Hello Blahar & Benyah, I need a freight forwarding quote.\nFrom: \nTo: \nCargo (what, weight/volume or container size): \nReady date: ",
+    "faqs": [
+      {
+        "q": "Sea freight or air freight — which should I use?",
+        "a": "Sea freight is the economical choice for large or heavy consignments and takes weeks; air freight suits urgent, small or high-value cargo and takes days. Tell us what you are shipping and when you need it, and we will quote the option that fits — sometimes both."
+      },
+      {
+        "q": "My cargo does not fill a container. Can you still ship it?",
+        "a": "Yes. Give us the volume (cubic metres) and weight and we will advise between a full container (FCL) and shared-container (LCL) space, with the costs of each."
+      },
+      {
+        "q": "What do you need from me to quote?",
+        "a": "Origin and destination, a description of the goods, weight and volume or container size, who is paying the freight (the Incoterm, if you know it), and the date the cargo is ready. A photo of the supplier's packing list is usually enough to start."
+      },
+      {
+        "q": "Can I follow my shipment?",
+        "a": "Yes. You get updates at each stage — booked, departed, arrived, cleared, out for delivery — by WhatsApp or e-mail, and one person to call throughout."
+      }
+    ]
+  },
+  {
+    "slug": "transportation",
+    "title": "Transportation",
+    "category": "logistics",
+    "image": "img/slider/slide-2.webp",
+    "hero": "img/slider/slide-2.webp",
+    "imageAlt": "Trucks lined up at a loading bay at night",
+    "metaDescription": "Reliable cargo transportation across Ghana and cross-border routes. Route planning, scheduling and monitored deliveries for parcels to oversized cargo.",
+    "short": "Blahar & Benyah Int’l Ltd provides dependable transportation services for safe and timely cargo movement.",
+    "card": "We provide seamless transportation solutions that ensure your goods reach their destination safely and on time. Our services combine efficiency, reliability, and careful handling to keep your supply chain moving smoothly.",
+    "paragraphs": [
+      "At Blahar & Benyah Int’l Ltd, we offer reliable transportation services designed to move your goods safely and efficiently. Our network covers local and cross-border routes, ensuring timely deliveries while maintaining the highest standards of cargo care.",
+      "We manage route planning, scheduling, and vehicle coordination to optimize transit times and reduce operational costs. Every shipment is monitored closely, with clear communication provided to keep you informed throughout the delivery process.",
+      "Our team combines experience, technology, and structured processes to handle goods of all sizes, from standard parcels to oversized cargo. With Blahar & Benyah Int’l Ltd, you get transportation solutions that are dependable, cost-effective, and tailored to your business needs."
+    ],
+    "bullets": [
+      "Local haulage within Tema, Accra and across Ghana",
+      "Cross-border road transport to neighbouring countries",
+      "Container and general cargo haulage",
+      "Route planning, scheduling and vehicle coordination",
+      "Regular status updates from collection to delivery"
+    ],
+    "displayTitle": "Transport<wbr>ation",
+    "blurb": "Our trucks and experienced drivers for container and general cargo haulage — within Tema and Accra, across Ghana and over the border.",
+    "ctaLabel": "Book a truck",
+    "highlights": [
+      "Container, flatbed and general cargo haulage",
+      "Cross-border road transport to neighbouring countries",
+      "Driver contact and status updates for every trip"
+    ],
+    "whatsapp": "Hello Blahar & Benyah, I need a truck.\nPickup: \nDelivery to: \nCargo (container size or description): \nDate: ",
+    "faqs": [
+      {
+        "q": "Where do you deliver?",
+        "a": "Daily within Tema and Accra, to every region of Ghana, and across the border to neighbouring countries. Quote requests outside Greater Accra get a fixed round-trip price."
+      },
+      {
+        "q": "What kind of cargo do you move?",
+        "a": "Containers (20ft and 40ft), palletised and loose general cargo, and project cargo by arrangement. Tell us the weight, dimensions and any handling requirements and we will send the right truck."
+      },
+      {
+        "q": "How do I book a truck?",
+        "a": "Send the pickup location, delivery address, cargo details and the date — by WhatsApp, e-mail or the form on this page. We confirm the truck, the driver's name and number, and the price before dispatch."
+      },
+      {
+        "q": "Will I know where the truck is?",
+        "a": "Yes. You get the driver's direct number and status updates from collection to delivery, and a signed delivery note at the end."
+      }
+    ]
+  },
+  {
+    "slug": "clearing",
+    "title": "Clearing",
+    "category": "logistics",
+    "image": "img/hero/container-yard.webp",
+    "hero": "img/hero/container-yard.webp",
+    "imageAlt": "Container yard at Tema Port at dusk",
+    "metaDescription": "Professional customs clearing agents in Tema, Ghana. We handle import and export documentation, duties and port coordination so your goods clear quickly.",
+    "short": "Blahar & Benyah Int’l Ltd provides professional clearing services to facilitate smooth import and export operations.",
+    "card": "We offer professional clearing services to simplify customs procedures and ensure smooth import and export operations. Our team handles all documentation and compliance requirements, helping your goods move quickly and efficiently across borders.",
+    "paragraphs": [
+      "At Blahar & Benyah Int’l Ltd, we provide expert clearing services to simplify customs processes and ensure smooth import and export operations. Our team handles all documentation, regulatory compliance, and coordination with ports and authorities to reduce delays and prevent unnecessary penalties.",
+      "We stay up-to-date with local and international trade regulations, ensuring your shipments meet all legal requirements. By managing customs clearance efficiently, we help your cargo move quickly through borders, minimizing downtime and operational costs.",
+      "Whether you are importing raw materials, exporting finished products, or handling specialized cargo, our clearing services are designed to make the process seamless, reliable, and professional. With Blahar & Benyah Int’l Ltd, your goods are always in safe and capable hands."
+    ],
+    "bullets": [
+      "Import and export customs clearance",
+      "Preparation and lodging of declarations and supporting documents",
+      "Duty and tax assessment guidance",
+      "Coordination with port, airport and regulatory authorities",
+      "Release and onward delivery of cleared cargo"
+    ],
+    "displayTitle": "Customs<br>clearing",
+    "blurb": "Import and export clearance at Tema Port, Kotoka Airport and the land borders — declarations lodged right the first time, duties explained before you pay.",
+    "ctaLabel": "Clear my cargo",
+    "highlights": [
+      "Preparation and lodging of declarations",
+      "Duty and tax assessment guidance",
+      "Release and onward delivery of cleared cargo"
+    ],
+    "heroMobile": "img/hero/container-yard-960.webp",
+    "whatsapp": "Hello Blahar & Benyah, I need customs clearing.\nCargo: \nArriving at (Tema Port / Kotoka / border): \nETA: \nDeliver to: ",
+    "faqs": [
+      {
+        "q": "What documents do I need to clear goods at Tema Port?",
+        "a": "The bill of lading (or airway bill for air cargo), the commercial invoice, the packing list, your TIN / Ghana Card details, and any permit the goods require (for example FDA or Ghana Standards Authority for regulated items). Send us scans first — we check the set before anything is lodged, which is where most delays are avoided."
+      },
+      {
+        "q": "How long does customs clearing take?",
+        "a": "With complete documents and duties paid promptly, most consignments are released within 2–5 working days of arrival. Examinations, missing paperwork or late payment add time. We tell you where the shipment is at each step, so there are no surprises."
+      },
+      {
+        "q": "How is import duty calculated?",
+        "a": "On the customs value of the goods (cost, insurance and freight) and their tariff classification. Import duty, VAT and the statutory levies are then applied, plus port and handling charges. We give you an itemised estimate before you commit, and the final figures come straight from the customs assessment."
+      },
+      {
+        "q": "Can you clear a vehicle or personal effects?",
+        "a": "Yes. Vehicle duty depends on the year, engine size and value, and older vehicles attract additional penalties, so send us the details before you ship. For personal effects we need the packing list and your travel/ID documents."
+      },
+      {
+        "q": "Do I need to come to Tema myself?",
+        "a": "No. With a signed authorisation and copies of your documents we handle the port, the declaration and the release; you only pay the duties and fees. We can then truck the goods to your door or hold them in our warehouse."
+      }
+    ]
+  },
+  {
+    "slug": "warehousing",
+    "title": "Warehousing",
+    "category": "logistics",
+    "image": "img/hero/warehouse.webp",
+    "hero": "img/hero/warehouse.webp",
+    "imageAlt": "Warehouse supervisor checking stock on a clipboard while a forklift moves a pallet",
+    "metaDescription": "Secure, organised warehousing and storage in Tema, Ghana. Short- and long-term storage with structured inventory handling for importers and distributors.",
+    "short": "Blahar & Benyah Int’l Ltd provides secure and organized warehousing solutions to support efficient inventory management.",
+    "card": "Secure and organized warehousing solutions for efficient storage and inventory management, with structured systems designed to protect your goods and optimize space.",
+    "paragraphs": [
+      "Blahar & Benyah Int’l Ltd provides secure and organized warehousing solutions to support efficient inventory management. We offer structured storage systems designed to protect goods and optimize space utilization.",
+      "Our warehousing service complements our freight forwarding, clearing and transportation work, so cargo can be received, stored and dispatched through a single point of contact. Goods are checked in and out with clear records, keeping you informed of what is in storage at all times.",
+      "Whether you need short-term holding while shipments are consolidated or longer-term storage for distribution, we tailor the arrangement to your volumes and schedule."
+    ],
+    "bullets": [
+      "Short- and long-term storage",
+      "Receiving, checking and dispatch of goods",
+      "Organised, space-efficient storage systems",
+      "Inventory records and stock updates",
+      "Combined storage-and-delivery arrangements"
+    ],
+    "displayTitle": "Ware<wbr>housing",
+    "blurb": "Secure, organised storage in Community 4, Tema — for a week after clearing or for the whole season, with stock records you can trust.",
+    "ctaLabel": "Reserve space",
+    "highlights": [
+      "Short- and long-term storage",
+      "Receiving, checking and dispatch of goods",
+      "Combined storage-and-delivery arrangements"
+    ],
+    "heroMobile": "img/hero/warehouse-960.webp",
+    "whatsapp": "Hello Blahar & Benyah, I need storage in Tema.\nGoods: \nQuantity (pallets / containers): \nFrom when, and for how long: ",
+    "faqs": [
+      {
+        "q": "Where is the warehouse?",
+        "a": "In Community 4, Tema, near Valco Roundabout — minutes from Tema Port, so cleared cargo can go straight into storage instead of running up port charges."
+      },
+      {
+        "q": "Is there a minimum storage period?",
+        "a": "No. Some clients store goods for a few days after clearing, others for a whole season. Storage is priced on the space you take and the time you keep it — tell us the quantity and duration and we will quote."
+      },
+      {
+        "q": "How are my goods looked after?",
+        "a": "Everything is checked and recorded on arrival, stored in an organised location and dispatched only on your instruction, with stock records you can request at any time."
+      },
+      {
+        "q": "Can you deliver from storage?",
+        "a": "Yes. Combined storage-and-delivery is one of our most common arrangements: goods go out in the quantities you need, when you need them, on our own trucks."
+      }
+    ]
+  },
+  {
+    "slug": "building-construction",
+    "title": "Building & Construction",
+    "category": "other",
+    "image": "img/hero/construction.webp",
+    "hero": "img/hero/construction.webp",
+    "imageAlt": "Construction crew raising a reinforced concrete building frame",
+    "metaDescription": "Building and construction services for residential and commercial projects in Ghana, managed from planning to completion by Blahar & Benyah Int’l Ltd.",
+    "short": "Blahar & Benyah Int’l Ltd delivers structured building and construction services across residential and commercial projects.",
+    "card": "We deliver expert building and construction services, combining quality craftsmanship with efficient project management. From planning to completion, we ensure every project meets high standards, on time and within budget.",
+    "paragraphs": [
+      "At Blahar & Benyah Int’l Ltd, we provide comprehensive building and construction services for both residential and commercial projects. Our team manages every stage of a project, from planning and design to execution and completion, ensuring quality and efficiency throughout.",
+      "We coordinate materials, labor, and timelines with precision, keeping projects on schedule and within budget. Safety, compliance, and adherence to industry standards are integral to every project we undertake.",
+      "Whether it’s a new construction, renovation, or structural expansion, we deliver reliable solutions that combine craftsmanship, professionalism, and operational excellence. With Blahar & Benyah Int’l Ltd, your construction projects are handled with accountability and attention to detail, from start to finish."
+    ],
+    "bullets": [
+      "Residential and commercial construction",
+      "Renovation and structural expansion",
+      "Project planning and coordination of materials and labour",
+      "Scheduling and budget control",
+      "Safety and compliance management"
+    ],
+    "displayTitle": "Building &amp;<br>construction",
+    "blurb": "Residential and commercial projects, renovation and expansion — planned, scheduled and delivered.",
+    "ctaLabel": "Discuss a project",
+    "highlights": [
+      "Residential and commercial construction",
+      "Renovation and structural expansion",
+      "Scheduling and budget control"
+    ],
+    "heroMobile": "img/hero/construction-960.webp",
+    "whatsapp": "Hello Blahar & Benyah, I would like to discuss a building project.\nLocation: \nType of project: \nTimeline: ",
+    "faqs": [
+      {
+        "q": "What projects do you take on?",
+        "a": "Residential and commercial buildings, renovations and structural extensions — from planning through to handover."
+      },
+      {
+        "q": "How is a project priced?",
+        "a": "After a site visit and a review of your drawings or brief, you receive an itemised quote covering materials, labour and scheduling, with a clear timeline."
+      },
+      {
+        "q": "Do you manage materials and labour?",
+        "a": "Yes. We coordinate materials, labour and scheduling, manage the budget and site safety, and keep you updated as the work progresses."
+      }
+    ]
+  },
+  {
+    "slug": "printing-photocopying",
+    "title": "Printing & Photocopying",
+    "category": "other",
+    "image": "img/content/services-item-5.webp",
+    "hero": "img/content/services-item-5.webp",
+    "imageAlt": "Office worker operating a multifunction printer",
+    "metaDescription": "Printing and photocopying services in Tema for businesses and individuals — documents, reports and business materials produced quickly and accurately.",
+    "short": "Blahar & Benyah Int’l Ltd provides professional printing and photocopying services for corporate and individual clients.",
+    "card": "We provide professional printing and photocopying services, delivering high-quality documents and materials with speed and accuracy. Our solutions cater to all your business and personal needs, ensuring clear, precise, and reliable results every time.",
+    "paragraphs": [
+      "Blahar & Benyah Int’l Ltd provides professional printing and photocopying services for corporate and individual clients. We deliver high-quality documents and materials with speed and accuracy, whether you need a single copy or a large print run.",
+      "Our team handles everyday business printing — reports, forms, shipping and customs paperwork, letterheads and marketing materials — with careful attention to clarity and finish.",
+      "Clients who use our logistics services can have their shipping documentation printed, copied and prepared in the same place, saving time on every consignment."
+    ],
+    "bullets": [
+      "Black-and-white and colour printing",
+      "High-volume photocopying",
+      "Business documents, reports and forms",
+      "Shipping and customs paperwork",
+      "Fast turnaround for urgent jobs"
+    ],
+    "displayTitle": "Printing &amp;<br>photocopying",
+    "blurb": "Business documents, shipping and customs paperwork, high-volume copying — fast turnaround.",
+    "ctaLabel": "Send a print job",
+    "highlights": [
+      "Black-and-white and colour printing",
+      "High-volume photocopying",
+      "Fast turnaround for urgent jobs"
+    ],
+    "whatsapp": "Hello Blahar & Benyah, I have a print job.\nWhat: \nQuantity: \nNeeded by: ",
+    "faqs": [
+      {
+        "q": "What do you print?",
+        "a": "Business documents, reports, forms, shipping and customs paperwork, in black-and-white or colour, plus high-volume photocopying."
+      },
+      {
+        "q": "How quickly can you turn a job around?",
+        "a": "Most jobs are ready the same day; urgent jobs can usually be done while you wait. Tell us the quantity and deadline when you send the file."
+      },
+      {
+        "q": "How do I send my files?",
+        "a": "By WhatsApp or e-mail, ideally as PDF. Let us know the paper size, colour or black-and-white, single or double-sided, and the number of copies."
+      }
+    ]
+  }
+]

@@ -1,0 +1,98 @@
+# ------------------------------------------------------------------------------
+# blaharbenyah.com — Apache configuration (cPanel / LiteSpeed compatible)
+# ------------------------------------------------------------------------------
+
+Options -Indexes
+ServerSignature Off
+AddDefaultCharset UTF-8
+
+# --- Canonical host + HTTPS ---------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # www -> non-www
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+    # http -> https (works behind cPanel/Cloudflare proxies too)
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{REQUEST_URI} !^/\.well-known/
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # /index.html -> / (only for direct requests, so DirectoryIndex does not loop)
+    RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+    RewriteRule ^index\.html$ / [R=301,L]
+</IfModule>
+
+# --- Redirects for pages that no longer exist ---------------------------------
+Redirect 301 /header-style-2.html /contact.html
+Redirect 301 /single-services.html /services.html
+Redirect 301 /blog.html /
+Redirect 301 /single-post.html /
+Redirect 410 /main-logitrans-html.zip
+Redirect 410 /main-logitrans-html/logitrans-doc.zip
+
+ErrorDocument 404 /404.html
+
+# --- Security headers ---------------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+    Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains" env=HTTPS
+    # Content-Security-Policy — enable after confirming nothing else (analytics, chat widgets) is added:
+    # Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-src https://www.google.com; connect-src 'self'; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'"
+    Header unset X-Powered-By
+</IfModule>
+
+# --- Compression --------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml font/ttf application/x-font-ttf
+</IfModule>
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# --- Browser caching ----------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 day"
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType application/xml "access plus 1 hour"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+</IfModule>
+<IfModule mod_headers.c>
+    <FilesMatch "\.(webp|jpe?g|png|svg|ico|woff2?|ttf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>
+
+# --- MIME types (older hosts) --------------------------------------------------
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+    AddType font/woff2 .woff2
+    AddType font/woff .woff
+    AddType application/manifest+json .webmanifest
+</IfModule>
+
+# --- Block access to anything that should never be served -----------------------
+<FilesMatch "(^\.|\.(md|json|lock|log|sh|py|zip)$)">
+    Require all denied
+</FilesMatch>
+<Files "site.webmanifest">
+    Require all granted
+</Files>

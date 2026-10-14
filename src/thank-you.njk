@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+title: "Thank You"
+description: "Thank you for contacting Blahar & Benyah Int'l Ltd."
+bodyClass: page-simple
+noindex: true
+eleventyExcludeFromCollections: true
+---
+        <section class="simple" aria-labelledby="thanks-title">
+            <div class="simple__big" aria-hidden="true">Sent</div>
+            <div class="simple__in" data-reveal>
+                <p class="eyebrow"><span class="pulse"></span>Message received</p>
+                <h1 class="title" id="thanks-title">Thank you —<br><span class="outline">we're on it.</span></h1>
+                <p class="lead">A member of our team will get back to you during office hours ({{ site.hours.summary }}). Need an answer sooner? Call <a href="tel:{{ site.phones[0].e164 }}">{{ site.phones[0].display | nbsp }}</a>{% if site.whatsapp and site.whatsapp.number %} or <a href="https://wa.me/{{ site.whatsapp.number }}?text={{ (waMessage or site.whatsapp.message) | urlencode }}" rel="noopener" target="_blank">chat with us on WhatsApp</a>{% endif %}.</p>
+                <div class="acts">
+                    <a class="btn btn--orange magnetic" href="/">Back to home</a>
+                    <a class="btn btn--ghost magnetic" href="/services.html">Our services</a>
+                </div>
+            </div>
+        </section>
