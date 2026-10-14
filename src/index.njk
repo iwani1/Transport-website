@@ -1,204 +1,152 @@
 ---
 layout: layouts/base.njk
 title: ""
-description: "Blahar & Benyah Int'l Ltd — freight forwarding, transportation, customs clearing and warehousing in Tema, Ghana. Request a quote for safe, on-time cargo delivery."
+description: "Blahar & Benyah Int'l Ltd — freight forwarding, customs clearing, trucking and warehousing from Tema Port to anywhere in Ghana. One team, one phone call. Request a quote today."
 bodyClass: home
 priority: "1.0"
 changefreq: weekly
 ---
-        <!-- SLIDER START
-        ============================================= -->
-        <section id="slider" class="home-slider clearfix" aria-label="Introduction">
-            <div class="slider-wrapper">
-                <div class="flexslider clearfix">
-                    <ul class="slides">
-                        <li class="slide-item clearfix" style="background-image: url(/img/slider/slide-1.webp);">
-                            <div class="flex-content">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="caption-wrap">
-                                            <div class="caption wow fadeInUp" data-wow-delay="0.5s">
-                                                <h1>Reliable Transportation &amp; Logistics</h1>
-                                            </div>
-                                            <div class="caption wow fadeIn" data-wow-delay="1s">
-                                                <p>We provide reliable transportation services designed to move your goods safely and on time. Our network and operational expertise enable efficient cargo movement across local and international routes, with a focus on cost control, transit time and cargo security.</p>
-                                            </div>
-                                            <div class="caption wow fadeInUp" data-wow-delay="1.5s">
-                                                <a href="/contact.html#quote" class="button-normal">Request A Quote</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+{%- set arrow %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>{% endset %}
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <picture class="hero__bg" aria-hidden="true">
+                <source media="(max-width: 720px)" srcset="/img/hero/truck-dusk-960.webp">
+                <img src="/img/hero/truck-dusk.webp" alt="" width="1920" height="815" fetchpriority="high">
+            </picture>
+            {%- if site.hero and site.hero.video %}
+            {#- Optional looping clip (site.json -> hero.video). Plays over the photo; site.js drops it on phones / reduced motion. -#}
+            <video class="hero__video" muted loop playsinline autoplay preload="metadata" poster="/img/hero/truck-dusk.webp" aria-hidden="true">
+                <source src="{{ site.hero.video }}" type="video/mp4">
+            </video>
+            {%- endif %}
+            <div class="hero__shade"></div>
 
-                        <li class="slide-item clearfix" style="background-image: url(/img/slider/slide-2.webp);">
-                            <div class="flex-content">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="caption-wrap">
-                                            <div class="caption wow fadeInUp" data-wow-delay="0.5s">
-                                                <h2>We Deliver Your Goods Fast</h2>
-                                            </div>
-                                            <div class="caption wow fadeIn" data-wow-delay="1s">
-                                                <p>Our team manages every stage of the shipping process to reduce delays and keep your cargo moving on schedule. From collection to final delivery, we prioritize efficiency and clear communication so you stay informed and in control.</p>
-                                            </div>
-                                            <div class="caption wow fadeInUp" data-wow-delay="1.5s">
-                                                <a href="/contact.html#quote" class="button-normal">Request A Quote</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+            <div class="wrap hero__grid">
+                <div class="hero__copy">
+                    <p class="eyebrow"><span class="pulse"></span>{{ site.tagline }} · {{ site.address.city }}, {{ site.address.country }}</p>
+                    <h1 class="hero__title">
+                        <span class="line"><span class="word" style="--d:.05s">We</span> <span class="word" style="--d:.15s">move</span></span>
+                        <span class="line"><span class="word" style="--d:.3s"><span class="swap" id="swap" data-words="Freight|Containers|Your goods|Businesses|Ghana"><span class="swap__word is-in">Freight</span></span></span></span>
+                        <span class="line small"><span class="word" style="--d:.45s">across</span> <span class="word" style="--d:.55s">Ghana.</span></span>
+                    </h1>
+                    <p class="lead hero__lead">Freight forwarding, customs clearing, trucking and warehousing — one team that takes your cargo from Tema Port to your door, and tells you where it is at every step.</p>
+                    <div class="hero__cta">
+                        <a class="btn btn--orange magnetic" href="#contact">Get a quote {{ arrow | safe }}</a>
+                        <a class="btn btn--ghost magnetic" href="#services">See what we do</a>
+                    </div>
+                </div>
+
+                {% include "partials/map-ghana.njk" %}
+            </div>
+
+            {% include "partials/stats.njk" %}
+            <a class="scroll-cue" href="#services">Scroll</a>
+        </section>
+
+        <!-- MARQUEE -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee__track">
+                {%- for i in range(0, 2) %}
+                <span>{% for s in services %}{{ s.title | replace('&', '&amp;') | safe }} <i></i> {% endfor %}</span>
+                {%- endfor %}
+            </div>
+        </div>
+
+        {% include "partials/service-stack.njk" %}
+
+        {% include "partials/journey.njk" %}
+
+        <!-- PROCESS -->
+        <section class="process" id="process" aria-labelledby="process-title">
+            <div class="wrap">
+                <div class="process__head">
+                    <div data-reveal>
+                        <p class="eyebrow">How it works</p>
+                        <h2 class="title dark" id="process-title">From port gate<br><span class="outline">to your door.</span></h2>
+                    </div>
+                    <p class="lead" data-reveal style="--delay:.15s">You send one message. We do the paperwork, the port, the trucks and the storage — and you get one invoice at the end.</p>
+                </div>
+                <div class="steps" data-steps>
+                    <div class="steps__line" aria-hidden="true"><i></i></div>
+                    <ol class="steps__list">
+                        <li class="step" style="--n:0"><h3>Send the details</h3><p>Share your bill of lading or airway bill, the invoice and the delivery address — by WhatsApp, e-mail or the form below.</p><small>Within the hour</small></li>
+                        <li class="step" style="--n:1"><h3>Get a fixed quote</h3><p>Duties, port fees, transport and storage in one itemised quote. No surprises at the gate.</p><small>Same day</small></li>
+                        <li class="step" style="--n:2"><h3>We clear &amp; move it</h3><p>Our team handles customs and the authorities; our trucks collect the moment it is released.</p><small>2 – 5 days</small></li>
+                        <li class="step" style="--n:3"><h3>Delivered</h3><p>Signed delivery, photos on request, invoice by e-mail. Storage in Tema if you need it.</p><small>Done</small></li>
+                    </ol>
                 </div>
             </div>
         </section>
-        <!-- SLIDER END -->
 
-        <!-- CONTENT START
-        ============================================= -->
-        <main id="content" class="clearfix">
-
-            <!-- SERVICES START
-            ============================================= -->
-            <div class="services with-bg">
-                <div class="container">
-                    <div class="row">
-
-                        <!-- Quick quote -->
-                        <div class="email-quote clearfix">
-                            <h4><label for="quick-email">Request A Quote</label></h4>
-                            {% include "partials/form-quick-quote.njk" %}
-                        </div>
-                        <!-- Quick quote end -->
-                    </div>
+        <!-- WHY US -->
+        <section class="why" id="why" aria-labelledby="why-title">
+            <div class="why__bg" data-parallax="0.18" aria-hidden="true"><img src="/img/hero/container-yard.webp" alt="" width="1600" height="873" loading="lazy"></div>
+            <div class="why__shade"></div>
+            <div class="wrap why__grid">
+                <div class="why__sticky" data-reveal>
+                    <p class="eyebrow">Why {{ site.shortName }}</p>
+                    <h2 class="title" id="why-title">Small enough to care.<br><span class="outline">Organised enough to deliver.</span></h2>
+                    <p class="lead" style="margin-top:22px">We are a forward-driven company delivering integrated logistics and business support from Tema. Efficiency, cost control and timely execution — on every single job.</p>
+                    <a class="btn btn--orange magnetic" href="/about-us.html" style="margin-top:30px">About the company</a>
                 </div>
-
-                <div class="section-title text-center wow fadeIn">
-                    <h2>Our Services</h2>
-                </div>
-
-                <div class="services-wrap-carousel">
-                    {%- for s in services %}
-                    <div class="item">
-                        <div class="services-content">
-                            <div class="services-image" style="background-image: url(/{{ s.image }});" role="img" aria-label="{{ s.imageAlt }}"></div>
-                            <div class="services-text">
-                                <h3 class="title">{{ s.title }}</h3>
-                                <p>{{ s.card }}</p>
-                                <a href="/services/{{ s.slug }}.html" class="button-normal with-icon">
-                                    Read More<span class="visually-hidden"> about {{ s.title }}</span>
-                                    <i class="icon icon-arrow-right" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <div class="overlay"></div>
-                        </div>
-                    </div>
+                <div class="reasons">
+                    {%- for f in features %}
+                    <div class="reason" data-reveal{% if not loop.first %} style="--delay:{{ (loop.index0 * 0.1) | round(1) }}s"{% endif %}><b>{{ f.num }}</b><div><h3>{{ f.title }}</h3><p>{{ f.text }}</p></div></div>
                     {%- endfor %}
                 </div>
             </div>
-            <!-- SERVICES END -->
+        </section>
 
-            <!-- FEATURES START
-            ============================================= -->
-            <div class="features wrapper">
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center wow fadeIn">
-                            <h2>Why Choose Us</h2>
-                        </div>
-
-                        <div class="features-wrap row">
-                            {%- for f in features %}
-                            <div class="col-md-4">
-                                <div class="features-item wow fadeInUp" data-wow-delay="{{ (0.2 + loop.index0 * 0.2) | round(1) }}s">
-                                    <div class="icon-wrap">
-                                        <i class="{{ f.icon }}" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h3 class="h4">{{ f.title }}</h3>
-                                        <p>{{ f.text }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {%- endfor %}
-                        </div>
+        <!-- TESTIMONIALS -->
+        <section class="voices" id="voices" aria-labelledby="voices-title">
+            <div class="wrap voices__grid">
+                <div data-reveal>
+                    <p class="eyebrow" id="voices-title">What clients say</p>
+                    <div class="quote-mark" aria-hidden="true">“</div>
+                </div>
+                <div data-reveal style="--delay:.1s">
+                    <div class="slider" data-slider>
+                        {%- for t in testimonials %}
+                        <figure class="slide{% if loop.first %} is-active{% endif %}">
+                            <blockquote>{{ t.quote }}</blockquote>
+                            <figcaption><i aria-hidden="true">{{ t.name | initials }}</i><div><b>{{ t.name }}</b>{{ t.role }}</div></figcaption>
+                        </figure>
+                        {%- endfor %}
+                    </div>
+                    <div class="dots" role="tablist" aria-label="Testimonials">
+                        {%- for t in testimonials %}
+                        <button type="button" role="tab"{% if loop.first %} class="is-active" aria-selected="true"{% else %} aria-selected="false"{% endif %} aria-label="Testimonial {{ loop.index }}"></button>
+                        {%- endfor %}
                     </div>
                 </div>
             </div>
-            <!-- FEATURES END -->
+        </section>
 
-            <!-- HOW WE WORK + QUOTE FORM START (replaces the template's demo price calculator)
-            ============================================= -->
-            <div class="services-calculator bg-color" id="how-we-work">
-                <div class="container">
-                    <div class="row">
-                        <div class="services-calculator-wrap row">
-                            <div class="intro-section col-md-6">
-                                <h2 class="title">How We Work</h2>
-                                <p>Getting a shipment moving with {{ site.shortName }} is simple. Tell us what you need and we take care of the rest.</p>
-                                <ol class="how-it-works">
-                                    <li><strong>Tell us about your cargo</strong> What you are moving, where from, where to, and when it needs to arrive.</li>
-                                    <li><strong>Receive a clear estimate</strong> We come back to you with a cost-effective, itemised quote and the best routing options.</li>
-                                    <li><strong>We handle the rest</strong> Documentation, customs clearing, transport and delivery — with updates at every stage.</li>
-                                </ol>
-                                <div class="image">
-                                    <img src="/img/content/forklift.webp" alt="Forklift carrying packaged goods" width="600" height="435" loading="lazy">
-                                </div>
-                            </div>
+        {% include "partials/cta-band.njk" %}
 
-                            <div class="form-section col-md-6" id="quote">
-                                {% include "partials/form-quote.njk" %}
-                            </div>
+        <!-- CONTACT -->
+        <section class="contact" id="contact" aria-labelledby="contact-title">
+            <div class="wrap">
+                <div class="contact__grid">
+                    <div data-reveal>
+                        <p class="eyebrow">Contact</p>
+                        <h2 class="title dark" id="contact-title">Let's move<br><span class="outline">something.</span></h2>
+                        <p class="lead" style="margin-top:22px">We reply during office hours, usually within the hour — {{ site.hours.summary }}.</p>
+                        <div class="c-list">
+                            <a href="tel:{{ site.phones[0].e164 }}"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><span><small>Call</small><b>{% for ph in site.phones %}{{ ph.display | nbsp }}{% if not loop.last %}&nbsp;·&nbsp;{% endif %}{% endfor %}</b></span></a>
+                            {%- if site.whatsapp and site.whatsapp.number %}
+                            <a href="https://wa.me/{{ site.whatsapp.number }}?text={{ site.whatsapp.message | urlencode }}" rel="noopener" target="_blank"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3.9A11 11 0 0 0 2.6 17.1L1 23l6-1.6A11 11 0 0 0 20 3.9zM12 20.9a9 9 0 0 1-4.6-1.3l-.3-.2-3.6 1 1-3.5-.2-.3A9 9 0 1 1 12 20.9zm5-6.7c-.3-.1-1.6-.8-1.9-.9s-.4-.1-.6.1-.7.9-.9 1.1-.3.2-.6.1a7.4 7.4 0 0 1-3.7-3.2c-.3-.5.3-.4.8-1.5.1-.2 0-.3 0-.5l-.9-2c-.2-.5-.4-.5-.6-.5h-.5a1 1 0 0 0-.8.4 3.2 3.2 0 0 0-1 2.3 5.6 5.6 0 0 0 1.2 3 12.8 12.8 0 0 0 4.9 4.3c1.8.8 2.5.9 3.4.7a3 3 0 0 0 1.9-1.3 2.4 2.4 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3z"/></svg></span><span><small>WhatsApp</small><b>Chat with us</b></span></a>
+                            {%- endif %}
+                            <a href="mailto:{{ site.email }}"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><small>E-mail</small><b>{{ site.email }}</b></span></a>
+                            <a href="{{ site.mapLink }}" rel="noopener" target="_blank"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s7-7.1 7-12a7 7 0 1 0-14 0c0 4.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><small>Office</small><b>{{ site.address.line1 }}, {{ site.address.line2 }}, {{ site.address.city }}</b></span></a>
                         </div>
                     </div>
+
+                    {% include "partials/form-quote.njk" %}
+                </div>
+
+                <div class="map-embed" data-reveal>
+                    <iframe title="Map: {{ site.name }}, {{ site.address.line2 }}, {{ site.address.city }}" src="{{ site.mapEmbedUrl }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
                 </div>
             </div>
-            <!-- HOW WE WORK + QUOTE FORM END -->
-
-            <!-- TESTIMONIAL START
-            ============================================= -->
-            <div class="testimonial wrapper with-bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center wow fadeIn">
-                            <h2>Testimonials</h2>
-                        </div>
-
-                        <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.3s">
-                            {%- for t in testimonials %}
-                            <div class="testimonial-item">
-                                <blockquote>
-                                    <p>“{{ t.quote }}”</p>
-                                </blockquote>
-                                <div class="client-info">
-                                    <div class="client-initials" aria-hidden="true">{{ t.name | initials }}</div>
-                                    <div class="client-details">
-                                        <h3>{{ t.name }}</h3>
-                                        <p>{{ t.role }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {%- endfor %}
-                        </div>
-
-                        {%- if site.partners and site.partners.length %}
-                        <div class="our-partner">
-                            {%- for p in site.partners %}
-                            <div class="partner-logo col-md-15 wow fadeIn" data-wow-delay="{{ (loop.index * 0.3) | round(1) }}s">
-                                <img src="{{ p.logo }}" alt="{{ p.name }}" loading="lazy">
-                            </div>
-                            {%- endfor %}
-                        </div>
-                        {%- endif %}
-                    </div>
-                </div>
-            </div>
-            <!-- TESTIMONIAL END -->
-
-            {% include "partials/counters.njk" %}
-
-        </main>
-        <!-- CONTENT END -->
+        </section>

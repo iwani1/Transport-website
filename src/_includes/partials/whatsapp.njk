@@ -1,5 +1,5 @@
 {%- if site.whatsapp and site.whatsapp.number %}
-    <a class="whatsapp-float" href="https://wa.me/{{ site.whatsapp.number }}?text={{ site.whatsapp.message | urlencode }}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-        <i class="fa fa-whatsapp" aria-hidden="true"></i><span>WhatsApp us</span>
+    <a class="fab" href="https://wa.me/{{ site.whatsapp.number }}?text={{ site.whatsapp.message | urlencode }}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3.9A11 11 0 0 0 2.6 17.1L1 23l6-1.6A11 11 0 0 0 20 3.9zM12 20.9a9 9 0 0 1-4.6-1.3l-.3-.2-3.6 1 1-3.5-.2-.3A9 9 0 1 1 12 20.9zm5-6.7c-.3-.1-1.6-.8-1.9-.9s-.4-.1-.6.1-.7.9-.9 1.1-.3.2-.6.1a7.4 7.4 0 0 1-3.7-3.2c-.3-.5.3-.4.8-1.5.1-.2 0-.3 0-.5l-.9-2c-.2-.5-.4-.5-.6-.5h-.5a1 1 0 0 0-.8.4 3.2 3.2 0 0 0-1 2.3 5.6 5.6 0 0 0 1.2 3 12.8 12.8 0 0 0 4.9 4.3c1.8.8 2.5.9 3.4.7a3 3 0 0 0 1.9-1.3 2.4 2.4 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3z"/></svg>
     </a>
 {%- endif %}

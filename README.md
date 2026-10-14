@@ -7,6 +7,13 @@ The site is a static website generated with [Eleventy](https://www.11ty.dev/).
 All pages share one header, footer and set of business details, so a phone
 number or opening time only ever needs to be changed in one place.
 
+The design ("Showcase", v2.1) is a dark, cinematic, motion-led site in the
+company's teal/orange: a full-screen hero with an animated map of Ghana, a
+scroll-driven truck journey, sticky service cards, a diagonal orange
+call-to-action band and floating-label forms. No frameworks or jQuery —
+one hand-written stylesheet (`src/css/site.css`) and one script
+(`src/js/site.js`) plus the form handler (`src/js/forms.js`).
+
 ```
 src/
 ├── _data/
@@ -19,9 +26,12 @@ src/
 │   └── schema.js          ← builds the LocalBusiness structured data (no need to edit)
 ├── _includes/
 │   ├── layouts/base.njk   ← <head>, scripts, wrapper
-│   └── partials/          ← header, footer, forms, page banner, WhatsApp button …
+│   └── partials/          ← header + full-screen menu, footer, page hero, forms, service stack,
+│                             journey (scroll truck), Ghana map, stats, CTA band, WhatsApp button
 ├── index.njk, about-us.njk, services.njk, service.njk, contact.njk, thank-you.njk, 404.njk
-├── css/  js/  img/  fonts/
+├── css/site.css           ← the whole design (design tokens at the top)
+├── js/site.js, js/forms.js
+├── img/  fonts/           ← WebP photos; self-hosted Bebas Neue + Inter
 ├── contact.php            ← form handler (runs on the web host)
 └── .htaccess              ← HTTPS, redirects, caching, security headers
 ```
@@ -33,9 +43,12 @@ src/
 | Change a phone number, e-mail, hours, address | `src/_data/site.json`                 |
 | Add the company's Facebook / Instagram links | `site.json` → `social` (icons appear automatically) |
 | Change the WhatsApp number or greeting       | `site.json` → `whatsapp`               |
-| Edit service text or bullet points           | `src/_data/services.json`              |
+| Edit service text or bullet points           | `src/_data/services.json` (`blurb`/`highlights` feed the home cards, `paragraphs`/`bullets` the service page) |
 | Change a testimonial or the counter numbers  | `testimonials.json` / `stats.json`     |
-| Change the home page slider text             | `src/index.njk`                        |
+| Change the home page headline / rotating words | `src/index.njk` (`data-words` on the `#swap` span) |
+| Change the truck-journey captions            | `src/_includes/partials/journey.njk`   |
+| Add a looping video behind the home hero     | `site.json` → `"hero": { "video": "/img/hero/tema.mp4" }` (see below) |
+| Change colours or fonts                      | the `:root` variables at the top of `src/css/site.css` |
 | Add a photo                                  | optimise it first (see below), save in `src/img/…`, reference it as `/img/…` |
 | Turn on analytics                            | `site.json` → `analytics` (Plausible domain or GA4 ID) |
 
@@ -87,18 +100,43 @@ Alternative without PHP: sign up at [web3forms.com](https://web3forms.com)
 "forms": { "provider": "web3forms", "web3formsKey": "YOUR-ACCESS-KEY" }
 ```
 
-## Design concepts
+## The design, in short
 
-`design-concepts/` holds three alternative home-page designs (not part of the
-production build). View the overview with `npm run preview` at `/concepts/`,
-or run each as its own demo site:
+* **Hero** — Ken Burns photo (or optional video), rotating headline word,
+  animated SVG map of Ghana with routes drawn from Tema, counters.
+* **Journey** (home page) — a four-screen section where scrolling drives a
+  truck from Tema Port to Kumasi: the port leaves, palms and lamp posts
+  parallax past, dusk turns to night, the headlights come on and a kilometre
+  counter and four milestone captions follow along. It is pure CSS layers +
+  ~60 lines of JavaScript (`journey()` in `site.js`) — no video, no library.
+  Visitors who prefer reduced motion get a static scene with all four
+  captions listed.
+* **Services** — sticky stacking cards on the home page, an editorial image
+  grid on the services page, and a two-column service page with a sticky
+  quote form.
+* **Motion respects `prefers-reduced-motion`**; the custom cursor and
+  magnetic buttons only run on mouse devices.
 
-```bash
-npm run preview:showcase   # Showcase design  → http://localhost:8001
-npm run preview:concept1   # Clear & Trusted  → http://localhost:8001
-npm run preview:concept2   # Night Port       → http://localhost:8002
-npm run preview:concept3   # Route            → http://localhost:8003
+### Optional hero video
+
+Drop a short, silent, looping MP4 (ideally ≤ 3 MB, 1920×1080, 10–20 s —
+e.g. drone footage of the yard or trucks at Tema Port) into `src/img/hero/`
+and point to it in `site.json`:
+
+```json
+"hero": { "video": "/img/hero/tema.mp4" }
 ```
+
+The clip fades in over the photo once it can play. It is skipped on phones
+and for visitors with reduced motion, so the photo remains the fallback. No
+footage is bundled — the previous stock imagery had none and nothing has
+been generated.
+
+### Design history
+
+Three earlier concept mock-ups (Clear & Trusted / Night Port / Route) and the
+stand-alone Showcase demo that became this design are kept in Git history
+(`git show d478d84:design-concepts/`); they are not part of the build.
 
 ## Images
 
@@ -117,12 +155,23 @@ python3 scripts/optimize-images.py photo.jpg src/img/content/photo.webp --width 
 * **Social media links** — none were configured (the old icons pointed to
   facebook.com etc.). Add real profile URLs to `site.json`.
 * **Testimonials & statistics** — carried over from the previous site; please
-  confirm they are genuine before launch.
+  confirm they are genuine before launch. The "How it works" timings
+  (within the hour / same day / 2–5 days) and the journey captions describe a
+  typical Tema → Kumasi job — adjust if they over-promise.
+* **Photos** — most are stock. The construction-page hero
+  (`img/hero/construction.webp`) is an AI-generated illustration standing in
+  for a real site photo; `img/hero/warehouse.webp` is the old template's dark
+  warehouse photo, brightened. Replace both with your own photos when you can.
 * **Google Business Profile** — the map pin exists; claiming the listing helps
   local search rankings.
 
 ## History
 
-Version 1 (2026) was a hand-edited copy of the "Logitrans" HTML template. The
-original export is preserved in Git history (`git show a0e24b6`), including
-the unused template files that are no longer deployed.
+* **v2.1** — the Showcase design: new CSS/JS, fonts (Bebas Neue + Inter),
+  journey section; jQuery, Owl Carousel, FlexSlider, WOW.js and the template
+  CSS removed.
+* **v2.0** — rebuilt as an Eleventy site with shared data files, SEO head,
+  structured data, sitemap and the PHP/Web3Forms form handler.
+* **v1** (2026) was a hand-edited copy of the "Logitrans" HTML template. The
+  original export is preserved in Git history (`git show a0e24b6`), including
+  the unused template files that are no longer deployed.

@@ -1,40 +1,28 @@
+{#- General contact form (contact page). Optional: formClass. -#}
 {%- set formType = 'contact' %}
-                                    <form method="post" action="{% include 'partials/form-action.njk' %}" class="row" id="contact-form" data-ajax-form>
-                                        {%- include "partials/form-hidden.njk" %}
-                                        <p class="name col-md-6">
-                                            <label for="contact-name">Name <span aria-hidden="true">*</span></label>
-                                            <input type="text" id="contact-name" name="name" required autocomplete="name">
-                                        </p>
-                                        <p class="email col-md-6">
-                                            <label for="contact-email">Email <span aria-hidden="true">*</span></label>
-                                            <input type="email" id="contact-email" name="email" required autocomplete="email" inputmode="email">
-                                        </p>
-                                        <p class="telephone col-md-6">
-                                            <label for="contact-telephone">Telephone</label>
-                                            <input type="tel" id="contact-telephone" name="telephone" autocomplete="tel" inputmode="tel">
-                                        </p>
-                                        <p class="subject col-md-6">
-                                            <label for="contact-service">Service</label>
-                                            <select id="contact-service" name="service">
-                                                <option value="">General enquiry</option>
-                                                {%- for s in services %}
-                                                <option>{{ s.title }}</option>
-                                                {%- endfor %}
-                                            </select>
-                                        </p>
-                                        <p class="subject col-md-12">
-                                            <label for="contact-subject">Subject</label>
-                                            <input type="text" id="contact-subject" name="subject">
-                                        </p>
-                                        <p class="message col-md-12">
-                                            <label for="contact-message">Message <span aria-hidden="true">*</span></label>
-                                            <textarea id="contact-message" name="message" cols="45" rows="7" required></textarea>
-                                        </p>
-
-                                        <p class="col-md-12">
-                                            <button type="submit" class="button-submit">Send Message</button>
-                                        </p>
-                                        <div class="col-md-12">
-                                            <p class="form-status" aria-live="polite"></p>
-                                        </div>
-                                    </form>
+{%- set fid = 'contact' %}
+                <form class="form {{ formClass }}" id="quote" method="post" action="{% include 'partials/form-action.njk' %}" data-ajax-form data-reveal>
+                    <h3>Send us a message</h3>
+                    <p class="form__intro">Request a quote or ask a question — we reply during office hours, usually the same day.</p>
+                    {%- include "partials/form-hidden.njk" %}
+                    <div class="form__row">
+                        <div class="field"><input type="text" id="{{ fid }}-name" name="name" placeholder=" " required autocomplete="name"><label for="{{ fid }}-name">Your name *</label></div>
+                        <div class="field"><input type="email" id="{{ fid }}-email" name="email" placeholder=" " required autocomplete="email" inputmode="email"><label for="{{ fid }}-email">E-mail *</label></div>
+                    </div>
+                    <div class="form__row">
+                        <div class="field"><input type="tel" id="{{ fid }}-telephone" name="telephone" placeholder=" " autocomplete="tel" inputmode="tel"><label for="{{ fid }}-telephone">Phone / WhatsApp</label></div>
+                        <div class="field">
+                            <select id="{{ fid }}-service" name="service">
+                                <option value="">General enquiry</option>
+                                {%- for s in services %}
+                                <option>{{ s.title }}</option>
+                                {%- endfor %}
+                            </select>
+                            <label for="{{ fid }}-service">Service</label>
+                        </div>
+                    </div>
+                    <div class="field"><input type="text" id="{{ fid }}-subject" name="subject" placeholder=" "><label for="{{ fid }}-subject">Subject</label></div>
+                    <div class="field"><textarea id="{{ fid }}-message" name="message" placeholder=" " required></textarea><label for="{{ fid }}-message">Your message *</label></div>
+                    <button class="btn btn--orange button-submit" type="submit">Send message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+                    <p class="form-status" aria-live="polite"></p>
+                </form>

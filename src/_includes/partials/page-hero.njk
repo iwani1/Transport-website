@@ -1,0 +1,35 @@
+{#- Compact dark hero for inner pages.
+    Variables: heroImage (path without leading slash), heroImageMobile (optional), heroAlt, eyebrow, heading (HTML allowed), lead, crumbs (array of {label,url}), heroShort (bool) -#}
+    <section class="phero{% if heroShort %} phero--short{% endif %}">
+        {%- if heroImage %}
+        <picture class="phero__bg" aria-hidden="true">
+            {%- if heroImageMobile %}
+            <source media="(max-width: 720px)" srcset="/{{ heroImageMobile }}">
+            {%- endif %}
+            <img src="/{{ heroImage }}" alt="" fetchpriority="high">
+        </picture>
+        {%- endif %}
+        <div class="phero__shade"></div>
+        <div class="wrap">
+            <nav aria-label="Breadcrumb">
+                <ol class="crumbs">
+                    <li><a href="/">Home</a></li>
+                    {%- for c in crumbs %}
+                    <li><a href="{{ c.url }}">{{ c.label }}</a></li>
+                    {%- endfor %}
+                    <li aria-current="page">{{ eyebrow or title }}</li>
+                </ol>
+            </nav>
+            <div class="phero__grid">
+                <div>
+                    <h1 class="title">{{ (heading or title) | safe }}</h1>
+                    {%- if lead %}
+                    <p class="lead">{{ lead | safe }}</p>
+                    {%- endif %}
+                </div>
+                {%- if heroActions %}
+                <div class="phero__aside">{{ heroActions | safe }}</div>
+                {%- endif %}
+            </div>
+        </div>
+    </section>

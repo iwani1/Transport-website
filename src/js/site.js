@@ -1,4 +1,6 @@
-/* Blahar & Benyah — Showcase interactions (no dependencies) */
+/* Blahar & Benyah — site interactions (no dependencies).
+ * Everything here is progressive enhancement: the pages read fine without it.
+ * Form submission lives in forms.js. */
 (function () {
   'use strict';
   var mq = function (q) { return !!(window.matchMedia && window.matchMedia(q).matches); };
@@ -6,14 +8,17 @@
   var fine = mq('(pointer: fine)');
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var raf = window.requestAnimationFrame || function (fn) { return setTimeout(fn, 16); };
 
   /* ---------- Header: solid after scroll, hide on scroll down ---------- */
   var hdr = $('#hdr'), progress = $('.progress'), totop = $('.totop');
-  var lastY = 0;
+  var lastY = 0, menuOpen = false;
   function onScroll() {
-    var y = window.scrollY || window.pageYOffset;
-    hdr.classList.toggle('is-solid', y > 40);
-    hdr.classList.toggle('is-hidden', y > 360 && y > lastY && !menuOpen);
+    var y = window.scrollY || window.pageYOffset || 0;
+    if (hdr) {
+      hdr.classList.toggle('is-solid', y > 40);
+      hdr.classList.toggle('is-hidden', y > 360 && y > lastY && !menuOpen);
+    }
     lastY = y;
     var max = document.documentElement.scrollHeight - window.innerHeight;
     if (progress) progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
@@ -21,22 +26,24 @@
     stackScale();
     parallax();
     activeLink(y);
+    journey();
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   if (totop) totop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
 
-  /* ---------- Active nav link ---------- */
+  /* ---------- Active nav link (home page hash links only) ---------- */
   var sections = $$('main section[id]');
-  var navLinks = $$('.nav a');
+  var hashLinks = $$('.nav a[href^="/#"], .nav a[href^="#"]');
   function activeLink(y) {
+    if (!hashLinks.length) return;
     var current = '';
     sections.forEach(function (s) { if (y + 140 >= s.offsetTop) current = s.id; });
-    navLinks.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + current); });
+    hashLinks.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href').replace(/^\//, '') === '#' + current); });
   }
 
-  /* ---------- Mobile menu ---------- */
-  var burger = $('.burger'), menu = $('#menu'), menuOpen = false;
+  /* ---------- Full-screen menu ---------- */
+  var burger = $('.burger'), menu = $('#menu');
   function setMenu(open) {
     menuOpen = open;
     menu.classList.toggle('is-open', open);
@@ -44,9 +51,10 @@
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     document.body.style.overflow = open ? 'hidden' : '';
-    if (open) hdr.classList.remove('is-hidden');
+    if (open && hdr) hdr.classList.remove('is-hidden');
+    if (open) { var first = $('a', menu); if (first) first.focus(); } else { burger.focus(); }
   }
-  if (burger) {
+  if (burger && menu) {
     burger.addEventListener('click', function () { setMenu(!menuOpen); });
     $$('a', menu).forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menuOpen) setMenu(false); });
@@ -55,10 +63,11 @@
   /* ---------- Rotating hero word ---------- */
   var swap = $('#swap');
   if (swap && !reduce) {
-    var words = ['Freight', 'Containers', 'Your goods', 'Businesses', 'Ghana'];
+    var words = (swap.getAttribute('data-words') || 'Freight|Containers|Your goods|Businesses|Ghana').split('|');
     var idx = 0;
     setInterval(function () {
       var old = $('.swap__word', swap);
+      if (!old) return;
       idx = (idx + 1) % words.length;
       var next = document.createElement('span');
       next.className = 'swap__word is-in';
@@ -90,18 +99,20 @@
 
   function countUp(el) {
     var end = parseInt(el.getAttribute('data-count'), 10), start = null, dur = reduce ? 1 : 1800;
+    if (isNaN(end)) return;
     function frame(ts) {
       if (!start) start = ts;
       var p = Math.min((ts - start) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
       el.textContent = Math.round(end * eased).toLocaleString('en-GB');
-      if (p < 1) requestAnimationFrame(frame);
+      if (p < 1) raf(frame);
     }
-    requestAnimationFrame(frame);
+    raf(frame);
   }
 
   /* ---------- Sticky service cards: scale the card being covered ---------- */
   var cards = $$('.s-card');
   function stackScale() {
+    if (!cards.length) return;
     if (reduce || window.innerWidth < 900) { cards.forEach(function (c) { c.style.transform = ''; c.style.filter = ''; }); return; }
     for (var i = 0; i < cards.length - 1; i++) {
       var card = cards[i], next = cards[i + 1];
@@ -129,20 +140,89 @@
   var slider = $('[data-slider]');
   if (slider) {
     var slides = $$('.slide', slider), dots = $$('.dots button'), cur = 0, timer;
-    function go(n) {
+    var go = function (n) {
       cur = (n + slides.length) % slides.length;
       slides.forEach(function (s, i) { s.classList.toggle('is-active', i === cur); });
       dots.forEach(function (d, i) { d.classList.toggle('is-active', i === cur); d.setAttribute('aria-selected', i === cur ? 'true' : 'false'); });
-    }
-    function play() { clearInterval(timer); if (!reduce) timer = setInterval(function () { go(cur + 1); }, 6000); }
+    };
+    var play = function () { clearInterval(timer); if (!reduce && slides.length > 1) timer = setInterval(function () { go(cur + 1); }, 6000); };
     dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); play(); }); });
     slider.parentNode.addEventListener('mouseenter', function () { clearInterval(timer); });
     slider.parentNode.addEventListener('mouseleave', play);
     play();
   }
 
+  /* ---------- The Journey: scroll-driven truck scene ----------
+   * The section is ~4 screens tall with a sticky stage. Scroll progress p (0..1)
+   * drives every layer, so scrubbing back and forth replays the trip. */
+  var jr = $('.journey');
+  var J = null;
+  if (jr) {
+    if (reduce) {
+      jr.classList.add('journey--static');
+      $$('.cap', jr).forEach(function (c) { c.classList.add('is-on'); });
+      $$('.hud__track b', jr).forEach(function (b) { b.classList.add('is-on'); });
+      var kmEl = $('.hud__km span', jr);
+      if (kmEl) kmEl.textContent = kmEl.getAttribute('data-km') || '250';
+    } else {
+      J = {
+        stage: $('.journey__stage', jr),
+        port: $('.jl-port', jr), city: $('.jl-city', jr),
+        hills: $('.jl-hills', jr), palms: $('.jl-palms', jr), posts: $('.jl-posts', jr), lines: $('.jl-lines', jr),
+        night: $('.jl-night', jr), stars: $('.jl-stars', jr), sun: $('.jl-sun', jr),
+        truck: $('.truck', jr), wheels: $$('.truck .wheel', jr),
+        km: $('.hud__km span', jr), bar: $('.hud__track i', jr), dots: $$('.hud__track b', jr),
+        caps: $$('.cap', jr), total: 250, last: -1
+      };
+      if (J.km) J.total = parseInt(J.km.getAttribute('data-km'), 10) || 250;
+    }
+  }
+  var CAP_RANGES = [[0, 0.22], [0.22, 0.48], [0.48, 0.78], [0.78, 1.01]];
+  function journey() {
+    if (!J) return;
+    var rect = jr.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var travel = rect.height - vh;
+    if (travel <= 0) return;
+    if (rect.top > vh || rect.bottom < 0) return; /* off-screen: skip the work */
+    var p = Math.min(Math.max(-rect.top / travel, 0), 1);
+    if (Math.abs(p - J.last) < 0.0005) return;
+    J.last = p;
+    var vw = window.innerWidth;
+    var dist = p * 4000; /* "pixels of road" travelled */
+    /* Far layers leave / arrive */
+    if (J.port) J.port.style.transform = 'translateX(' + (-p * 1.6 * vw).toFixed(1) + 'px)';
+    if (J.city) J.city.style.transform = 'translateX(' + ((1 - p) * 1.2 * vw).toFixed(1) + 'px)';
+    /* Repeating layers scroll at different speeds (parallax) */
+    if (J.hills) J.hills.style.backgroundPositionX = (-dist * 0.28).toFixed(1) + 'px';
+    if (J.palms) J.palms.style.backgroundPositionX = (-dist * 0.55).toFixed(1) + 'px';
+    if (J.posts) J.posts.style.backgroundPositionX = (-dist * 1.0).toFixed(1) + 'px';
+    if (J.lines) J.lines.style.backgroundPositionX = (-dist * 1.0).toFixed(1) + 'px';
+    /* Day -> night */
+    if (J.night) J.night.style.opacity = Math.pow(p, 1.4).toFixed(3);
+    if (J.stars) J.stars.style.opacity = Math.max(0, (p - 0.4) / 0.6).toFixed(3);
+    if (J.sun) J.sun.style.transform = 'translate(-50%,' + (-50 + p * 260).toFixed(1) + '%)';
+    if (J.stage) J.stage.classList.toggle('is-night', p > 0.45);
+    /* Truck: wheels, bob, a hint of pitch when braking at the end */
+    var deg = (dist / (Math.PI * 56)) * 360;
+    J.wheels.forEach(function (w) { w.style.transform = 'rotate(' + deg.toFixed(1) + 'deg)'; });
+    var bob = Math.sin(dist / 38) * 1.6;
+    var ease = p < 0.06 ? p / 0.06 : (p > 0.94 ? (1 - p) / 0.06 : 1);
+    var pitch = (p > 0.94 ? -(1 - ease) * 1.5 : 0);
+    if (J.truck) J.truck.style.transform = 'translateY(' + (bob * ease).toFixed(2) + 'px) rotate(' + pitch.toFixed(2) + 'deg)';
+    /* HUD */
+    if (J.km) J.km.textContent = Math.round(p * J.total).toLocaleString('en-GB');
+    if (J.bar) J.bar.style.width = (p * 100).toFixed(2) + '%';
+    J.dots.forEach(function (d, i) { d.classList.toggle('is-on', p >= [0, 0.33, 0.66, 0.99][i]); });
+    J.caps.forEach(function (c, i) {
+      var r = CAP_RANGES[i] || [2, 3];
+      c.classList.toggle('is-on', p >= r[0] && p < r[1]);
+    });
+  }
+
   /* ---------- Magnetic buttons + custom cursor (desktop only) ---------- */
-  if (fine && !reduce) {
+  var cursor = $('.cursor');
+  if (fine && !reduce && cursor) {
     $$('.magnetic').forEach(function (b) {
       b.addEventListener('mousemove', function (e) {
         var r = b.getBoundingClientRect();
@@ -151,27 +231,19 @@
       });
       b.addEventListener('mouseleave', function () { b.style.transform = ''; });
     });
-    var cursor = $('.cursor'), cx = 0, cy = 0, tx = 0, ty = 0, shown = false;
+    var cx = 0, cy = 0, tx = 0, ty = 0, shown = false;
     document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; if (!shown) { shown = true; cx = tx; cy = ty; cursor.classList.add('is-on'); } });
     document.addEventListener('mouseleave', function () { cursor.classList.remove('is-on'); shown = false; });
-    document.addEventListener('mouseover', function (e) { cursor.classList.toggle('is-hover', !!e.target.closest('a, button, .s-card, .reason')); });
-    (function loop() { cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18; cursor.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)'; requestAnimationFrame(loop); })();
+    document.addEventListener('mouseover', function (e) { cursor.classList.toggle('is-hover', !!(e.target.closest && e.target.closest('a, button, .s-card, .reason, .tile, .value'))); });
+    (function loop() { cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18; cursor.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)'; raf(loop); })();
   }
 
-  /* ---------- Demo form: post to (mocked) contact.php, show reply inline ---------- */
-  $$('form[data-demo]').forEach(function (f) {
-    f.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!f.reportValidity()) return;
-      var b = f.querySelector('[type=submit]'), st = f.querySelector('.form-status');
-      b.disabled = true; st.textContent = 'Sending\u2026'; st.className = 'form-status';
-      fetch(f.getAttribute('action'), { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(f) })
-        .then(function (r) { return r.json(); })
-        .then(function (j) { st.textContent = j.message || 'Thank you \u2014 we will get back to you shortly.'; st.className = 'form-status ok'; f.reset(); })
-        .catch(function () { st.textContent = 'Could not send. Please call or WhatsApp us.'; st.className = 'form-status err'; })
-        .then(function () { b.disabled = false; });
-    });
-  });
+  /* ---------- Hero video: only download/play when allowed ---------- */
+  var vid = $('.hero__video');
+  if (vid) {
+    if (reduce || mq('(max-width: 760px)')) { vid.removeAttribute('autoplay'); vid.pause && vid.pause(); vid.parentNode.removeChild(vid); }
+    else { vid.addEventListener('canplay', function () { vid.classList.add('is-ready'); }); var pl = vid.play && vid.play(); if (pl && pl.catch) pl.catch(function () {}); }
+  }
 
   onScroll();
 })();

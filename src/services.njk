@@ -5,73 +5,61 @@ description: "Our services: freight forwarding, transportation, customs clearing
 bodyClass: page-services
 priority: "0.9"
 ---
-{% include "partials/page-title.njk" %}
+{%- set heroImage = 'img/hero/container-yard.webp' %}
+{%- set heroImageMobile = 'img/hero/container-yard-960.webp' %}
+{%- set eyebrow = 'Services' %}
+{%- set heading = 'Everything between<br><span class="outline">the ship and your shelf.</span>' %}
+{%- set lead = 'Four logistics services that work as one job, plus building &amp; construction and printing for businesses in Tema and beyond.' %}
+{%- set heroActions %}<a class="btn btn--orange magnetic" href="/contact.html#quote">Request a quote</a>{% endset %}
+{% include "partials/page-hero.njk" %}
 
-        <!-- CONTENT START
-        ============================================= -->
-        <main id="content" class="clearfix">
-            <!-- SERVICES START
-            ============================================= -->
-            <div class="services-page wrapper bg-color">
-                <div class="container">
-                    <div class="row">
-                        <div class="services-wrap row">
-                            <div class="group-title wow fadeIn">
-                                <h2>Logistics Services</h2>
-                                <p>End-to-end cargo handling from {{ site.address.city }} — forwarding, transport, clearing and storage under one roof.</p>
-                            </div>
-                            {%- for s in services | where('category', 'logistics') %}
-                            <div class="item col-md-4 wow fadeInUp" data-wow-delay="{{ (0.3 * loop.index) | round(1) }}s">
-                                <div class="services-content">
-                                    <div class="services-thumb">
-                                        <a href="/services/{{ s.slug }}.html" aria-hidden="true" tabindex="-1">
-                                            <img src="/{{ s.thumb }}" alt="" width="370" height="280" loading="lazy">
-                                            <div class="overlay"></div>
-                                        </a>
-                                    </div>
-                                    <div class="services-text">
-                                        <h3 class="title">{{ s.title }}</h3>
-                                        <p>{{ s.short }}</p>
-                                        <a href="/services/{{ s.slug }}.html" class="button-normal with-icon">
-                                            Read More<span class="visually-hidden"> about {{ s.title }}</span>
-                                            <i class="icon icon-arrow-right" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            {%- endfor %}
+        <section class="sec sec--tight" aria-labelledby="logistics-title">
+            <div class="wrap">
+                <div class="sgrid">
+                    <p class="sgrid__label" id="logistics-title">Logistics — one team, one invoice</p>
+                    {%- for s in services | where('category', 'logistics') %}
+                    <a class="tile{% if loop.index == 1 or loop.index == 4 %} tile--wide{% endif %}" href="/services/{{ s.slug }}.html" data-reveal{% if not loop.first %} style="--delay:{{ (loop.index0 * 0.08) | round(2) }}s"{% endif %}>
+                        <img src="/{{ s.image }}" alt="" loading="lazy">
+                        <span class="tile__num" aria-hidden="true">0{{ loop.index }}</span>
+                        <span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                        <h3>{{ s.title }}</h3>
+                        <p>{{ s.blurb }}</p>
+                    </a>
+                    {%- endfor %}
 
-                            <div class="group-title wow fadeIn">
-                                <h2>Other Services</h2>
-                                <p>Additional services we offer to businesses and individuals.</p>
-                            </div>
-                            {%- for s in services | where('category', 'other') %}
-                            <div class="item col-md-4 wow fadeInUp" data-wow-delay="{{ (0.3 * loop.index) | round(1) }}s">
-                                <div class="services-content">
-                                    <div class="services-thumb">
-                                        <a href="/services/{{ s.slug }}.html" aria-hidden="true" tabindex="-1">
-                                            <img src="/{{ s.thumb }}" alt="" width="370" height="280" loading="lazy">
-                                            <div class="overlay"></div>
-                                        </a>
-                                    </div>
-                                    <div class="services-text">
-                                        <h3 class="title">{{ s.title }}</h3>
-                                        <p>{{ s.short }}</p>
-                                        <a href="/services/{{ s.slug }}.html" class="button-normal with-icon">
-                                            Read More<span class="visually-hidden"> about {{ s.title }}</span>
-                                            <i class="icon icon-arrow-right" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            {%- endfor %}
-                        </div>
-
-                        {% include "partials/cta-band.njk" %}
-
-                    </div>
+                    <p class="sgrid__label">Other services</p>
+                    {%- for s in services | where('category', 'other') %}
+                    <a class="tile tile--half" href="/services/{{ s.slug }}.html" data-reveal{% if not loop.first %} style="--delay:.1s"{% endif %}>
+                        <img src="/{{ s.image }}" alt="" loading="lazy">
+                        <span class="tile__num" aria-hidden="true">0{{ loop.index + 4 }}</span>
+                        <span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                        <h3>{{ s.title }}</h3>
+                        <p>{{ s.blurb }}</p>
+                    </a>
+                    {%- endfor %}
                 </div>
             </div>
-            <!-- SERVICES END -->
-        </main>
-        <!-- CONTENT END -->
+        </section>
+
+        <section class="process" aria-labelledby="services-process-title">
+            <div class="wrap">
+                <div class="process__head">
+                    <div data-reveal>
+                        <p class="eyebrow">How a job runs</p>
+                        <h2 class="title dark" id="services-process-title">One message.<br><span class="outline">One invoice.</span></h2>
+                    </div>
+                    <p class="lead" data-reveal style="--delay:.15s">Whichever service you start with, the same team carries it through — so a shipment that needs clearing, trucking and a week of storage is still one job to you.</p>
+                </div>
+                <div class="steps" data-steps>
+                    <div class="steps__line" aria-hidden="true"><i></i></div>
+                    <ol class="steps__list">
+                        <li class="step" style="--n:0"><h3>Send the details</h3><p>Documents, cargo description, where it is and where it needs to be.</p><small>Within the hour</small></li>
+                        <li class="step" style="--n:1"><h3>Fixed quote</h3><p>Every fee itemised — duties, port charges, transport, storage.</p><small>Same day</small></li>
+                        <li class="step" style="--n:2"><h3>We do the work</h3><p>Customs, port, trucks and warehouse handled by our own people.</p><small>2 – 5 days</small></li>
+                        <li class="step" style="--n:3"><h3>Delivered</h3><p>Signed, photographed on request and invoiced by e-mail.</p><small>Done</small></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+{% include "partials/cta-band.njk" %}

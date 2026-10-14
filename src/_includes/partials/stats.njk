@@ -1,0 +1,6 @@
+{#- Animated counters, data from stats.json. Values >= 100,000 are shown compactly (473,754 -> 473k). -#}
+                <div class="wrap hero__stats{% if stats.length == 5 %} hero__stats--5{% endif %}">
+                    {%- for st in stats %}
+                    <div class="stat"><b><span data-count="{{ ((st.value / 1000) | round) if st.value >= 100000 else st.value }}">0</span>{% if st.value >= 100000 %}<em>k</em>{% elif st.suffix %}<em>{{ st.suffix }}</em>{% endif %}</b><span>{{ st.label }}</span></div>
+                    {%- endfor %}
+                </div>

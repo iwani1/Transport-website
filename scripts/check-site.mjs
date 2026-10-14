@@ -7,7 +7,7 @@
  * 2. Every page has exactly one <h1>, a <title>, a meta description and a canonical URL.
  * 3. Every <img> has an alt attribute.
  * 4. No leftover template placeholder text (Lorem ipsum, template brand names).
- * 5. Each page runs in jsdom with its scripts to catch JavaScript errors (jQuery 3 compatibility).
+ * 5. Each page runs in jsdom with its scripts to catch JavaScript errors, and the menu + form contract are exercised.
  */
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, resolve, dirname, posix } from "node:path";
@@ -95,7 +95,7 @@ for (const file of cssFiles) {
   const css = readFileSync(file, "utf8");
   for (const mm of css.matchAll(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g)) {
     const ref = mm[2];
-    if (isExternal(ref)) continue;
+    if (isExternal(ref) || ref.startsWith("#") || ref.startsWith("%23")) continue; // fragments, incl. url(#id) inside data-URI SVGs
     const target = resolveLocal(ref, file);
     if (target && !existsSync(target)) warn(`${rel}: broken url() reference "${ref}"`);
   }
@@ -145,15 +145,29 @@ for (const file of htmlFiles) {
     dom.window.addEventListener("load", () => setTimeout(done, 500));
     setTimeout(done, 5000);
   });
-  // Sanity: libraries initialised?
+  // Sanity: did site.js run? It marks the header on the first scroll pass and sets the menu state.
   const w = dom.window;
   const checks = [];
-  if (!w.jQuery) checks.push("jQuery not loaded");
-  if (w.jQuery && !w.jQuery.fn.owlCarousel) checks.push("Owl Carousel not loaded");
-  if (w.jQuery && !w.jQuery.fn.flexslider) checks.push("FlexSlider not loaded");
-  if (w.jQuery && w.jQuery.fn.jquery && !w.jQuery.fn.jquery.startsWith("3.")) checks.push("jQuery is not v3 (" + w.jQuery.fn.jquery + ")");
-  const owl = w.document.querySelector(".services-wrap-carousel, .testimonial-carousel");
-  if (owl && !owl.classList.contains("owl-loaded")) checks.push("Owl Carousel did not initialise");
+  const hdr = w.document.getElementById("hdr");
+  const burger = w.document.querySelector(".burger");
+  if (!hdr) checks.push("header #hdr missing");
+  if (!burger || !burger.hasAttribute("aria-expanded")) checks.push("menu button missing");
+  if (!w.document.getElementById("menu")?.hasAttribute("inert")) checks.push("menu should start inert");
+  // Exercise the menu toggle: open then Escape closes it.
+  if (burger) {
+    burger.click();
+    if (burger.getAttribute("aria-expanded") !== "true") checks.push("site.js did not open the menu (script not running?)");
+    w.document.dispatchEvent(new w.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+    if (burger.getAttribute("aria-expanded") !== "false") checks.push("Escape did not close the menu");
+  }
+  // Forms must keep the production contract used by contact.php / forms.js
+  for (const form of w.document.querySelectorAll("form[data-ajax-form]")) {
+    const need = ["name", "email"];
+    for (const n of need) if (!form.querySelector(`[name="${n}"]`)) checks.push(`form missing field ${n}`);
+    if (!form.querySelector('[name="form"], [name="access_key"]')) checks.push("form missing hidden form/access_key field");
+    if (!form.querySelector(".form-status")) checks.push("form missing .form-status");
+    if (!form.querySelector('[type="submit"]')) checks.push("form missing submit button");
+  }
   if (checks.length) jsErrors.push(`${rel}: ${checks.join("; ")}`);
   dom.window.close();
 }

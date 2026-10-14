@@ -15,69 +15,73 @@ eleventyComputed:
 bodyClass: page-service
 priority: "0.8"
 ---
-{% include "partials/page-title.njk" %}
+{%- set heroImage = service.hero %}
+{%- set heroImageMobile = service.heroMobile %}
+{%- set eyebrow = service.title %}
+{%- set heading = service.displayTitle %}
+{%- set lead = service.blurb %}
+{%- set heroActions %}<a class="btn btn--orange magnetic" href="#quote">{{ service.ctaLabel }}</a><a class="btn btn--ghost magnetic" href="tel:{{ site.phones[0].e164 }}">Call&nbsp;{{ site.phones[0].display | nbsp }}</a>{% endset %}
+{% include "partials/page-hero.njk" %}
 
-        <!-- CONTENT START
-        ============================================= -->
-        <main id="content" class="clearfix">
-            <!-- SINGLE SERVICE START
-            ============================================= -->
-            <div class="single-services wrapper bg-color">
-                <div class="container">
-                    <div class="row">
-                        <div class="single-services-wrap row">
-                            <article class="single-content col-md-9">
-                                <img class="service-hero" src="/{{ service.hero }}" alt="{{ service.imageAlt }}" width="800" height="400">
-                                <h2 class="title">{{ service.title }}</h2>
-                                <div class="content-text">
-                                    {%- for para in service.paragraphs %}
-                                    <p{% if loop.first %} class="lead"{% endif %}>{{ para }}</p>
-                                    {%- endfor %}
+        <section class="svc" aria-label="{{ service.title }} details">
+            <div class="wrap svc__grid">
+                <article class="prose" data-reveal>
+                    {%- for para in service.paragraphs %}
+                    <p{% if loop.first %} class="intro"{% endif %}>{{ para }}</p>
+                    {%- endfor %}
 
-                                    <h3 class="h4">What we handle</h3>
-                                    <ul class="service-points">
-                                        {%- for b in service.bullets %}
-                                        <li>{{ b }}</li>
-                                        {%- endfor %}
-                                    </ul>
+                    <h2>What we handle</h2>
+                    <ul class="checks">
+                        {%- for b in service.bullets %}
+                        <li>{{ b }}</li>
+                        {%- endfor %}
+                    </ul>
 
-                                    <div class="service-cta">
-                                        <h3>Need {{ service.title | lower }} support?</h3>
-                                        <p>Tell us what you need and we will come back to you with a clear, cost-effective quote.</p>
-                                        <a href="/contact.html#quote" class="button-normal">Request A Quote</a>
-                                        <a href="tel:{{ site.phones[0].e164 }}" class="button-normal white"><i class="fa fa-phone" aria-hidden="true"></i> {{ site.phones[0].display | nbsp }}</a>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <aside class="sidebar col-md-3">
-                                <div class="widget other-services">
-                                    <h3 class="title h4">Our Services</h3>
-                                    <ul>
-                                        {%- for s in services %}
-                                        <li{% if s.slug == service.slug %} class="active"{% endif %}><a href="/services/{{ s.slug }}.html"{% if s.slug == service.slug %} aria-current="page"{% endif %}>{{ s.title }}</a></li>
-                                        {%- endfor %}
-                                    </ul>
-                                </div>
-                                <div class="widget contact-widget">
-                                    <h3 class="title h4">Talk to us</h3>
-                                    {%- for ph in site.phones %}
-                                    <p><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{ ph.e164 }}">{{ ph.display | nbsp }}</a></p>
-                                    {%- endfor %}
-                                    <p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-                                    {%- if site.whatsapp.number %}
-                                    <p><i class="fa fa-whatsapp" aria-hidden="true"></i> <a href="https://wa.me/{{ site.whatsapp.number }}" rel="noopener" target="_blank">Chat on WhatsApp</a></p>
-                                    {%- endif %}
-                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{ site.hours.summary }}</p>
-                                </div>
-                            </aside>
-                        </div>
-
-                        {% include "partials/cta-band.njk" %}
-
+                    <h2>How it works</h2>
+                    <p>Send us the details by WhatsApp, e-mail or the form on this page. You get an itemised quote the same day; once you confirm, the same team handles the job from start to finish and keeps you updated at every step.</p>
+                    <div class="actions">
+                        <a class="btn btn--orange magnetic" href="#quote">{{ service.ctaLabel }}</a>
+                        <a class="btn btn--ghost magnetic" href="/services.html">All services</a>
                     </div>
-                </div>
+                </article>
+
+                <aside class="aside">
+                    {%- set formClass = 'form--dark' %}
+                    {%- set formTitle = service.ctaLabel %}
+                    {%- set formCompact = true %}
+                    {%- set formService = service.title %}
+                    {% include "partials/form-quote.njk" %}
+
+                    <div class="panel" data-reveal>
+                        <h3>Other services</h3>
+                        <ul>
+                            {%- for s in services %}
+                            <li{% if s.slug == service.slug %} class="is-active"{% endif %}><a href="/services/{{ s.slug }}.html"{% if s.slug == service.slug %} aria-current="page"{% endif %}>{{ s.title }}</a></li>
+                            {%- endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="panel" data-reveal>
+                        <h3>Talk to us</h3>
+                        <div class="contact-lines">
+                            <small>Call</small>
+                            {%- for ph in site.phones %}
+                            <a href="tel:{{ ph.e164 }}">{{ ph.display | nbsp }}</a>
+                            {%- endfor %}
+                            <small>E-mail</small>
+                            <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+                            {%- if site.whatsapp and site.whatsapp.number %}
+                            <small>WhatsApp</small>
+                            <a href="https://wa.me/{{ site.whatsapp.number }}?text={{ site.whatsapp.message | urlencode }}" rel="noopener" target="_blank">Chat on WhatsApp</a>
+                            {%- endif %}
+                            <small>Hours</small>
+                            <span>{{ site.hours.summary }}</span>
+                        </div>
+                    </div>
+                </aside>
             </div>
-            <!-- SINGLE SERVICE END -->
-        </main>
-        <!-- CONTENT END -->
+        </section>
+
+{%- set ctaTitle = 'Need ' ~ (service.title | lower | replace('&', '&amp;')) ~ '<br>sorted this week?' %}
+{%- set ctaLead = 'Tell us what you have and where it needs to go — we come back with a clear, itemised quote the same day.' %}
+{% include "partials/cta-band.njk" %}

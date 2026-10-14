@@ -1,47 +1,29 @@
+{#- Quote request form. Optional variables: formClass (e.g. "form--dark"), formTitle, formIntro, formCompact (bool: single-column layout), formService (preselect a service title). -#}
 {%- set formType = 'quote' %}
-                                <form class="quote-form" method="post" action="{% include 'partials/form-action.njk' %}" data-ajax-form>
-                                    {%- include "partials/form-hidden.njk" %}
-                                    <h3>Request A Quote</h3>
-                                    <p class="intro">Fill in the details below and we will get back to you with a tailored estimate.</p>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <p class="field">
-                                                <label for="quote-name">Your Name <span aria-hidden="true">*</span></label>
-                                                <input type="text" id="quote-name" name="name" required autocomplete="name">
-                                            </p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="field">
-                                                <label for="quote-telephone">Telephone / WhatsApp</label>
-                                                <input type="tel" id="quote-telephone" name="telephone" autocomplete="tel" inputmode="tel">
-                                            </p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="field">
-                                                <label for="quote-email">Email <span aria-hidden="true">*</span></label>
-                                                <input type="email" id="quote-email" name="email" required autocomplete="email" inputmode="email">
-                                            </p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="field">
-                                                <label for="quote-service">Service</label>
-                                                <select id="quote-service" name="service">
-                                                    <option value="">Select a service</option>
-                                                    {%- for s in services %}
-                                                    <option>{{ s.title }}</option>
-                                                    {%- endfor %}
-                                                </select>
-                                            </p>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <p class="field">
-                                                <label for="quote-message">Tell us about your cargo</label>
-                                                <textarea id="quote-message" name="message" placeholder="What are you shipping, from where to where, and when?"></textarea>
-                                            </p>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button type="submit" class="button-submit">Send Request</button>
-                                            <p class="form-status" aria-live="polite"></p>
-                                        </div>
-                                    </div>
-                                </form>
+{%- set fid = 'quote' %}
+                <form class="form {{ formClass }}" id="quote" method="post" action="{% include 'partials/form-action.njk' %}" data-ajax-form data-reveal>
+                    <h3>{{ formTitle | default('Request a quote') }}</h3>
+                    {%- if formIntro %}
+                    <p class="form__intro">{{ formIntro }}</p>
+                    {%- endif %}
+                    {%- include "partials/form-hidden.njk" %}
+                    <div class="{{ 'form__stack' if formCompact else 'form__row' }}">
+                        <div class="field"><input type="text" id="{{ fid }}-name" name="name" placeholder=" " required autocomplete="name"><label for="{{ fid }}-name">Your name *</label></div>
+                        <div class="field"><input type="tel" id="{{ fid }}-telephone" name="telephone" placeholder=" " autocomplete="tel" inputmode="tel"><label for="{{ fid }}-telephone">Phone / WhatsApp</label></div>
+                    </div>
+                    <div class="{{ 'form__stack' if formCompact else 'form__row' }}">
+                        <div class="field"><input type="email" id="{{ fid }}-email" name="email" placeholder=" " required autocomplete="email" inputmode="email"><label for="{{ fid }}-email">E-mail *</label></div>
+                        <div class="field">
+                            <select id="{{ fid }}-service" name="service">
+                                <option value="">Choose…</option>
+                                {%- for s in services %}
+                                <option{% if formService == s.title %} selected{% endif %}>{{ s.title }}</option>
+                                {%- endfor %}
+                            </select>
+                            <label for="{{ fid }}-service">Service</label>
+                        </div>
+                    </div>
+                    <div class="field"><textarea id="{{ fid }}-message" name="message" placeholder=" "></textarea><label for="{{ fid }}-message">Tell us about your cargo</label></div>
+                    <button class="btn btn--orange button-submit" type="submit">Send request <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+                    <p class="form-status" aria-live="polite"></p>
+                </form>

@@ -3,12 +3,9 @@
     "slug": "freight-forwarding",
     "title": "Freight Forwarding",
     "category": "logistics",
-    "icon": "icon icon-container",
     "image": "img/content/services-item-1.webp",
-    "thumb": "img/content/services-thumb-1.webp",
-    "hero": "img/content/service-ship.webp",
-    "imageAlt": "Container ship loaded with cargo at sea",
-    "thumbAlt": "Courier carrying parcels for delivery",
+    "hero": "img/content/services-item-1.webp",
+    "imageAlt": "Aerial view of a container ship at sea",
     "metaDescription": "International freight forwarding by air, sea and road from Tema, Ghana. Blahar & Benyah handles documentation, carrier selection, customs clearance and delivery.",
     "short": "Blahar & Benyah Int’l Ltd delivers structured freight forwarding solutions designed to simplify global cargo movement.",
     "card": "We deliver strategic freight forwarding solutions that simplify global cargo movement and reduce operational complexity. Our team manages every detail from documentation to final delivery with precision, speed, and full regulatory compliance.",
@@ -24,18 +21,23 @@
       "Carrier selection, booking and route planning",
       "Customs clearance coordination at ports and airports",
       "Door-to-door delivery and shipment tracking updates"
+    ],
+    "displayTitle": "Freight<br>forwarding",
+    "blurb": "Air, sea and road freight, import and export — booked, documented and tracked from origin to Tema or Kotoka.",
+    "ctaLabel": "Quote a shipment",
+    "highlights": [
+      "Carrier selection, booking and route planning",
+      "Shipping documentation and regulatory compliance",
+      "Door-to-door delivery with tracking updates"
     ]
   },
   {
     "slug": "transportation",
     "title": "Transportation",
     "category": "logistics",
-    "icon": "icon icon-delivery",
-    "image": "img/content/services-item-2.webp",
-    "thumb": "img/content/services-thumb-2.webp",
-    "hero": "img/content/services-item-2.webp",
-    "imageAlt": "Cargo aircraft taking off against a blue sky",
-    "thumbAlt": "Haulage trucks on the road at sunset",
+    "image": "img/slider/slide-2.webp",
+    "hero": "img/slider/slide-2.webp",
+    "imageAlt": "Trucks lined up at a loading bay at night",
     "metaDescription": "Reliable cargo transportation across Ghana and cross-border routes. Route planning, scheduling and monitored deliveries for parcels to oversized cargo.",
     "short": "Blahar & Benyah Int’l Ltd provides dependable transportation services for safe and timely cargo movement.",
     "card": "We provide seamless transportation solutions that ensure your goods reach their destination safely and on time. Our services combine efficiency, reliability, and careful handling to keep your supply chain moving smoothly.",
@@ -50,18 +52,23 @@
       "Container and general cargo haulage",
       "Route planning, scheduling and vehicle coordination",
       "Regular status updates from collection to delivery"
+    ],
+    "displayTitle": "Transport<wbr>ation",
+    "blurb": "Our trucks and experienced drivers for container and general cargo haulage — within Tema and Accra, across Ghana and over the border.",
+    "ctaLabel": "Book a truck",
+    "highlights": [
+      "Container, flatbed and general cargo haulage",
+      "Cross-border road transport to neighbouring countries",
+      "Driver contact and status updates for every trip"
     ]
   },
   {
     "slug": "clearing",
     "title": "Clearing",
     "category": "logistics",
-    "icon": "icon icon-cargo",
-    "image": "img/content/services-item-3.webp",
-    "thumb": "img/content/services-thumb-3.webp",
-    "hero": "img/content/company-thumb-2.webp",
-    "imageAlt": "Removal crew posing in front of a delivery truck",
-    "thumbAlt": "Removal crew posing in front of a delivery truck",
+    "image": "img/hero/container-yard.webp",
+    "hero": "img/hero/container-yard.webp",
+    "imageAlt": "Container yard at Tema Port at dusk",
     "metaDescription": "Professional customs clearing agents in Tema, Ghana. We handle import and export documentation, duties and port coordination so your goods clear quickly.",
     "short": "Blahar & Benyah Int’l Ltd provides professional clearing services to facilitate smooth import and export operations.",
     "card": "We offer professional clearing services to simplify customs procedures and ensure smooth import and export operations. Our team handles all documentation and compliance requirements, helping your goods move quickly and efficiently across borders.",
@@ -76,18 +83,24 @@
       "Duty and tax assessment guidance",
       "Coordination with port, airport and regulatory authorities",
       "Release and onward delivery of cleared cargo"
-    ]
+    ],
+    "displayTitle": "Customs<br>clearing",
+    "blurb": "Import and export clearance at Tema Port, Kotoka Airport and the land borders — declarations lodged right the first time, duties explained before you pay.",
+    "ctaLabel": "Clear my cargo",
+    "highlights": [
+      "Preparation and lodging of declarations",
+      "Duty and tax assessment guidance",
+      "Release and onward delivery of cleared cargo"
+    ],
+    "heroMobile": "img/hero/container-yard-960.webp"
   },
   {
     "slug": "warehousing",
     "title": "Warehousing",
     "category": "logistics",
-    "icon": "icon icon-storage",
-    "image": "img/content/services-thumb-6.webp",
-    "thumb": "img/content/services-thumb-6.webp",
-    "hero": "img/content/services-thumb-6.webp",
-    "imageAlt": "Forklift moving stock inside a warehouse",
-    "thumbAlt": "Forklift moving stock inside a warehouse",
+    "image": "img/hero/warehouse.webp",
+    "hero": "img/hero/warehouse.webp",
+    "imageAlt": "Two warehouse workers checking stock between racking",
     "metaDescription": "Secure, organised warehousing and storage in Tema, Ghana. Short- and long-term storage with structured inventory handling for importers and distributors.",
     "short": "Blahar & Benyah Int’l Ltd provides secure and organized warehousing solutions to support efficient inventory management.",
     "card": "Secure and organized warehousing solutions for efficient storage and inventory management, with structured systems designed to protect your goods and optimize space.",
@@ -102,18 +115,24 @@
       "Organised, space-efficient storage systems",
       "Inventory records and stock updates",
       "Combined storage-and-delivery arrangements"
-    ]
+    ],
+    "displayTitle": "Ware<wbr>housing",
+    "blurb": "Secure, organised storage in Community 4, Tema — for a week after clearing or for the whole season, with stock records you can trust.",
+    "ctaLabel": "Reserve space",
+    "highlights": [
+      "Short- and long-term storage",
+      "Receiving, checking and dispatch of goods",
+      "Combined storage-and-delivery arrangements"
+    ],
+    "heroMobile": "img/hero/warehouse-960.webp"
   },
   {
     "slug": "building-construction",
     "title": "Building & Construction",
     "category": "other",
-    "icon": "fa fa-building-o",
-    "image": "img/content/services-item-4.webp",
-    "thumb": "img/content/services-thumb-4.webp",
-    "hero": "img/content/services-item-4.webp",
-    "imageAlt": "Site engineers in safety vests reviewing a building under construction",
-    "thumbAlt": "Site engineers in safety vests reviewing a building under construction",
+    "image": "img/hero/construction.webp",
+    "hero": "img/hero/construction.webp",
+    "imageAlt": "Construction crew raising a reinforced concrete building frame",
     "metaDescription": "Building and construction services for residential and commercial projects in Ghana, managed from planning to completion by Blahar & Benyah Int’l Ltd.",
     "short": "Blahar & Benyah Int’l Ltd delivers structured building and construction services across residential and commercial projects.",
     "card": "We deliver expert building and construction services, combining quality craftsmanship with efficient project management. From planning to completion, we ensure every project meets high standards, on time and within budget.",
@@ -128,18 +147,24 @@
       "Project planning and coordination of materials and labour",
       "Scheduling and budget control",
       "Safety and compliance management"
-    ]
+    ],
+    "displayTitle": "Building &amp;<br>construction",
+    "blurb": "Residential and commercial projects, renovation and expansion — planned, scheduled and delivered.",
+    "ctaLabel": "Discuss a project",
+    "highlights": [
+      "Residential and commercial construction",
+      "Renovation and structural expansion",
+      "Scheduling and budget control"
+    ],
+    "heroMobile": "img/hero/construction-960.webp"
   },
   {
     "slug": "printing-photocopying",
     "title": "Printing & Photocopying",
     "category": "other",
-    "icon": "fa fa-print",
     "image": "img/content/services-item-5.webp",
-    "thumb": "img/content/services-thumb-5.webp",
     "hero": "img/content/services-item-5.webp",
     "imageAlt": "Office worker operating a multifunction printer",
-    "thumbAlt": "Office worker operating a multifunction printer",
     "metaDescription": "Professional printing and photocopying services in Tema for businesses and individuals — documents, reports and business materials produced quickly and accurately.",
     "short": "Blahar & Benyah Int’l Ltd provides professional printing and photocopying services for corporate and individual clients.",
     "card": "We provide professional printing and photocopying services, delivering high-quality documents and materials with speed and accuracy. Our solutions cater to all your business and personal needs, ensuring clear, precise, and reliable results every time.",
@@ -153,6 +178,14 @@
       "High-volume photocopying",
       "Business documents, reports and forms",
       "Shipping and customs paperwork",
+      "Fast turnaround for urgent jobs"
+    ],
+    "displayTitle": "Printing &amp;<br>photocopying",
+    "blurb": "Business documents, shipping and customs paperwork, high-volume copying — fast turnaround.",
+    "ctaLabel": "Send a print job",
+    "highlights": [
+      "Black-and-white and colour printing",
+      "High-volume photocopying",
       "Fast turnaround for urgent jobs"
     ]
   }
